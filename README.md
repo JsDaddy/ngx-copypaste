@@ -1,4 +1,4 @@
-<a href="#">
+<a href="https://jsdaddy.github.io/ngx-copypaste/">
   <h1 align="center">ngx-copypaste</h1>
 </a>
 
