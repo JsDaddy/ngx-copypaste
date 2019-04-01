@@ -2,6 +2,7 @@
   "name": "ngx-copypaste",
   "description": "awesome ngx copypaste directive",
   "version": "7.1.0",
+  "license": "MIT",
   "keywords": [
     "ng2-copypaste",
     "ngx-copypaste",
@@ -33,6 +34,11 @@
     "url": "https://github.com/NepipenkoIgor/ngx-mask.git"
   },
   "private": true,
+  "peerDependencies": {
+    "@angular/common": ">=6.0.0",
+    "@angular/core": ">=6.0.0",
+    "@angular/forms": ">=6.0.0"
+  },
   "dependencies": {
     "@angular/animations": "^7.2.11",
     "@angular/cdk": "^7.3.6",
@@ -55,9 +61,10 @@
     "@angular/cli": "~7.3.1",
     "@angular/compiler-cli": "~7.2.0",
     "@angular/language-service": "~7.2.0",
-    "@types/node": "~8.9.4",
     "@types/jasmine": "~2.8.8",
     "@types/jasminewd2": "~2.0.3",
+    "@types/node": "~8.9.4",
+    "angular-cli-ghpages": "^0.5.3",
     "codelyzer": "~4.5.0",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
