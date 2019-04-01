@@ -9,7 +9,7 @@ $ npm install --save ngx-copypaste
 
 ## Quickstart
 
-Import **ngx-mask** module in Angular app.
+Import **ngx-copypaste** module in Angular app.
 
 ```typescript
 import {NgxCopyPasteModule} from 'ngx-copypaste'
@@ -37,7 +37,7 @@ From input
 From any HTML tag
 
 ```html
-<p gxCopyPaste #cp="copy">Lorem ipsum</p>
+<p ngxCopyPaste #cp="copy">Lorem ipsum</p>
 
 <button (click)="cp.copy()">Copy</button>
 ```
@@ -61,7 +61,7 @@ From complex div
 Also you can bind it to any tag
 
 ```html
-<p gxCopyPaste #cp="copy">Lorem ipsum</p>
+<p ngxCopyPaste #cp="copy">Lorem ipsum</p>
 
 <p (click)="cp.copy()">Copy</p>
 ```
