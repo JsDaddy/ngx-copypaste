@@ -1,0 +1,10 @@
+{
+  "$schema": "./node_modules/ng-packagr/package.schema.json",
+  "name": "ngx-copypaste",
+  "version": "2.5.3",
+  "ngPackage": {
+    "lib": {
+      "entryFile": "./src/public_api.ts"
+    }
+  }
+}

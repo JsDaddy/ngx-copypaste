@@ -1,13 +1,36 @@
 {
   "name": "ngx-copypaste",
+  "description": "awesome ngx copypaste directive",
   "version": "0.0.0",
+  "keywords": [
+    "ng2-copypaste",
+    "ngx-copypaste",
+    "ng2",
+    "ng",
+    "angular-copypaste",
+    "copypaste",
+    "angular",
+    "angular2",
+    "angular2-clipboard",
+    "ng2clipboard",
+    "jsdaddy",
+    "angular-clipboard",
+    "clipboard",
+    "angular2-clipboard",
+    "ng2clipboard",
+    "ng2-clipboard",
+    "ngx-clipboard"
+  ],
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
     "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e"
+    "lint": "tslint './src/app/**/*.ts'",
+    "build:library": "ng-packagr -p package.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NepipenkoIgor/ngx-mask.git"
   },
   "private": true,
   "dependencies": {
@@ -44,5 +67,10 @@
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
     "typescript": "~3.2.2"
-  }
+  },
+  "pre-commit": [
+    "lint",
+    "test"
+  ],
+  "ngPackage": true
 }
