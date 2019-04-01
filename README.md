@@ -1,27 +1,67 @@
-# NgxCopypaste
+<a href="#">
+  <h1 align="center">ngx-copypaste</h1>
+</a>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.1.
+## Installing
+```bash
+$ npm install --save ngx-copypaste 
+```
 
-## Development server
+## Quickstart
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Import **ngx-mask** module in Angular app.
 
-## Code scaffolding
+```typescript
+import {NgxCopyPasteModule} from 'ngx-copypaste'
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+(...)
 
-## Build
+@NgModule({
+  (...)
+  imports: [
+    NgxCopyPasteModule
+  ]
+  (...)
+})
+```
+#### Usage
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+From input
 
-## Running unit tests
+```html
+<input type='text' ngxCopyPaste #cp="copy"/>
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+<button (click)="cp.copy()">Copy</button>
+```
 
-## Running end-to-end tests
+From any HTML tag
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+```html
+<p gxCopyPaste #cp="copy">Lorem ipsum</p>
 
-## Further help
+<button (click)="cp.copy()">Copy</button>
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+From complex div
+
+```html
+<div ngxCopyPaste #cp="copy">
+  <h1>Lorem ipsum</h1>
+  <p>Lorem ipsum dolor sit amet, consectetur 
+  adipiscing elit.
+ Nullam rutrum augue at ante sollicitudin posuere.
+ Pellentesque congue consequat enim quis luctus.</p>
+  <div>
+    <h2>Lorem ipsum</h2>
+  </div>
+</div>
+
+<button (click)="cp.copy()">Copy</button>
+```
+Also you can bind it to any tag
+
+```html
+<p gxCopyPaste #cp="copy">Lorem ipsum</p>
+
+<p (click)="cp.copy()">Copy</p>
+```
