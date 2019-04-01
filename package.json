@@ -33,7 +33,6 @@
     "type": "git",
     "url": "https://github.com/NepipenkoIgor/ngx-mask.git"
   },
-  "private": true,
   "peerDependencies": {
     "@angular/common": ">=6.0.0",
     "@angular/core": ">=6.0.0",
