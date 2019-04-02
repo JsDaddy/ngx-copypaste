@@ -1,7 +1,7 @@
 {
   "name": "ngx-copypaste",
   "description": "awesome ngx copypaste directive",
-  "version": "7.1.2",
+  "version": "7.1.3",
   "license": "MIT",
   "keywords": [
     "ng2-copypaste",
