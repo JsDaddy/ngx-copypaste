@@ -1,7 +1,7 @@
 {
   "name": "ngx-copypaste",
   "description": "awesome ngx copypaste directive",
-  "version": "7.1.1",
+  "version": "7.1.2",
   "license": "MIT",
   "keywords": [
     "ng2-copypaste",
@@ -31,7 +31,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/NepipenkoIgor/ngx-mask.git"
+    "url": "https://github.com/JsDaddy/ngx-mask"
   },
   "peerDependencies": {
     "@angular/common": ">=6.0.0",
