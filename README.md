@@ -9,6 +9,7 @@
 [![npm](https://img.shields.io/npm/dm/ngx-copypaste.svg)](https://www.npmjs.com/package/ngx-copypaste)
 [![GitHub contributors](https://img.shields.io/github/contributors/JSDaddy/ngx-copypaste.svg?style=flat-square)](https://github.com/JSDaddy/ngx-copypaste)
 [![GitHub stars](https://img.shields.io/github/stars/JSDaddy/ngx-copypaste.svg?label=GitHub%20Stars&style=flat-square)](https://github.com/JSDaddy/ngx-copypaste)
+<br>
 You can also try our NGX MASK [Download](https://www.npmjs.com/package/ngx-mask) it.
 You can also try our NGX LOADER INDICATOR [Download](https://www.npmjs.com/package/ngx-loader-indicator) it.
 ### You can see the full [documentation](https://jsdaddy.github.io/ngx-mask-page/) with examples.
