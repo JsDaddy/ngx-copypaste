@@ -2,6 +2,15 @@
   <h1 align="center">ngx-copypaste</h1>
 </a>
 
+[![npm](https://img.shields.io/npm/v/ngx-copypaste.svg)](https://www.npmjs.com/package/ngx-copypaste)
+<a href="https://npmjs.org/ngx-copypaste">
+  <img src="https://img.shields.io/npm/dt/ngx-copypaste.svg" alt="npm downloads" >
+</a>
+[![npm](https://img.shields.io/npm/dm/ngx-copypaste.svg)](https://www.npmjs.com/package/ngx-copypaste)
+
+You can also try our NGX MASK [Download](https://www.npmjs.com/package/ngx-mask) it.
+You can also try our NGX LOADER INDICATOR [Download](https://www.npmjs.com/package/ngx-loader-indicator) it.
+### You can see the full [documentation](https://jsdaddy.github.io/ngx-mask-page/) with examples.
 ## Installing
 ```bash
 $ npm install --save ngx-copypaste 
