@@ -5,24 +5,27 @@ import { Directive, ElementRef } from '@angular/core';
   exportAs: 'copy'
 })
 export class NgxCopyPasteDirective {
-
-  public constructor(
-    private _elementRef: ElementRef
-  ) {
-  }
-
+  public constructor(private _elementRef: ElementRef) {}
 
   public copy(): void {
-    window.getSelection().removeAllRanges();
+    let select: Selection | null = window.getSelection();
+    if (select) {
+      select.removeAllRanges();
+    }
     const element: HTMLElement = this._elementRef.nativeElement;
-    if (element instanceof HTMLInputElement || element instanceof HTMLTextAreaElement) {
+    if (
+      element instanceof HTMLInputElement ||
+      element instanceof HTMLTextAreaElement
+    ) {
       this._elementRef.nativeElement.select();
     } else {
       const range: Range = document.createRange();
       range.selectNodeContents(this._elementRef.nativeElement);
-      window.getSelection().addRange(range);
+      select = window.getSelection();
+      if (select) {
+        select.addRange(range);
+      }
     }
     document.execCommand('copy');
   }
-
 }
