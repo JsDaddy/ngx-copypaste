@@ -12,7 +12,7 @@
 <br>
 You can also try our NGX MASK [Download](https://www.npmjs.com/package/ngx-mask) it.
 You can also try our NGX LOADER INDICATOR [Download](https://www.npmjs.com/package/ngx-loader-indicator) it.
-### You can see the full [documentation](https://jsdaddy.github.io/ngx-mask-page/) with examples.
+### You can see the full [documentation](https://jsdaddy.github.io/ngx-copypaste/) with examples.
 ## Installing
 ```bash
 $ npm install --save ngx-copypaste 
