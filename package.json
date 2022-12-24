@@ -36,10 +36,10 @@
   "peerDependencies": {},
   "dependencies": {
     "@angular/animations": "14.2.12",
-    "@angular/cdk": "13.3.9",
+    "@angular/cdk": "14.2.7",
     "@angular/common": "14.2.12",
     "@angular/compiler": "14.2.12",
-    "@angular/core": "13.3.12",
+    "@angular/core": "14.2.12",
     "@angular/forms": "14.2.12",
     "@angular/material": "10.2.5",
     "@angular/platform-browser": "14.2.12",
@@ -53,8 +53,8 @@
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~13.3.10",
-    "@angular/cli": "13.3.10",
+    "@angular-devkit/build-angular": "^14.2.10",
+    "@angular/cli": "14.2.10",
     "@angular/compiler-cli": "14.2.12",
     "@angular/language-service": "14.2.12",
     "@types/jasmine": "~3.6.0",
@@ -69,7 +69,7 @@
     "karma-coverage-istanbul-reporter": "~3.0.3",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "^1.5.0",
-    "ng-packagr": "^13.3.1",
+    "ng-packagr": "^14.2.2",
     "protractor": "~7.0.0",
     "ts-node": "9.0.0",
     "tslint": "~6.1.0",
