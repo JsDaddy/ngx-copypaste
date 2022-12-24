@@ -1,0 +1,27 @@
+.content-wrapper {
+    height: calc(100% - 64px);
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+
+    .main-container {
+        width: 980px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+
+        .row {
+            display: flex;
+            gap: 16px;
+
+            .code,
+            .example {
+                flex: 50%;
+
+                mat-card {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
