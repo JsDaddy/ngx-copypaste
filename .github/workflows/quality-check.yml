@@ -1,4 +1,4 @@
-name: GitHub Pages v1
+name: Quality check v1
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
      - !master
 
 jobs:
-  build:
+  quality-check:
     runs-on: ubuntu-latest
     permissions:
       contents: write

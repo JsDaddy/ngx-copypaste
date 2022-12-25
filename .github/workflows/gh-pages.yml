@@ -1,4 +1,4 @@
-name: GitHub Pages v1
+name: GitHub pages v1
 
 on:
   push:
@@ -15,13 +15,14 @@ jobs:
     - uses: actions/setup-node@v3
       with:
         node-version: 18
-    - name: Build
-      run: |
+    - run: |
         npm ci
-        npm run lint
-        npm test
         npm run build
-    - name: Deploy
+        
+  publish-npm:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
