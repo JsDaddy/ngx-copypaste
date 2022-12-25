@@ -1,0 +1,43 @@
+{
+  "name": "ngx-copypaste",
+  "version": "15.0.0",
+  "license": "MIT",
+  "keywords": [
+    "ng2-copypaste",
+    "ngx-copypaste",
+    "ng2",
+    "ng",
+    "angular-copypaste",
+    "copypaste",
+    "angular",
+    "angular2",
+    "angular2-clipboard",
+    "ng2clipboard",
+    "jsdaddy",
+    "angular-clipboard",
+    "clipboard",
+    "angular2-clipboard",
+    "ng2clipboard",
+    "ng2-clipboard",
+    "ngx-clipboard"
+  ],
+  "author": "ngx-copypaste",
+  "contributors": [
+    "ngx-copypaste"
+  ],
+  "homepage": "https://github.com/JsDaddy/ngx-copypaste",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:JsDaddy/ngx-copypaste.git"
+  },
+  "bugs": {
+    "url": "https://github.com/JsDaddy/ngx-copypaste/issues"
+  },
+  "peerDependencies": {
+    "@angular/common": ">=14.0.0",
+    "@angular/core": ">=14.0.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  }
+}

@@ -10,6 +10,9 @@
     "sourceMap": true,
     "outDir": "./dist/out-tsc",
     "strict": true,
+    "paths": {
+      "ngx-copypaste": ["projects/ngx-copypaste-lib/src/public-api"]
+    },
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
@@ -18,14 +21,11 @@
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "moduleResolution": "node",
-    "baseUrl": "src",
-    "typeRoots": [
-      "node_modules/@types",
-      "types"
-    ],
+    "baseUrl": "./",
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
     "useDefineForClassFields": false
   },
   "angularCompilerOptions": {

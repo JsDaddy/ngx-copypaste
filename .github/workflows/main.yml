@@ -18,6 +18,8 @@ jobs:
     - name: Build
       run: |
         npm ci
+        npm run lint
+        npm test
         npm run build
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3

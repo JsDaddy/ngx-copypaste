@@ -116,6 +116,38 @@
           }
         }
       }
+    },
+    "ngx-copypaste-lib": {
+      "projectType": "library",
+      "root": "projects/ngx-copypaste-lib",
+      "sourceRoot": "projects/ngx-copypaste-lib/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/ngx-copypaste-lib/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ngx-copypaste-lib/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/ngx-copypaste-lib/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngx-copypaste-lib/src/test.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "projects/ngx-copypaste-lib/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-copypaste-lib/karma.conf.js"
+          }
+        }
+      }
     }
   }
 }
