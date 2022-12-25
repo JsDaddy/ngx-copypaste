@@ -19,6 +19,6 @@ jobs:
           npm ci
           npm run build:lib
       - name: Publish library
-        run: npm run publish
+        run: npm run publish:lib
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
