@@ -1,9 +1,9 @@
-name: Quality check v1
+name: build and quality
 
 on:
-  push:
+  pull_request:
     branches:
-     - !master
+      - develop
 
 jobs:
   quality-check:
@@ -11,14 +11,14 @@ jobs:
     permissions:
       contents: write
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-node@v3
-      with:
-        node-version: 18
-    - name: Check quality
-      run: |
-        npm ci
-        npm run lint
-        npm test
-        npm run build
-        npm run build:lib
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Check quality
+        run: |
+          npm ci
+          npm run lint
+          npm test
+          npm run build
+          npm run build:lib

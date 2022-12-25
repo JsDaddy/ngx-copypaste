@@ -2,7 +2,7 @@
   <h1 align="center">ngx-copypaste</h1>
 </a>
 
-[![CI](https://github.com/JsDaddy/ngx-copypaste/actions/workflows/quallity-check.yml/badge.svg?branch=develop)](https://github.com/JsDaddy/ngx-copypaste/actions/workflows/main.yml)
+[![CI](https://github.com/JsDaddy/ngx-copypaste/actions/workflows/quality-check.yml/badge.svg?branch=develop)](https://github.com/JsDaddy/ngx-copypaste/actions/workflows/main.yml)
 [![npm](https://img.shields.io/npm/v/ngx-copypaste.svg)](https://www.npmjs.com/package/ngx-copypaste)
 [![npm downloads](https://img.shields.io/npm/dt/ngx-copypaste.svg)](https://npmjs.org/ngx-copypaste)
 
