@@ -23,18 +23,18 @@ import { NgxCopyPasteDirective } from 'ngx-copypaste';
     ],
 })
 export class AppComponent {
-    public baseCode = `<input ngxCopyPaste #c="copy">
-<button (click)="c.copy()" >Copy</button>`;
+    public baseCode = `<input ngxCopyPaste #cp="copy">
+<button (click)="cp.copy()" >Copy</button>`;
 
-    public textAreaCode = `<textarea  ngxCopyPaste rows="1" #c="copy"></textarea>
-<button  (click)="c.copy()" >Copy</button>`;
+    public textAreaCode = `<textarea  ngxCopyPaste rows="1" #cp="copy"></textarea>
+<button  (click)="cp.copy()" >Copy</button>`;
 
-    public elementOwnCode = `<p ngxCopyPaste #c="copy">
+    public elementOwnCode = `<p ngxCopyPaste #cp="copy">
 Lorem ipsum dolor sit amet consectetur adipisicing elit.
 </p>
-<button  (click)="c.copy()" >Copy</button>`;
+<button  (click)="cp.copy()" >Copy</button>`;
 
-    public allElementCode = `<div ngxCopyPaste #c="copy">
+    public allElementCode = `<div ngxCopyPaste #cp="copy">
   <h1>Lorem ipsum</h1>
   <p>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
@@ -45,5 +45,5 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit.
     <h2>Lorem ipsum</h2>
   </div>
 </div>
-<button  (click)="c.copy()" >Copy</button>`;
+<button  (click)="cp.copy()" >Copy</button>`;
 }

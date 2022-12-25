@@ -1,6 +1,6 @@
 ---
 name: "\U0001F680 Feature request"
-about: Suggest a feature for ngx-mask package
+about: Suggest a feature for ngx-copypaste package
 ---
 
 <!--🔅🔅🔅🔅🔅🔅🔅🔅🔅🔅🔅🔅🔅🔅🔅🔅🔅🔅🔅🔅🔅🔅🔅🔅🔅🔅🔅🔅🔅🔅🔅
