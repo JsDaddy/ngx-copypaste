@@ -4,7 +4,7 @@
         <div class="row">
             <mat-card>
                 <mat-card-header>
-                    <mat-card-title>Input control</mat-card-title>
+                    <mat-card-title><h3>Input control</h3></mat-card-title>
                 </mat-card-header>
                 <mat-card-content>
                     <p>Usage</p>
@@ -17,89 +17,59 @@
             </mat-card>
         </div>
         <div class="row">
-            <div class="code">
-                <mat-card>
-                    <mat-card-header>
-                        <mat-card-title>Textarea control</mat-card-title>
-                    </mat-card-header>
-                    <mat-card-content>
-                        <p>Usage</p>
-                        <pre><code [highlight]="textAreaCode"></code></pre>
-                    </mat-card-content>
-                </mat-card>
-            </div>
-            <div class="example">
-                <mat-card>
-                    <mat-card-content>
-                        <div class="mat-form-wr">
-                            <mat-form-field>
-                                <textarea matInput ngxCopyPaste rows="1" #c2="copy"></textarea>
-                            </mat-form-field>
-                        </div>
-                        <div class="flex-cell">
-                            <button mat-stroked-button (click)="c2.copy()" color="primary">
-                                Copy
-                            </button>
-                        </div>
-                    </mat-card-content>
-                </mat-card>
-            </div>
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title><h3>Textarea control</h3></mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <p>Usage</p>
+                    <pre><code [highlight]="textAreaCode"></code></pre>
+                    <mat-form-field>
+                        <textarea matInput ngxCopyPaste rows="1" #c2="copy"></textarea>
+                    </mat-form-field>
+                    <button mat-stroked-button (click)="c2.copy()" color="primary">Copy</button>
+                </mat-card-content>
+            </mat-card>
         </div>
 
         <div class="row">
-            <div class="code">
-                <mat-card>
-                    <mat-card-header>
-                        <mat-card-title>Element own text</mat-card-title>
-                    </mat-card-header>
-                    <mat-card-content>
-                        <p>Usage</p>
-                        <pre><code [highlight]="elementOwnCode"></code></pre>
-                    </mat-card-content>
-                </mat-card>
-            </div>
-            <div class="example">
-                <mat-card>
-                    <mat-card-content>
-                        <p ngxCopyPaste #c3="copy">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title><h3>Element own text</h3></mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <p>Usage</p>
+                    <pre><code [highlight]="elementOwnCode"></code></pre>
+                    <p ngxCopyPaste #c3="copy">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    </p>
+                    <button mat-stroked-button (click)="c3.copy()" color="primary">Copy</button>
+                </mat-card-content>
+            </mat-card>
+        </div>
+
+        <div class="row">
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title><h3>All text in element</h3></mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <p>Usage</p>
+                    <pre><code [highlight]="allElementCode"></code></pre>
+                    <div ngxCopyPaste #c4="copy">
+                        <h4>Lorem ipsum</h4>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam rutrum
+                            augue at ante sollicitudin posuere. Pellentesque congue consequat enim
+                            quis luctus.
                         </p>
-                        <button mat-stroked-button (click)="c3.copy()" color="primary">Copy</button>
-                    </mat-card-content>
-                </mat-card>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="code">
-                <mat-card>
-                    <mat-card-header>
-                        <mat-card-title>All text in element</mat-card-title>
-                    </mat-card-header>
-                    <mat-card-content>
-                        <p>Usage</p>
-                        <pre><code [highlight]="allElementCode"></code></pre>
-                    </mat-card-content>
-                </mat-card>
-            </div>
-            <div class="example">
-                <mat-card>
-                    <mat-card-content>
-                        <div ngxCopyPaste #c4="copy">
-                            <h1>Lorem ipsum</h1>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-                                rutrum augue at ante sollicitudin posuere. Pellentesque congue
-                                consequat enim quis luctus.
-                            </p>
-                            <div>
-                                <h2>Lorem ipsum</h2>
-                            </div>
+                        <div>
+                            <h5>Lorem ipsum</h5>
                         </div>
-                        <button mat-stroked-button (click)="c4.copy()" color="primary">Copy</button>
-                    </mat-card-content>
-                </mat-card>
-            </div>
+                    </div>
+                    <button mat-stroked-button (click)="c4.copy()" color="primary">Copy</button>
+                </mat-card-content>
+            </mat-card>
         </div>
     </div>
 </div>

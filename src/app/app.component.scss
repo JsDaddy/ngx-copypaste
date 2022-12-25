@@ -1,8 +1,9 @@
 .content-wrapper {
-    height: calc(100% - 64px);
     display: flex;
     justify-content: center;
-    overflow: hidden;
+    overflow: auto;
+    padding: 32px 16px;
+    box-sizing: border-box;
 
     .main-container {
         width: 980px;
@@ -14,14 +15,20 @@
             display: flex;
             gap: 16px;
 
-            .code,
-            .example {
-                flex: 50%;
+            mat-card {
+                width: 100%;
 
-                mat-card {
-                    width: 100%;
+                pre {
+                    overflow: auto;
                 }
             }
         }
+    }
+}
+
+@media only screen and (max-width: 980px) {
+    .main-container {
+        max-width: 100%;
+        min-width: 100%;
     }
 }
