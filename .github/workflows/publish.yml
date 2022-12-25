@@ -1,4 +1,4 @@
-name: Publish npm v1
+name: Publish npm
 
 on:
   push:
