@@ -1,126 +1,75 @@
-<style>
-  mat-sidenav {
-    display: flex;
-    overflow: visible;
-  }
-</style>
-<mat-sidenav-container>
-  <mat-sidenav mode="side" opened="false">Side menu</mat-sidenav>
-  <header>
-    <div class="container">
-      <div class="row">
-        <div class="col-7">
-          <div class="logo align-middle">
-            <a target="_blank" href="http://jsdaddy.io/"><img src="assets/img/logo.png" alt="jsdaddy"></a>
-          </div>
-        </div>
-        <div class="col-5">
-          <h1 class="title">
-            <span class="jq-label">Angular</span>
-            <span class="plugin-name">ngx-copypaste</span>
-          </h1>
-          <span class="subtitle">Angular Plugin to make masks on form fields and html elements.</span>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <div class="mat-grid-wr">
-          <mat-grid-list cols="1" rowHeight="55px">
-            <mat-grid-tile>
-              <mat-toolbar>
-                <span>Examples</span>
-              </mat-toolbar>
-            </mat-grid-tile>
-          </mat-grid-list>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <div class="mat-card-wr">
-          <mat-card>
-            <mat-card-content>
-              <div class="row">
-                <div class="col-mat-3">
-                  <div class="mat-form-wr">
+<ngx-copypaste-demo-header></ngx-copypaste-demo-header>
+<div class="content-wrapper">
+    <div class="main-container">
+        <div class="row">
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title><h3>Input control</h3></mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <p>Usage</p>
+                    <pre><code [highlight]="baseCode"></code></pre>
                     <mat-form-field>
-                      <input matInput ngxCopyPaste #c="copy">
+                        <input matInput ngxCopyPaste #c1="copy" />
                     </mat-form-field>
-                  </div>
-                  <div class="flex-cell">
-                    <button mat-stroked-button (click)="c.copy()" color="primary">Copy</button>
-                  </div>
-                </div>
-                <div class="col-mat-3">
-                  <div class="mat-form-wr">
+                    <button mat-stroked-button (click)="c1.copy()" color="primary">Copy</button>
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <div class="row">
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title><h3>Textarea control</h3></mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <p>Usage</p>
+                    <pre><code [highlight]="textAreaCode"></code></pre>
                     <mat-form-field>
-                      <textarea matInput ngxCopyPaste rows="1" #p="copy"></textarea>
+                        <textarea matInput ngxCopyPaste rows="1" #c2="copy"></textarea>
                     </mat-form-field>
-                  </div>
-                  <div class="flex-cell">
-                    <button mat-stroked-button (click)="p.copy()" color="primary">Copy</button>
-                  </div>
-                </div>
-                <div class="col-mat-3">
-                  <div class="mat-form-wr">
-                    <p [ngStyle]="{'margin-top': '33px'}" ngxCopyPaste #o="copy">Lorem ipsum dolor sit amet consectetur
-                      adipisicing elit.</p>
-                  </div>
-                  <div class="flex-cell">
-                    <button mat-stroked-button (click)="o.copy()" color="primary">Copy</button>
-                  </div>
-                </div>
-                <div class="col-mat-3">
-                  <div class="mat-form-wr">
-                    <div ngxCopyPaste #text="copy">
-                      <h1>Lorem ipsum</h1>
-                      <p>Lorem ipsum dolor sit amet, consectetur
-                        adipiscing elit.
-                        Nullam rutrum augue at ante sollicitudin posuere.
-                        Pellentesque congue consequat enim quis luctus.</p>
-                      <div>
-                        <h2>Lorem ipsum</h2>
-                      </div>
+                    <button mat-stroked-button (click)="c2.copy()" color="primary">Copy</button>
+                </mat-card-content>
+            </mat-card>
+        </div>
+
+        <div class="row">
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title><h3>Element own text</h3></mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <p>Usage</p>
+                    <pre><code [highlight]="elementOwnCode"></code></pre>
+                    <p ngxCopyPaste #c3="copy">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    </p>
+                    <button mat-stroked-button (click)="c3.copy()" color="primary">Copy</button>
+                </mat-card-content>
+            </mat-card>
+        </div>
+
+        <div class="row">
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title><h3>All text in element</h3></mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <p>Usage</p>
+                    <pre><code [highlight]="allElementCode"></code></pre>
+                    <div ngxCopyPaste #c4="copy">
+                        <h4>Lorem ipsum</h4>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam rutrum
+                            augue at ante sollicitudin posuere. Pellentesque congue consequat enim
+                            quis luctus.
+                        </p>
+                        <div>
+                            <h5>Lorem ipsum</h5>
+                        </div>
                     </div>
-                  </div>
-                  <div class="flex-cell">
-                    <button mat-stroked-button (click)="text.copy()" color="primary">Copy</button>
-                  </div>
-                </div>
-                <div class="col-mat-3">
-                  <div class="mat-form-wr">
-                    <p [ngStyle]="{'margin-top': '33px'}" ngxCopyPaste #v="copy">Lorem ipsum dolor sit amet consectetur
-                      adipisicing elit.</p>
-                  </div>
-                  <div class="flex-cell">
-                    <p (click)="v.copy()" [ngStyle]="{'color': '#00bcd4'}">CLICK ME!</p>
-                  </div>
-                </div>
-              </div>
-            </mat-card-content>
-          </mat-card>
+                    <button mat-stroked-button (click)="c4.copy()" color="primary">Copy</button>
+                </mat-card-content>
+            </mat-card>
         </div>
-      </div>
     </div>
-  </div>
-  <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <div class="mat-grid-wr">
-          <span>Documentation - see docs on
-            <a class="git-link" target="_blank" href="https://github.com/JsDaddy/ngx-copypaste.git">
-              <img src="assets/img/github.png" alt="github">
-            </a>
-          </span>
-        </div>
-      </div>
-    </div>
-  </div>
-</mat-sidenav-container>
+</div>

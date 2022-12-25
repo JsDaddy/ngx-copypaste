@@ -10,14 +10,19 @@
       "prefix": "app",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "sass"
+          "style": "scss",
+          "standalone": true,
+          "changeDetection": "OnPush",
+          "viewEncapsulation": "ShadowDom"
+        },
+        "@schematics/angular:application": {
+          "strict": true
         }
       },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "aot": true,
             "outputPath": "dist/ngx-copypaste",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -28,10 +33,17 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss",
-              "node_modules/bootstrap/dist/css/bootstrap-grid.css"
+              "@angular/material/prebuilt-themes/indigo-pink.css",
+              "node_modules/highlight.js/styles/github.css",
+              "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -44,9 +56,7 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -62,7 +72,8 @@
                 }
               ]
             }
-          }
+          },
+          "defaultConfiguration": ""
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -99,47 +110,44 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "src/tsconfig.app.json",
-              "src/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "lintFilePatterns": ["**/*.js", "**/*.json", "**/*.ts", "**/*.html"]
           }
         }
       }
     },
-    "ngx-copypaste-e2e": {
-      "root": "e2e/",
-      "projectType": "application",
-      "prefix": "",
+    "ngx-copypaste-lib": {
+      "projectType": "library",
+      "root": "projects/ngx-copypaste-lib",
+      "sourceRoot": "projects/ngx-copypaste-lib/src",
+      "prefix": "lib",
       "architect": {
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "ngx-copypaste:serve"
+            "project": "projects/ngx-copypaste-lib/ng-package.json"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "ngx-copypaste:serve:production"
+              "tsConfig": "projects/ngx-copypaste-lib/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/ngx-copypaste-lib/tsconfig.lib.json"
             }
-          }
+          },
+          "defaultConfiguration": "production"
         },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "tsConfig": "e2e/tsconfig.e2e.json",
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "main": "projects/ngx-copypaste-lib/src/test.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "projects/ngx-copypaste-lib/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-copypaste-lib/karma.conf.js"
           }
         }
       }
     }
-  },
-  "defaultProject": "ngx-copypaste"
+  }
 }

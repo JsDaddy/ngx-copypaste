@@ -1,15 +1,17 @@
-<a href="https://jsdaddy.github.io/ngx-copypaste/">
+<a href="https://jsdaddy.github.io/ngx-copypaste">
   <h1 align="center">ngx-copypaste</h1>
 </a>
 
+[![CI](https://github.com/JsDaddy/ngx-copypaste/actions/workflows/quallity-check.yml/badge.svg?branch=develop)](https://github.com/JsDaddy/ngx-copypaste/actions/workflows/main.yml)
 [![npm](https://img.shields.io/npm/v/ngx-copypaste.svg)](https://www.npmjs.com/package/ngx-copypaste)
-<a href="https://npmjs.org/ngx-copypaste">
-  <img src="https://img.shields.io/npm/dt/ngx-copypaste.svg" alt="npm downloads" >
-</a>
+[![npm downloads](https://img.shields.io/npm/dt/ngx-copypaste.svg)](https://npmjs.org/ngx-copypaste)
+
 [![npm](https://img.shields.io/npm/dm/ngx-copypaste.svg)](https://www.npmjs.com/package/ngx-copypaste)
-[![GitHub contributors](https://img.shields.io/github/contributors/JSDaddy/ngx-copypaste.svg?style=flat-square)](https://github.com/JSDaddy/ngx-copypaste)
-[![GitHub stars](https://img.shields.io/github/stars/JSDaddy/ngx-copypaste.svg?label=GitHub%20Stars&style=flat-square)](https://github.com/JSDaddy/ngx-copypaste)
-<br>
+
+[![GitHub contributors](https://img.shields.io/github/contributors/JSDaddy/ngx-copypaste.svg?style=flat)](https://github.com/JSDaddy/ngx-copypaste)
+
+[![GitHub stars](https://img.shields.io/github/stars/JSDaddy/ngx-copypaste.svg?label=GitHub%20Stars&style=flat)](https://github.com/JSDaddy/ngx-copypaste)
+
 You can also try our NGX MASK [Download](https://www.npmjs.com/package/ngx-mask) it.
 You can also try our NGX LOADER INDICATOR [Download](https://www.npmjs.com/package/ngx-loader-indicator) it.
 ### You can see the full [documentation](https://jsdaddy.github.io/ngx-copypaste/) with examples.
@@ -18,7 +20,32 @@ You can also try our NGX LOADER INDICATOR [Download](https://www.npmjs.com/packa
 $ npm install --save ngx-copypaste 
 ```
 
-## Quickstart
+## Quickstart if ngx-copypaste version >= 15.0.0
+
+Pay attention this version works for angular >= 14.0.0
+
+Import **ngx-copypaste** directive to your standalone component
+
+```typescript
+@Component({
+  selector: 'ngx-component',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss'],
+  standalone: true,
+  imports: [
+    (...)
+    NgxCopyPasteDirective,
+    (...)
+  ],
+})
+export class AppComponent {
+    (...)
+}
+```
+
+## Quickstart if ngx-copypaste version < 15.0.0
+
+Pay attention this version works for angular < 15.0.0
 
 Import **ngx-copypaste** module in Angular app.
 
