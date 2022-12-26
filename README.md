@@ -1,6 +1,10 @@
-<a href="https://jsdaddy.github.io/ngx-copypaste">
-  <h1 align="center">ngx-copypaste</h1>
+<a href="http://jsdaddy.io/img/logo.png">
+  <h1 align="center">NGX COPYPASTE</h1>
 </a>
+
+<p align="center">
+  NGX COPYPASTE is the best directive to copy any content on any element
+</p>
 
 [![CI](https://github.com/JsDaddy/ngx-copypaste/actions/workflows/quality-check.yml/badge.svg?branch=develop)](https://github.com/JsDaddy/ngx-copypaste/actions/workflows/main.yml)
 [![npm](https://img.shields.io/npm/v/ngx-copypaste.svg)](https://www.npmjs.com/package/ngx-copypaste)

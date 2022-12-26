@@ -1,7 +1,7 @@
 {
     "name": "ngx-copypaste",
     "description": "Awesome ngx copypaste directive",
-    "version": "15.0.0",
+    "version": "15.0.1",
     "license": "MIT",
     "keywords": [
         "ng2-copypaste",
@@ -44,7 +44,6 @@
     },
     "dependencies": {
         "@angular/animations": "15.0.4",
-        "@angular/cdk": "15.0.3",
         "@angular/common": "15.0.4",
         "@angular/compiler": "15.0.4",
         "@angular/core": "15.0.4",
@@ -52,7 +51,6 @@
         "@angular/material": "15.0.3",
         "@angular/platform-browser": "15.0.4",
         "@angular/platform-browser-dynamic": "15.0.4",
-        "@angular/router": "15.0.4",
         "core-js": "3.26.1",
         "highlight.js": "^11.7.0",
         "ngx-highlightjs": "^7.0.1",
