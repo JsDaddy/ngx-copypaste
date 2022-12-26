@@ -16,9 +16,10 @@
 
 [![GitHub stars](https://img.shields.io/github/stars/JSDaddy/ngx-copypaste.svg?label=GitHub%20Stars&style=flat)](https://github.com/JSDaddy/ngx-copypaste)
 
-You can also try our NGX MASK [Download](https://www.npmjs.com/package/ngx-mask) it.
-You can also try our NGX LOADER INDICATOR [Download](https://www.npmjs.com/package/ngx-loader-indicator) it.
-### You can see the full [documentation](https://jsdaddy.github.io/ngx-copypaste/) with examples.
+You can also try our NGX MASK [check](https://www.npmjs.com/package/ngx-mask) it.
+You can also try our NGX LOADER INDICATOR [check](https://www.npmjs.com/package/ngx-loader-indicator) it.
+### You can try live  [demo](https://jsdaddy.github.io/ngx-copypaste/) with examples.
+
 ## Installing
 ```bash
 $ npm install --save ngx-copypaste 
