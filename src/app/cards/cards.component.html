@@ -34,7 +34,7 @@
                             class="copy-position"
                             (click)="c1.copy()" />
                     </div>
-                    <div class="input-wrapper pd-15 h-input" *ngIf="!card.isInput">
+                    <div class="input-wrapper pd-15 h-input" *ngIf="card.isTextarea">
                         <textarea
                             ngxCopyPaste
                             placeholder="Start Typing"

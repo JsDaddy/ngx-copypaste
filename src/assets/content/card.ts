@@ -13,7 +13,7 @@ export const Card: ICard[] = [
         code: `<textarea  ngxCopyPaste rows="1" #cp="copy"></textarea><button (click)="cp.copy()">Copy</button>`,
         id: 2,
         anchor: 'textarea',
-        isInput: false,
+        isTextarea: true,
     },
     {
         header: 'Element own text',
