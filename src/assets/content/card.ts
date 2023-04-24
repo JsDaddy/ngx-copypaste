@@ -7,26 +7,26 @@ export const Card: ICard[] = [
         code: `<input ngxCopyPaste #cp="copy"><button (click)="cp.copy()" >Copy</button>`,
         id: 1,
         anchor: 'input',
-        isInput: CardType.INPUT,
+        cardType: CardType.INPUT,
     },
     {
         header: 'Textarea control',
         code: `<textarea  ngxCopyPaste rows="1" #cp="copy"></textarea><button (click)="cp.copy()">Copy</button>`,
         id: 2,
         anchor: 'textarea',
-        isInput: CardType.TEXTAREA,
+        cardType: CardType.TEXTAREA,
     },
     {
         header: 'Element own text',
         code: `<p ngxCopyPaste #cp="copy">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p><button  (click)="cp.copy()" >Copy</button>`,
         id: 3,
         anchor: 'element',
-        isInput: CardType.NONE,
+        cardType: CardType.NONE,
         text12: 'Lorem ipsum dolor sit amet consectetur adipisicing elit',
     },
     {
         header: 'All text in element',
-        isInput: CardType.NONE,
+        cardType: CardType.NONE,
         code: `<div ngxCopyPaste #cp="copy"> <h1>Lorem ipsum</h1>
                  <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam

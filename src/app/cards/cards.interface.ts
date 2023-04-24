@@ -5,7 +5,7 @@ export interface ICard {
     code: string;
     id: number;
     anchor: string;
-    isInput: CardType;
+    cardType: CardType;
     text12?: string;
     text14?: string;
     text16?: string;

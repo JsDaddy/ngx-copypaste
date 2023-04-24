@@ -22,7 +22,7 @@
                     </pre>
                 </div>
             </div>
-            <div class="dark-card bg-black" [ngSwitch]="card.isInput">
+            <div class="dark-card bg-black" [ngSwitch]="card.cardType">
                 <div class="dark-input column pd-15">
                     <div class="input-wrapper h-input" *ngSwitchCase="cardTypeInput">
                         <input
