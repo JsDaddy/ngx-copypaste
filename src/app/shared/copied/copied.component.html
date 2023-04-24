@@ -1,4 +1,9 @@
 <button class="row bg-full-white black ai-start span copy-btn">
     <span>Copy</span>
-    <img class="copy ais-c" [ngSrc]="'copied' | asset" width="20" height="10" alt="copied" />
+    <img
+        class="copy ais-c"
+        [ngSrc]="'copied' | asset : assetPathShared"
+        width="20"
+        height="10"
+        alt="copied" />
 </button>

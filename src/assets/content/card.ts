@@ -1,4 +1,5 @@
-import {ICard, IsShowInput} from '../../app/cards/cards.interface';
+import { ICard } from '../../app/cards/cards.interface';
+import { IsShowInput } from '../../app/cards/cards.enum';
 
 export const Card: ICard[] = [
     {

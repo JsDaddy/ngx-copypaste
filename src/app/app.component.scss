@@ -1,8 +1,5 @@
 @import 'src/styles';
-:host {
-    display: block;
-    height: 100%;
-}
+
 .content-wrapper {
     .mask-wrap {
         height: calc(100% - 64px);
