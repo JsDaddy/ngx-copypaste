@@ -45,7 +45,9 @@
                             (click)="c2.copy()" />
                     </div>
                     <div class="column" *ngIf="card.text12">
-                        <span ngxCopyPaste #c3="copy" class="full-white span pd-15">{{ card.text12 }}</span>
+                        <span ngxCopyPaste #c3="copy" class="full-white span pd-15">
+                            {{ card.text12 }}
+                        </span>
                         <jsdaddy-open-source-copied-button (click)="c3.copy()" />
                     </div>
                     <div class="column" *ngIf="card.text14">
