@@ -24,7 +24,7 @@
             </div>
             <div class="dark-card bg-black">
                 <div class="dark-input column pd-15">
-                    <div class="input-wrapper h-input" *ngIf="card.isInput">
+                    <div class="input-wrapper h-input" *ngIf="card.isInput === isShowInput">
                         <input
                             placeholder="Start Typing"
                             class="customDarkInput bg-black white span"
@@ -34,7 +34,9 @@
                             class="copy-position"
                             (click)="c1.copy()" />
                     </div>
-                    <div class="input-wrapper pd-15 h-input" *ngIf="card.isTextarea">
+                    <div
+                        class="input-wrapper pd-15 h-input"
+                        *ngIf="card.isInput === isShowTextarea">
                         <textarea
                             ngxCopyPaste
                             placeholder="Start Typing"
@@ -44,13 +46,13 @@
                             class="copy-position"
                             (click)="c2.copy()" />
                     </div>
-                    <div class="column" *ngIf="card.text12">
+                    <div class="column" *ngIf="card.text12 && card.isInput === hideInput">
                         <span ngxCopyPaste #c3="copy" class="full-white span pd-15">
                             {{ card.text12 }}
                         </span>
                         <jsdaddy-open-source-copied-button (click)="c3.copy()" />
                     </div>
-                    <div class="column" *ngIf="card.text14">
+                    <div class="column" *ngIf="card.text14 && card.isInput === hideInput">
                         <div ngxCopyPaste #c4="copy" class="column full-white">
                             <span class="f-s-18 pd-15">{{ card.text18 }}</span>
                             <span class="full-white span pd-15">{{ card.text14 }}</span>

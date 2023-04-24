@@ -3,10 +3,15 @@ export interface ICard {
     code: string;
     id: number;
     anchor: string;
-    isInput?: boolean;
-    isTextarea?: boolean;
+    isInput: IsShowInput;
+    // isTextarea?: boolean;
     text12?: string;
     text14?: string;
     text16?: string;
     text18?: string;
+}
+export const enum IsShowInput {
+    INPUT = 'Input',
+    TEXTAREA = 'Textarea',
+    NONE = 'Hidden',
 }
