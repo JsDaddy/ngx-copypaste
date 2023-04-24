@@ -1,49 +1,38 @@
 import { Component } from '@angular/core';
-import { HeaderComponent } from './header/header.component';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
-import { HighlightModule } from 'ngx-highlightjs';
-import { NgxCopyPasteDirective } from 'ngx-copypaste';
+import { HeaderComponent } from '@open-source/header/header.component';
+import { LinkPath } from '@libraries/link/link.path';
+import { SubHeaderComponent } from '@open-source/sub-header/sub-header.component';
+import { CardsComponent } from './cards/cards.component';
+import { IListItem } from '@open-source/accordion/content.interfaces';
+import { lists } from '../assets/content/lists';
+import { AccordionComponent } from '@open-source/accordion/accordion.component';
+import { ComDocs } from '../assets/content/common-cases';
+import { ICard } from './cards/cards.interface';
+import { FooterComponent } from '@open-source/footer/footer.component';
 
 @Component({
-    selector: 'ngx-copypaste-root',
+    selector: 'jsdaddy-open-source-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
     standalone: true,
     imports: [
-        MatFormFieldModule,
-        HighlightModule,
-        MatInputModule,
-        MatButtonModule,
-        MatCardModule,
         HeaderComponent,
-        NgxCopyPasteDirective,
+        HeaderComponent,
+        SubHeaderComponent,
+        CardsComponent,
+        AccordionComponent,
+        FooterComponent,
     ],
 })
 export class AppComponent {
-    public baseCode = `<input ngxCopyPaste #cp="copy">
-<button (click)="cp.copy()" >Copy</button>`;
-
-    public textAreaCode = `<textarea  ngxCopyPaste rows="1" #cp="copy"></textarea>
-<button  (click)="cp.copy()" >Copy</button>`;
-
-    public elementOwnCode = `<p ngxCopyPaste #cp="copy">
-Lorem ipsum dolor sit amet consectetur adipisicing elit.
-</p>
-<button  (click)="cp.copy()" >Copy</button>`;
-
-    public allElementCode = `<div ngxCopyPaste #cp="copy">
-  <h1>Lorem ipsum</h1>
-  <p>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-    rutrum augue at ante sollicitudin posuere. Pellentesque congue
-    consequat enim quis luctus.
-  </p>
-  <div>
-    <h2>Lorem ipsum</h2>
-  </div>
-</div>
-<button  (click)="cp.copy()" >Copy</button>`;
+    public card: {
+        docs: ICard[];
+    } = {
+        docs: ComDocs,
+    };
+    public lists: IListItem[] = lists;
+    public githubMaskLink = LinkPath.NGX_COPYPASTE;
+    public title = 'Ngx-Copypaste';
+    public subtitle = 'A pure and awesome copy paste directive for Angular';
+    public chips = ['Clipboard', 'Angular', 'Typescript', 'Ngx', 'Copypaste', 'AngularClipboard'];
 }

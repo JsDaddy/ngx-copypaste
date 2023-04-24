@@ -1,0 +1,25 @@
+.copy-btn {
+    margin: 30px 0 0 15px;
+    padding: 5px 23px;
+    gap: 10px;
+    width: 81px;
+    height: 31px;
+    border-radius: 4px;
+    .copy {
+        display: none;
+    }
+    &:hover {
+        background: var(--yellow);
+    }
+    &:active {
+        width: 123px;
+        height: 31px;
+        background: var(--black);
+        color: var(--yellow);
+        border: 1px solid var(--yellow);
+        .copy {
+            display: flex;
+            margin-left: auto;
+        }
+    }
+}

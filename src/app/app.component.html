@@ -1,75 +1,13 @@
-<ngx-copypaste-demo-header></ngx-copypaste-demo-header>
-<div class="content-wrapper">
-    <div class="main-container">
-        <div class="row">
-            <mat-card>
-                <mat-card-header>
-                    <mat-card-title><h3>Input control</h3></mat-card-title>
-                </mat-card-header>
-                <mat-card-content>
-                    <p>Usage</p>
-                    <pre><code [highlight]="baseCode"></code></pre>
-                    <mat-form-field>
-                        <input matInput ngxCopyPaste #c1="copy" />
-                    </mat-form-field>
-                    <button mat-stroked-button (click)="c1.copy()" color="primary">Copy</button>
-                </mat-card-content>
-            </mat-card>
+<div class="content-wrapper column">
+    <jsdaddy-open-source-header [activeLink]="githubMaskLink" />
+    <section class="mask-wrap row">
+        <div class="drawer-container column">
+            <jsdaddy-open-source-accordion [lists]="lists" />
         </div>
-        <div class="row">
-            <mat-card>
-                <mat-card-header>
-                    <mat-card-title><h3>Textarea control</h3></mat-card-title>
-                </mat-card-header>
-                <mat-card-content>
-                    <p>Usage</p>
-                    <pre><code [highlight]="textAreaCode"></code></pre>
-                    <mat-form-field>
-                        <textarea matInput ngxCopyPaste rows="1" #c2="copy"></textarea>
-                    </mat-form-field>
-                    <button mat-stroked-button (click)="c2.copy()" color="primary">Copy</button>
-                </mat-card-content>
-            </mat-card>
+        <div class="right-section column">
+            <jsdaddy-open-source-sub-header [title]="title" [subtitle]="subtitle" [chips]="chips" />
+            <jsdaddy-open-source-cards [cardDocs]="card.docs" />
+            <jsdaddy-open-source-footer />
         </div>
-
-        <div class="row">
-            <mat-card>
-                <mat-card-header>
-                    <mat-card-title><h3>Element own text</h3></mat-card-title>
-                </mat-card-header>
-                <mat-card-content>
-                    <p>Usage</p>
-                    <pre><code [highlight]="elementOwnCode"></code></pre>
-                    <p ngxCopyPaste #c3="copy">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    </p>
-                    <button mat-stroked-button (click)="c3.copy()" color="primary">Copy</button>
-                </mat-card-content>
-            </mat-card>
-        </div>
-
-        <div class="row">
-            <mat-card>
-                <mat-card-header>
-                    <mat-card-title><h3>All text in element</h3></mat-card-title>
-                </mat-card-header>
-                <mat-card-content>
-                    <p>Usage</p>
-                    <pre><code [highlight]="allElementCode"></code></pre>
-                    <div ngxCopyPaste #c4="copy">
-                        <h4>Lorem ipsum</h4>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam rutrum
-                            augue at ante sollicitudin posuere. Pellentesque congue consequat enim
-                            quis luctus.
-                        </p>
-                        <div>
-                            <h5>Lorem ipsum</h5>
-                        </div>
-                    </div>
-                    <button mat-stroked-button (click)="c4.copy()" color="primary">Copy</button>
-                </mat-card-content>
-            </mat-card>
-        </div>
-    </div>
+    </section>
 </div>

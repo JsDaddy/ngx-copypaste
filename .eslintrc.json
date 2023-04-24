@@ -20,7 +20,7 @@
                 "@angular-eslint/component-selector": [
                     "error",
                     {
-                        "prefix": "ngx-copypaste",
+                        "prefix": "jsdaddy",
                         "style": "kebab-case",
                         "type": "element"
                     }
