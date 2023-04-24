@@ -46,9 +46,9 @@ export class CardsComponent implements AfterViewInit {
     public readonly cardTypeHideInput: CardType = CardType.NONE;
     public readonly trackByPath = inject(TrackByService).trackBy('id');
 
-    private readonly onScrollService = inject(ScrollService);
+    private readonly scrollService = inject(ScrollService);
 
     public ngAfterViewInit(): void {
-        this.onScrollService.onScroll(this.cards);
+        this.scrollService.onScroll(this.cards);
     }
 }
