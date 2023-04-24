@@ -43,7 +43,7 @@ export class CardsComponent implements AfterViewInit {
     public readonly activeCardId$: Observable<number> = inject(ScrollService).activeCard$;
     public readonly cardTypeInput: CardType = CardType.INPUT;
     public readonly cardTypeTextarea: CardType = CardType.TEXTAREA;
-    public readonly cardTypeHideInput: CardType = CardType.NONE;
+    public readonly cardTypeNone: CardType = CardType.NONE;
     public readonly trackByPath = inject(TrackByService).trackBy('id');
 
     private readonly scrollService = inject(ScrollService);

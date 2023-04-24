@@ -44,13 +44,13 @@
                             class="copy-position"
                             (click)="c2.copy()" />
                     </div>
-                    <div class="column" *ngSwitchCase="card.text12 && cardTypeHideInput">
+                    <div class="column" *ngSwitchCase="card.text12 && cardTypeNone">
                         <span ngxCopyPaste #c3="copy" class="full-white span pd-15">
                             {{ card.text12 }}
                         </span>
                         <jsdaddy-open-source-copied-button (click)="c3.copy()" />
                     </div>
-                    <div class="column" *ngSwitchCase="card.text14 && cardTypeHideInput">
+                    <div class="column" *ngSwitchCase="card.text14 && cardTypeNone">
                         <div ngxCopyPaste #c4="copy" class="column full-white">
                             <span class="f-s-18 pd-15">{{ card.text18 }}</span>
                             <span class="full-white span pd-15">{{ card.text14 }}</span>
