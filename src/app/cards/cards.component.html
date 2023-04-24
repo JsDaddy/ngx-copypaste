@@ -1,8 +1,8 @@
-<section class="content column bg-full-white">
+<section class="content column bg-full-white" *ngIf="activeCardId$ | async as type">
     <div
         class="card"
         *ngFor="let card of cardDocs; trackBy: trackByPath"
-        [ngClass]="activeCardId.value | color : card.id"
+        [ngClass]="type | color : card.id"
         [id]="card.id"
         #cards>
         <div class="mr-title title row uppercase ls-25 something">

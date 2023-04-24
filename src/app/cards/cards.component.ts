@@ -16,9 +16,9 @@ import { TrackByService } from '@libraries/track-by/track-by.service';
 import { ICard } from './cards.interface';
 import { CopiedComponent } from '../shared/copied/copied.component';
 import { CardType } from './cards.enum';
-import { OnScrollService } from '@open-source/on-scroll/on-scroll.service';
 import { UnSubscriber } from '@libraries/unsubscriber/unsubscriber.service';
-import { BehaviorSubject } from 'rxjs';
+import { Observable } from 'rxjs';
+import { ScrollService } from '@open-source/scroll/scroll.service';
 
 @Component({
     selector: 'jsdaddy-open-source-cards',
@@ -32,7 +32,7 @@ import { BehaviorSubject } from 'rxjs';
         ColorPipe,
         CopiedComponent,
     ],
-    providers: [OnScrollService],
+    providers: [ScrollService],
     templateUrl: './cards.component.html',
     styleUrls: ['./cards.component.scss'],
 })
@@ -41,13 +41,13 @@ export class CardsComponent extends UnSubscriber implements AfterViewInit {
 
     @ViewChildren('cards') public cards!: QueryList<ElementRef>;
 
-    public readonly activeCardId: BehaviorSubject<number> = inject(OnScrollService).activeCardId;
+    public readonly activeCardId$: Observable<number> = inject(ScrollService).activeCard$;
     public readonly cardTypeInput: CardType = CardType.INPUT;
     public readonly cardTypeTextarea: CardType = CardType.TEXTAREA;
     public readonly cardTypeHideInput: CardType = CardType.NONE;
     public readonly trackByPath = inject(TrackByService).trackBy('id');
 
-    private readonly onScrollService = inject(OnScrollService);
+    private readonly onScrollService = inject(ScrollService);
 
     public ngAfterViewInit(): void {
         this.onScrollService.onScroll(this.cards);
