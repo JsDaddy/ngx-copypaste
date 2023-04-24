@@ -16,7 +16,6 @@ import { TrackByService } from '@libraries/track-by/track-by.service';
 import { ICard } from './cards.interface';
 import { CopiedComponent } from '../shared/copied/copied.component';
 import { CardType } from './cards.enum';
-import { UnSubscriber } from '@libraries/unsubscriber/unsubscriber.service';
 import { Observable } from 'rxjs';
 import { ScrollService } from '@open-source/scroll/scroll.service';
 
@@ -36,7 +35,7 @@ import { ScrollService } from '@open-source/scroll/scroll.service';
     templateUrl: './cards.component.html',
     styleUrls: ['./cards.component.scss'],
 })
-export class CardsComponent extends UnSubscriber implements AfterViewInit {
+export class CardsComponent implements AfterViewInit {
     @Input() public cardDocs!: ICard[];
 
     @ViewChildren('cards') public cards!: QueryList<ElementRef>;
