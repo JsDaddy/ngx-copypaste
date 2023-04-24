@@ -3,7 +3,6 @@ import { ICard } from '../../app/cards/cards.interface';
 export const Card: ICard[] = [
     {
         header: 'Input control',
-        text: '',
         code: `<input ngxCopyPaste #cp="copy"><button (click)="cp.copy()" >Copy</button>`,
         id: 1,
         anchor: 'input',
@@ -11,7 +10,6 @@ export const Card: ICard[] = [
     },
     {
         header: 'Textarea control',
-        text: '',
         code: `<textarea  ngxCopyPaste rows="1" #cp="copy"></textarea><button (click)="cp.copy()">Copy</button>`,
         id: 2,
         anchor: 'textarea',
@@ -19,7 +17,6 @@ export const Card: ICard[] = [
     },
     {
         header: 'Element own text',
-        text: '',
         code: `<p ngxCopyPaste #cp="copy">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p><button  (click)="cp.copy()" >Copy</button>`,
         id: 3,
         anchor: 'element',
@@ -27,7 +24,6 @@ export const Card: ICard[] = [
     },
     {
         header: 'All text in element',
-        text: '',
         code: `<div ngxCopyPaste #cp="copy"> <h1>Lorem ipsum</h1>
                  <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam

@@ -1,6 +1,5 @@
 export interface ICard {
     header: string;
-    text: string;
     code: string;
     id: number;
     anchor: string;
