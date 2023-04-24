@@ -45,8 +45,8 @@ export class CardsComponent extends UnSubscriber implements AfterViewInit {
 
     public activeCardId = 1;
 
-    public readonly cardTypeInput  = IsShowInput.INPUT;
-    public readonly cardTypeTextarea  = IsShowInput.TEXTAREA;
+    public readonly cardTypeInput = IsShowInput.INPUT;
+    public readonly cardTypeTextarea = IsShowInput.TEXTAREA;
     public readonly cardTypeHideInput = IsShowInput.NONE;
     public readonly trackByPath = inject(TrackByService).trackBy('id');
 
