@@ -1,11 +1,11 @@
-import { IsShowInput } from './cards.enum';
+import { CardType } from './cards.enum';
 
 export interface ICard {
     header: string;
     code: string;
     id: number;
     anchor: string;
-    isInput: IsShowInput;
+    isInput: CardType;
     text12?: string;
     text14?: string;
     text16?: string;

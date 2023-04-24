@@ -2,7 +2,7 @@
     <div
         class="card"
         *ngFor="let card of cardDocs; trackBy: trackByPath"
-        [ngClass]="activeCardId | color : card.id"
+        [ngClass]="activeCardId.value | color : card.id"
         [id]="card.id"
         #cards>
         <div class="mr-title title row uppercase ls-25 something">
@@ -22,9 +22,9 @@
                     </pre>
                 </div>
             </div>
-            <div class="dark-card bg-black">
+            <div class="dark-card bg-black" [ngSwitch]="card.isInput">
                 <div class="dark-input column pd-15">
-                    <div class="input-wrapper h-input" *ngIf="card.isInput === cardTypeInput">
+                    <div class="input-wrapper h-input" *ngSwitchCase="cardTypeInput">
                         <input
                             placeholder="Start Typing"
                             class="customDarkInput bg-black white span"
@@ -34,9 +34,7 @@
                             class="copy-position"
                             (click)="c1.copy()" />
                     </div>
-                    <div
-                        class="input-wrapper pd-15 h-input"
-                        *ngIf="card.isInput === cardTypeTextarea">
+                    <div class="input-wrapper pd-15 h-input" *ngSwitchCase="cardTypeTextarea">
                         <textarea
                             ngxCopyPaste
                             placeholder="Start Typing"
@@ -46,13 +44,13 @@
                             class="copy-position"
                             (click)="c2.copy()" />
                     </div>
-                    <div class="column" *ngIf="card.text12 && card.isInput === cardTypeHideInput">
+                    <div class="column" *ngSwitchCase="card.text12 && cardTypeHideInput">
                         <span ngxCopyPaste #c3="copy" class="full-white span pd-15">
                             {{ card.text12 }}
                         </span>
                         <jsdaddy-open-source-copied-button (click)="c3.copy()" />
                     </div>
-                    <div class="column" *ngIf="card.text14 && card.isInput === cardTypeHideInput">
+                    <div class="column" *ngSwitchCase="card.text14 && cardTypeHideInput">
                         <div ngxCopyPaste #c4="copy" class="column full-white">
                             <span class="f-s-18 pd-15">{{ card.text18 }}</span>
                             <span class="full-white span pd-15">{{ card.text14 }}</span>

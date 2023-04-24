@@ -1,4 +1,4 @@
-export const enum IsShowInput {
+export const enum CardType {
     INPUT = 'Input',
     TEXTAREA = 'Textarea',
     NONE = 'Hidden',

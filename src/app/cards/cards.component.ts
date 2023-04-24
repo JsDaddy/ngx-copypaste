@@ -14,13 +14,11 @@ import { AssetPipe } from '@libraries/asset/asset.pipe';
 import { ColorPipe } from '@open-source/color/color.pipe';
 import { TrackByService } from '@libraries/track-by/track-by.service';
 import { ICard } from './cards.interface';
-import { ScrollService } from '@open-source/service/scroll.service';
 import { CopiedComponent } from '../shared/copied/copied.component';
-import { IsShowInput } from './cards.enum';
+import { CardType } from './cards.enum';
 import { OnScrollService } from '@open-source/on-scroll/on-scroll.service';
-import { Router } from '@angular/router';
 import { UnSubscriber } from '@libraries/unsubscriber/unsubscriber.service';
-import { takeUntil } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
     selector: 'jsdaddy-open-source-cards',
@@ -34,7 +32,7 @@ import { takeUntil } from 'rxjs';
         ColorPipe,
         CopiedComponent,
     ],
-    providers: [ScrollService, OnScrollService],
+    providers: [OnScrollService],
     templateUrl: './cards.component.html',
     styleUrls: ['./cards.component.scss'],
 })
@@ -43,20 +41,15 @@ export class CardsComponent extends UnSubscriber implements AfterViewInit {
 
     @ViewChildren('cards') public cards!: QueryList<ElementRef>;
 
-    public activeCardId = 1;
-
-    public readonly cardTypeInput = IsShowInput.INPUT;
-    public readonly cardTypeTextarea = IsShowInput.TEXTAREA;
-    public readonly cardTypeHideInput = IsShowInput.NONE;
+    public readonly activeCardId: BehaviorSubject<number> = inject(OnScrollService).activeCardId;
+    public readonly cardTypeInput: CardType = CardType.INPUT;
+    public readonly cardTypeTextarea: CardType = CardType.TEXTAREA;
+    public readonly cardTypeHideInput: CardType = CardType.NONE;
     public readonly trackByPath = inject(TrackByService).trackBy('id');
 
     private readonly onScrollService = inject(OnScrollService);
-    private readonly router = inject(Router);
 
     public ngAfterViewInit(): void {
         this.onScrollService.onScroll(this.cards);
-        this.router.events.pipe(takeUntil(this.unsubscribe$$)).subscribe(() => {
-            this.activeCardId = this.onScrollService.activeCardId;
-        });
     }
 }

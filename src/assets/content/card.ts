@@ -1,5 +1,5 @@
 import { ICard } from '../../app/cards/cards.interface';
-import { IsShowInput } from '../../app/cards/cards.enum';
+import { CardType } from '../../app/cards/cards.enum';
 
 export const Card: ICard[] = [
     {
@@ -7,26 +7,26 @@ export const Card: ICard[] = [
         code: `<input ngxCopyPaste #cp="copy"><button (click)="cp.copy()" >Copy</button>`,
         id: 1,
         anchor: 'input',
-        isInput: IsShowInput.INPUT,
+        isInput: CardType.INPUT,
     },
     {
         header: 'Textarea control',
         code: `<textarea  ngxCopyPaste rows="1" #cp="copy"></textarea><button (click)="cp.copy()">Copy</button>`,
         id: 2,
         anchor: 'textarea',
-        isInput: IsShowInput.TEXTAREA,
+        isInput: CardType.TEXTAREA,
     },
     {
         header: 'Element own text',
         code: `<p ngxCopyPaste #cp="copy">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p><button  (click)="cp.copy()" >Copy</button>`,
         id: 3,
         anchor: 'element',
-        isInput: IsShowInput.NONE,
+        isInput: CardType.NONE,
         text12: 'Lorem ipsum dolor sit amet consectetur adipisicing elit',
     },
     {
         header: 'All text in element',
-        isInput: IsShowInput.NONE,
+        isInput: CardType.NONE,
         code: `<div ngxCopyPaste #cp="copy"> <h1>Lorem ipsum</h1>
                  <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
