@@ -2,10 +2,10 @@ import { IListItem } from '@open-source/accordion/content.interfaces';
 
 export const lists: IListItem[] = [
     {
-        header: 'Common cases',
+        header: 'Controls',
         id: 1,
-        defaultSvg: 'common-cases',
-        activeSvg: 'common-cases-active',
+        defaultSvg: 'options',
+        activeSvg: 'options-active',
         whiteChevron: 'white-chevron-down',
         yellowChevron: 'yellow-chevron-down',
         text: [
