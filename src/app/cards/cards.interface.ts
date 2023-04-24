@@ -4,8 +4,7 @@ export interface ICard {
     code: string;
     id: number;
     anchor: string;
-    input?: boolean;
-    textarea?: boolean;
+    isInput?: boolean;
     text12?: string;
     text14?: string;
     text16?: string;

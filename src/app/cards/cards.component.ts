@@ -51,7 +51,7 @@ export class CardsComponent extends UnSubscriber implements AfterViewInit {
 
     public ngAfterViewInit(): void {
         fromEvent(document, 'scroll')
-            .pipe(takeUntil(this.unsubscribe$$), debounceTime(100))
+            .pipe(debounceTime(100), takeUntil(this.unsubscribe$$))
             .subscribe(() => {
                 const scrollIdCard = this.cards.find((e) =>
                     this.scrollService.isInViewport(e.nativeElement)

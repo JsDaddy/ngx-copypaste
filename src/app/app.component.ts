@@ -6,9 +6,9 @@ import { CardsComponent } from './cards/cards.component';
 import { IListItem } from '@open-source/accordion/content.interfaces';
 import { lists } from '../assets/content/lists';
 import { AccordionComponent } from '@open-source/accordion/accordion.component';
-import { ComDocs } from '../assets/content/common-cases';
 import { ICard } from './cards/cards.interface';
 import { FooterComponent } from '@open-source/footer/footer.component';
+import { Card } from '../assets/content/card';
 
 @Component({
     selector: 'jsdaddy-open-source-root',
@@ -25,11 +25,7 @@ import { FooterComponent } from '@open-source/footer/footer.component';
     ],
 })
 export class AppComponent {
-    public card: {
-        docs: ICard[];
-    } = {
-        docs: ComDocs,
-    };
+    public card: ICard[] = Card;
     public lists: IListItem[] = lists;
     public githubMaskLink = LinkPath.NGX_COPYPASTE;
     public title = 'Ngx-Copypaste';

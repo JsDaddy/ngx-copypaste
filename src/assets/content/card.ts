@@ -1,13 +1,13 @@
 import { ICard } from '../../app/cards/cards.interface';
 
-export const ComDocs: ICard[] = [
+export const Card: ICard[] = [
     {
         header: 'Input control',
         text: '',
         code: `<input ngxCopyPaste #cp="copy"><button (click)="cp.copy()" >Copy</button>`,
         id: 1,
         anchor: 'input',
-        input: true,
+        isInput: true,
     },
     {
         header: 'Textarea control',
@@ -15,7 +15,7 @@ export const ComDocs: ICard[] = [
         code: `<textarea  ngxCopyPaste rows="1" #cp="copy"></textarea><button (click)="cp.copy()">Copy</button>`,
         id: 2,
         anchor: 'textarea',
-        textarea: true,
+        isInput: false,
     },
     {
         header: 'Element own text',
