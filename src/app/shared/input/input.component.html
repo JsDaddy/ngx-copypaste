@@ -1,0 +1,18 @@
+<div class="input-wrapper h-input">
+    <ng-container *ngIf="cardType === cardTypeInput">
+        <input
+            placeholder="Start Typing"
+            class="customDarkInput bg-black white span"
+            #c1="copy"
+            ngxCopyPaste />
+        <jsdaddy-open-source-copied-button class="copy-position" (click)="c1.copy()" />
+    </ng-container>
+    <ng-container *ngIf="cardType === cardTypeTextarea">
+        <textarea
+            ngxCopyPaste
+            placeholder="Start Typing"
+            #c2="copy"
+            class="customDarkInput bg-black white span"></textarea>
+        <jsdaddy-open-source-copied-button class="copy-position" (click)="c2.copy()" />
+    </ng-container>
+</div>

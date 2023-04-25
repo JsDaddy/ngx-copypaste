@@ -1,0 +1,38 @@
+@import "src/libraries/styles/general";
+.input-wrapper {
+    width: 100%;
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    border-bottom: 2px solid var(--full-white);
+    border-radius: 10px;
+    &:hover {
+        @include border-bottom-yellow;
+    }
+
+    &[type='text']:focus {
+        @include border-bottom-yellow;
+    }
+
+    &[type='number']:focus {
+        @include border-bottom-yellow;
+    }
+    textarea {
+        height: 50px;
+        resize: none;
+    }
+    input,
+    textarea {
+        box-sizing: border-box;
+        width: 67%;
+        padding: 14px 15px;
+        outline: none;
+        border: none;
+    }
+    .copy-position {
+        position: relative;
+        right: 15px;
+        bottom: 14px;
+        margin-left: auto;
+    }
+}
