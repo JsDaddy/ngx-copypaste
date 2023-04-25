@@ -14,11 +14,11 @@ import { AssetPipe } from '@libraries/asset/asset.pipe';
 import { ColorPipe } from '@open-source/color/color.pipe';
 import { TrackByService } from '@libraries/track-by/track-by.service';
 import { ICard } from './cards.interface';
-import { UnSubscriber } from '@libraries/unsubscriber/unsubscriber.service';
-import { ScrollService } from '@open-source/service/scroll.service';
-import { Router } from '@angular/router';
-import { debounceTime, fromEvent, takeUntil } from 'rxjs';
 import { CopiedComponent } from '../shared/copied/copied.component';
+import { CardType } from './cards.enum';
+import { Observable } from 'rxjs';
+import { ScrollService } from '@open-source/scroll/scroll.service';
+import { OpenSourcePath } from '@open-source/path/open-source.path';
 
 @Component({
     selector: 'jsdaddy-open-source-cards',
@@ -36,32 +36,21 @@ import { CopiedComponent } from '../shared/copied/copied.component';
     templateUrl: './cards.component.html',
     styleUrls: ['./cards.component.scss'],
 })
-export class CardsComponent extends UnSubscriber implements AfterViewInit {
+export class CardsComponent implements AfterViewInit {
     @Input() public cardDocs!: ICard[];
-    @Input() public cardExamples!: ICard[];
 
     @ViewChildren('cards') public cards!: QueryList<ElementRef>;
 
-    public activeCardId = 1;
-
+    public readonly activeCardId$: Observable<number> = inject(ScrollService).activeCard$;
+    public readonly openSourcePath = OpenSourcePath.OPEN_SOURCE;
+    public readonly cardTypeInput: CardType = CardType.INPUT;
+    public readonly cardTypeTextarea: CardType = CardType.TEXTAREA;
+    public readonly cardTypeNone: CardType = CardType.NONE;
     public readonly trackByPath = inject(TrackByService).trackBy('id');
 
     private readonly scrollService = inject(ScrollService);
-    private readonly router = inject(Router);
 
     public ngAfterViewInit(): void {
-        fromEvent(document, 'scroll')
-            .pipe(debounceTime(100), takeUntil(this.unsubscribe$$))
-            .subscribe(() => {
-                const scrollIdCard = this.cards.find((e) =>
-                    this.scrollService.isInViewport(e.nativeElement)
-                )?.nativeElement.id;
-                if (this.activeCardId !== Number(scrollIdCard)) {
-                    this.activeCardId = Number(scrollIdCard);
-                    this.router.navigate(['/'], {
-                        fragment: scrollIdCard,
-                    });
-                }
-            });
+        this.scrollService.onScroll(this.cards);
     }
 }
