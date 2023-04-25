@@ -1,3 +1,3 @@
-export const enum CopiedAssetPath {
+export const enum SharedAssetPath {
     COPIED = 'shared/copied/',
 }

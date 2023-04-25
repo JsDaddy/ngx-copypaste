@@ -19,7 +19,6 @@ import { CardType } from './cards.enum';
 import { Observable } from 'rxjs';
 import { ScrollService } from '@open-source/scroll/scroll.service';
 import { OpenSourcePath } from '@open-source/path/open-source.path';
-import {InputComponent} from "../shared/input/input.component";
 
 @Component({
     selector: 'jsdaddy-open-source-cards',
@@ -32,7 +31,6 @@ import {InputComponent} from "../shared/input/input.component";
         AssetPipe,
         ColorPipe,
         CopiedComponent,
-        InputComponent,
     ],
     providers: [ScrollService],
     templateUrl: './cards.component.html',
@@ -44,7 +42,7 @@ export class CardsComponent implements AfterViewInit {
     @ViewChildren('cards') public cards!: QueryList<ElementRef>;
 
     public readonly activeCardId$: Observable<number> = inject(ScrollService).activeCard$;
-    public readonly assetPath = OpenSourcePath.OPEN_SOURCE;
+    public readonly openSourcePath = OpenSourcePath.OPEN_SOURCE;
     public readonly cardTypeInput: CardType = CardType.INPUT;
     public readonly cardTypeTextarea: CardType = CardType.TEXTAREA;
     public readonly cardTypeNone: CardType = CardType.NONE;
