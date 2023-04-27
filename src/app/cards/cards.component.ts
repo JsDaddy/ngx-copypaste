@@ -42,7 +42,7 @@ export class CardsComponent implements AfterViewInit {
     @ViewChildren('cards') public cards!: QueryList<ElementRef>;
 
     public readonly activeCardId$: Observable<number> = inject(ScrollService).activeCard$;
-    public readonly openSourcePath = OpenSourcePath.OPEN_SOURCE;
+    public readonly openSourceCardsPath = OpenSourcePath.CARDS;
     public readonly cardTypeInput: CardType = CardType.INPUT;
     public readonly cardTypeTextarea: CardType = CardType.TEXTAREA;
     public readonly cardTypeNone: CardType = CardType.NONE;
