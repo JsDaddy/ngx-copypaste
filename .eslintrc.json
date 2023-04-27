@@ -28,7 +28,7 @@
                 "@angular-eslint/directive-selector": [
                     "error",
                     {
-                        "prefix": "ngxCopyPaste",
+                        "prefix": ["ngxCopyPaste", "jsdaddy"],
                         "style": "camelCase",
                         "type": "attribute"
                     }
