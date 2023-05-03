@@ -73,14 +73,7 @@
                         border-radius: 10px;
                         &:hover {
                             @include border-bottom-yellow;
-                        }
-
-                        &[type='text']:focus {
-                            @include border-bottom-yellow;
-                        }
-
-                        &[type='number']:focus {
-                            @include border-bottom-yellow;
+                            background: var(--ligth-grey);
                         }
                         textarea {
                             height: 50px;
@@ -93,6 +86,8 @@
                             padding: 14px 15px;
                             outline: none;
                             border: none;
+                            background-color: transparent;
+                            height: 50px;
                         }
                         .copy-position {
                             position: relative;
@@ -120,6 +115,7 @@
                 flex-direction: column;
                 .dark-card {
                     flex: 100%;
+                    min-height: 200px;
                     margin: 0 27px 0 13px;
                 }
                 .light-card {
