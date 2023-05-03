@@ -8,6 +8,12 @@
     .copy {
         display: none;
     }
+    .active-text {
+        display: none;
+    }
+    .default-text {
+        display: block;
+    }
     &:hover {
         background: var(--yellow);
     }
@@ -20,6 +26,12 @@
         .copy {
             display: flex;
             margin-left: auto;
+        }
+        .active-text {
+            display: block;
+        }
+        .default-text {
+            display: none;
         }
     }
 }
