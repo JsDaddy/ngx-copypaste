@@ -1,4 +1,7 @@
-<button class="row bg-full-white black ai-start span copy-btn">
+<button
+    class="row bg-full-white black ai-start span copy-btn"
+    [ngClass]="copyButtonClass"
+    (click)="copyText()">
     <span class="default-text">Copy</span>
     <span class="active-text">Copied</span>
     <img
