@@ -1,3 +1,4 @@
+@import "src/libraries/styles/media-breakpoints";
 .copy-btn {
     margin: 30px 0 0 15px;
     padding: 5px 23px;
@@ -17,7 +18,7 @@
     &:hover {
         background: var(--yellow);
     }
-    &:active {
+    &:focus {
         width: 123px;
         height: 31px;
         background: var(--black);
@@ -32,6 +33,27 @@
         }
         .default-text {
             display: none;
+        }
+    }
+}
+@media screen and (max-width: $desktopWidth) {
+    .copy-btn {
+        &:hover {
+            width: 123px;
+            height: 31px;
+            background: var(--black);
+            color: var(--yellow);
+            border: 1px solid var(--yellow);
+            .copy {
+                display: flex;
+                margin-left: auto;
+            }
+            .active-text {
+                display: block;
+            }
+            .default-text {
+                display: none;
+            }
         }
     }
 }
