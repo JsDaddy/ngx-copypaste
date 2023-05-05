@@ -1,7 +1,7 @@
 @import 'src/libraries/styles/media-breakpoints';
 
 .active {
-    .copy-btn {
+    &.copy-btn {
         width: 123px;
         height: 31px;
         padding: 5px 23px;
@@ -27,7 +27,7 @@
     }
 }
 .non-active {
-    .copy-btn {
+    &.copy-btn {
         margin: 30px 0 0 15px;
         padding: 5px 23px;
         gap: 10px;
