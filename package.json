@@ -24,7 +24,6 @@
     ],
     "scripts": {
         "ng": "ng",
-        "tel": "ng serve --host 192.168.0.105",
         "start": "ng serve",
         "build": "ng build ngx-copypaste --base-href /ngx-copypaste/ --configuration production",
         "build:lib": "ng build --configuration production ngx-copypaste-lib && npm run copy-libdocs",
