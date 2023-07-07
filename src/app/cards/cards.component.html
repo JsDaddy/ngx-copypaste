@@ -1,0 +1,70 @@
+<section class="content column bg-full-white" *ngIf="activeCardId$ | async as type">
+    <div
+        class="card"
+        *ngFor="let card of cardDocs; trackBy: trackByPath"
+        [ngClass]="type | color : card.id"
+        [id]="card.id"
+        #cards>
+        <div class="mr-title title row uppercase ls-25 something">
+            {{ card.header }}
+        </div>
+        <div class="cards-block row" [id]="card.anchor">
+            <div class="light-card bg-full-white pd-15">
+                <div class="light-title row ai-c">
+                    <img
+                        width="20"
+                        height="20"
+                        [ngSrc]="'hand-box' | asset : openSourceCardsPath"
+                        alt="hand-box" />
+                    <span class="span">Usage</span>
+                </div>
+                <span class="source uppercase ls-25 full-white span">Source code</span>
+                <div class="white-input">
+                    <pre class="row">
+                        <code type="text" [highlight]="card.code" class="input-view bg-white"></code>
+                        <img height="18" width="13" [ngSrc]="'input-vector' | asset : openSourceCardsPath" class="input-img ais-c" alt="input-vector" />
+                    </pre>
+                </div>
+            </div>
+            <div class="dark-card bg-black" [ngSwitch]="card.cardType">
+                <div class="dark-input column pd-15">
+                    <div class="input-wrapper h-input" *ngSwitchCase="cardTypeInput">
+                        <input
+                            placeholder="Start Typing"
+                            class="customDarkInput bg-black white span"
+                            #c1="copy"
+                            ngxCopyPaste />
+                        <jsdaddy-open-source-copied-button
+                            class="copy-position"
+                            (click)="c1.copy()" />
+                    </div>
+                    <div class="input-wrapper h-input" *ngSwitchCase="cardTypeTextarea">
+                        <textarea
+                            ngxCopyPaste
+                            placeholder="Start Typing"
+                            #c2="copy"
+                            class="customDarkInput bg-black white span"></textarea>
+                        <jsdaddy-open-source-copied-button
+                            class="copy-position"
+                            (click)="c2.copy()" />
+                    </div>
+
+                    <div class="column" *ngSwitchCase="card.text12 && cardTypeNone">
+                        <span ngxCopyPaste #c3="copy" class="full-white span pd-15">
+                            {{ card.text12 }}
+                        </span>
+                        <jsdaddy-open-source-copied-button (click)="c3.copy()" />
+                    </div>
+                    <div class="column" *ngSwitchCase="card.text14 && cardTypeNone">
+                        <div ngxCopyPaste #c4="copy" class="column full-white">
+                            <span class="f-s-18 pd-15">{{ card.text18 }}</span>
+                            <span class="full-white span pd-15">{{ card.text14 }}</span>
+                            <span class="pd-15 regular-text">{{ card.text16 }}</span>
+                        </div>
+                        <jsdaddy-open-source-copied-button (click)="c4.copy()" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

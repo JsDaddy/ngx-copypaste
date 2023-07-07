@@ -1,46 +1,45 @@
 {
-  "compileOnSave": false,
-  "compilerOptions": {
-    "target": "ES2022",
-    "module": "es2020",
-    "lib": [
-      "es2016",
-      "dom"
-    ],
-    "sourceMap": true,
-    "outDir": "./dist/out-tsc",
-    "strict": true,
-    "paths": {
-      "ngx-copypaste": ["projects/ngx-copypaste-lib/src/public-api"]
+    "compileOnSave": false,
+    "compilerOptions": {
+        "target": "ES2022",
+        "module": "es2020",
+        "lib": ["es2016", "dom"],
+        "sourceMap": true,
+        "outDir": "./dist/out-tsc",
+        "strict": true,
+        "paths": {
+            "ngx-copypaste": ["projects/ngx-copypaste-lib/src/public-api"],
+            "@open-source/*": ["src/libraries/open-source/*"],
+            "@libraries/*": ["src/libraries/*"]
+        },
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "noImplicitReturns": true,
+        "noFallthroughCasesInSwitch": true,
+        "noUncheckedIndexedAccess": true,
+        "noImplicitOverride": true,
+        "noPropertyAccessFromIndexSignature": true,
+        "moduleResolution": "node",
+        "baseUrl": "./",
+        "esModuleInterop": true,
+        "experimentalDecorators": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "useDefineForClassFields": false
     },
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUncheckedIndexedAccess": true,
-    "noImplicitOverride": true,
-    "noPropertyAccessFromIndexSignature": true,
-    "moduleResolution": "node",
-    "baseUrl": "./",
-    "esModuleInterop": true,
-    "experimentalDecorators": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "useDefineForClassFields": false
-  },
-  "angularCompilerOptions": {
-    "extendedDiagnostics": {
-      "checks": {
-        "invalidBananaInBox": "error",
-        "nullishCoalescingNotNullable": "warning"
-      },
-      "defaultCategory": "suppress"
-    },
-    "enableI18nLegacyMessageIdFormat": false,
-    "strictInjectionParameters": true,
-    "preserveWhitespaces": true,
-    "fullTemplateTypeCheck": true,
-    "strictInputAccessModifiers": true,
-    "strictTemplates": true
-  }
+    "angularCompilerOptions": {
+        "extendedDiagnostics": {
+            "checks": {
+                "invalidBananaInBox": "error",
+                "nullishCoalescingNotNullable": "warning"
+            },
+            "defaultCategory": "suppress"
+        },
+        "enableI18nLegacyMessageIdFormat": false,
+        "strictInjectionParameters": true,
+        "preserveWhitespaces": true,
+        "fullTemplateTypeCheck": true,
+        "strictInputAccessModifiers": true,
+        "strictTemplates": true
+    }
 }
