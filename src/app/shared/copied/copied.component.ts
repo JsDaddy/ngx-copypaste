@@ -15,6 +15,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 export class CopiedComponent {
     public readonly assetPath = SharedAssetPath.COPIED;
     public copyButtonClass = 'non-active';
+
     private readonly destroyRef = inject(DestroyRef);
 
     public copyText(): void {
