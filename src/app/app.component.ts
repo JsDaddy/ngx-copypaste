@@ -26,8 +26,8 @@ import { Card } from '../assets/content/card';
 })
 export class AppComponent {
     public card: ICard[] = Card;
-    public lists: IListItem[] = lists;
     public githubMaskLink = LinkPath.NGX_COPYPASTE;
+    public lists: IListItem[] = lists;
     public title = 'Ngx-Copypaste';
     public subtitle = 'A pure and awesome copy paste directive for Angular';
     public chips = ['Clipboard', 'Angular', 'Typescript', 'Ngx', 'Copypaste', 'AngularClipboard'];
