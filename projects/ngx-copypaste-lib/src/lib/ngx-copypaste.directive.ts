@@ -1,5 +1,4 @@
 import { Directive, ElementRef, EventEmitter, Output } from '@angular/core';
-import { ICopyPasteResponse } from './copypaste.interface';
 
 @Directive({
     selector: '[ngxCopyPaste]',
@@ -8,7 +7,7 @@ import { ICopyPasteResponse } from './copypaste.interface';
 })
 export class NgxCopyPasteDirective {
     @Output()
-    public successCb: EventEmitter<ICopyPasteResponse> = new EventEmitter<ICopyPasteResponse>();
+    public successCb: EventEmitter<boolean> = new EventEmitter<boolean>();
     public constructor(private _elementRef: ElementRef) {}
 
     public copy(): void {
@@ -27,7 +26,7 @@ export class NgxCopyPasteDirective {
                 select.addRange(range);
             }
         }
-        this.successCb.emit({ isSuccess: true });
+        this.successCb.emit(true);
         document.execCommand('copy');
     }
 }

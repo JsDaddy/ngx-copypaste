@@ -54,8 +54,4 @@ export class CardsComponent implements AfterViewInit {
     public ngAfterViewInit(): void {
         this.scrollService.onScroll(this.cards);
     }
-
-    public copy(event: { isSuccess: boolean }): void {
-        alert(`copied: ${event.isSuccess}`);
-    }
 }

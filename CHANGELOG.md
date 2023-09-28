@@ -1,8 +1,9 @@
-# 16.0.0(2023-07-07)
+# 16.0.1(2023-07-07)
 
 ### Feature
 
-- add suc cb
+- add success cb
+- update dependencies
 
 # 16.0.0(2023-07-07)
 

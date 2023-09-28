@@ -18,7 +18,7 @@ export class CypressTestMaskComponent {
     public form: FormControl = new FormControl('');
 
     public copied: boolean = false;
-    public copy(event: { isSuccess: boolean }): void {
-        this.copied = event.isSuccess;
+    public copy(event: boolean): void {
+        this.copied = event;
     }
 }
