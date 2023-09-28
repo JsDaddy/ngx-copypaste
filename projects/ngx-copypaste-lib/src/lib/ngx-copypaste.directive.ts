@@ -1,8 +1,5 @@
 import { Directive, ElementRef, EventEmitter, Output } from '@angular/core';
-
-export interface ICopyPasteResponse {
-    isSuccess: boolean;
-}
+import { ICopyPasteResponse } from './copypaste.interface';
 
 @Directive({
     selector: '[ngxCopyPaste]',
@@ -21,17 +18,16 @@ export class NgxCopyPasteDirective {
         }
         const element: HTMLElement = this._elementRef.nativeElement;
         if (element instanceof HTMLInputElement || element instanceof HTMLTextAreaElement) {
-            this.successCb.emit({ isSuccess: true });
             this._elementRef.nativeElement.select();
         } else {
             const range: Range = document.createRange();
             range.selectNodeContents(this._elementRef.nativeElement);
             select = window.getSelection();
             if (select) {
-                this.successCb.emit({ isSuccess: true });
                 select.addRange(range);
             }
         }
+        this.successCb.emit({ isSuccess: true });
         document.execCommand('copy');
     }
 }

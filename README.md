@@ -114,4 +114,8 @@ Output success cb
 <p ngxCopyPaste #cp="copy" (successCb)="copy($event)">Lorem ipsum</p>
 
 <p (click)="cp.copy()">Copy</p>
+
+public copy(event: { isSuccess: boolean }): void {
+    your code
+}
 ```                         
