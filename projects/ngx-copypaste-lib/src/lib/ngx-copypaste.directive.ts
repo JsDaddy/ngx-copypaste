@@ -7,7 +7,7 @@ import { Directive, ElementRef, EventEmitter, Output } from '@angular/core';
 })
 export class NgxCopyPasteDirective {
     @Output()
-    public successCb: EventEmitter<boolean> = new EventEmitter<boolean>();
+    public successCb: EventEmitter<void> = new EventEmitter<void>();
     public constructor(private _elementRef: ElementRef) {}
 
     public copy(): void {
@@ -26,7 +26,7 @@ export class NgxCopyPasteDirective {
                 select.addRange(range);
             }
         }
-        this.successCb.emit(true);
+        this.successCb.emit();
         document.execCommand('copy');
     }
 }

@@ -115,7 +115,7 @@ Output success cb
 
 <p (click)="cp.copy()">Copy</p>
 
-public copy(event: boolean): void {
+public copy(): void {
     your code
 }
 ```                         
