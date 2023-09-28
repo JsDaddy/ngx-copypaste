@@ -1,4 +1,4 @@
-import { Directive, ElementRef } from '@angular/core';
+import { Directive, ElementRef, EventEmitter, Output } from '@angular/core';
 
 @Directive({
     selector: '[ngxCopyPaste]',
@@ -6,6 +6,8 @@ import { Directive, ElementRef } from '@angular/core';
     standalone: true,
 })
 export class NgxCopyPasteDirective {
+    @Output()
+    public successCb: EventEmitter<void> = new EventEmitter<void>();
     public constructor(private _elementRef: ElementRef) {}
 
     public copy(): void {
@@ -24,6 +26,7 @@ export class NgxCopyPasteDirective {
                 select.addRange(range);
             }
         }
+        this.successCb.emit();
         document.execCommand('copy');
     }
 }
