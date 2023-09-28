@@ -36,7 +36,7 @@
                             ngxCopyPaste />
                         <jsdaddy-open-source-copied-button
                             class="copy-position"
-                            (click)="c1.copy()" />
+                            (click)="c1.copy()"  />
                     </div>
                     <div class="input-wrapper h-input" *ngSwitchCase="cardTypeTextarea">
                         <textarea
@@ -47,6 +47,18 @@
                         <jsdaddy-open-source-copied-button
                             class="copy-position"
                             (click)="c2.copy()" />
+                    </div>
+
+                    <div class="input-wrapper h-input" *ngSwitchCase="cardTypeSuccess">
+                        <input
+                                placeholder="Start Typing"
+                                class="customDarkInput bg-black white span"
+                                #c3="copy"
+                                (successCb)="copy($event)"
+                                ngxCopyPaste />
+                        <jsdaddy-open-source-copied-button
+                                class="copy-position"
+                                (click)="c3.copy()"  />
                     </div>
 
                     <div class="column" *ngSwitchCase="card.text12 && cardTypeNone">
