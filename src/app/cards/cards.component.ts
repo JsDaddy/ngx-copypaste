@@ -55,7 +55,7 @@ export class CardsComponent implements AfterViewInit {
         this.scrollService.onScroll(this.cards);
     }
 
-    public copy(event: {isSuccess: boolean}): void {
+    public copy(event: { isSuccess: boolean }): void {
         alert(`copied: ${event.isSuccess}`);
     }
 }
