@@ -3,3 +3,4 @@
  */
 
 export * from './lib/ngx-copypaste.directive';
+export * from './lib/copypaste.interface';
