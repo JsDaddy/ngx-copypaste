@@ -108,3 +108,14 @@ Also you can bind it to any tag
 
 <p (click)="cp.copy()">Copy</p>
 ```
+Output success cb
+
+```html
+<p ngxCopyPaste #cp="copy" (successCb)="copy()">Lorem ipsum</p>
+
+<p (click)="cp.copy()">Copy</p>
+
+public copy(): void {
+    your code
+}
+```                         

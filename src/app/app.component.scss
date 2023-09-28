@@ -1,5 +1,4 @@
-@import 'src/styles';
-
+@import '../libraries/styles/media-breakpoints';
 .content-wrapper {
     .mask-wrap {
         height: calc(100% - 64px);

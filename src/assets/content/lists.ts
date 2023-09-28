@@ -20,6 +20,11 @@ export const lists: IListItem[] = [
                 scrollTo: 'textarea',
             },
             {
+                content: 'Success function',
+                id: 5,
+                scrollTo: 'success',
+            },
+            {
                 content: 'Element own text',
                 id: 3,
                 scrollTo: 'element',

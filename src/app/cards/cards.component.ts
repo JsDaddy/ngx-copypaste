@@ -46,6 +46,7 @@ export class CardsComponent implements AfterViewInit {
     public readonly cardTypeInput: CardType = CardType.INPUT;
     public readonly cardTypeTextarea: CardType = CardType.TEXTAREA;
     public readonly cardTypeNone: CardType = CardType.NONE;
+    public readonly cardTypeSuccess: CardType = CardType.SUCCESS;
     public readonly trackByPath = inject(TrackByService).trackBy('id');
 
     private readonly scrollService = inject(ScrollService);

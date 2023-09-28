@@ -1,4 +1,5 @@
-@import 'src/libraries/styles/media-breakpoints';
+@import '../../../libraries/styles/media-breakpoints';
+@import '../../../libraries/styles/general';
 
 .active {
     &.copy-btn {
