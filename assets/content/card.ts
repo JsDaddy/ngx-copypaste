@@ -17,6 +17,13 @@ export const Card: ICard[] = [
         cardType: CardType.TEXTAREA,
     },
     {
+        header: 'Emit Success cb',
+        code: `<input ngxCopyPaste #cp="copy" (successCb)="urFunction($event)"><button (click)="cp.copy()" >Copy</button>`,
+        id: 5,
+        anchor: 'success',
+        cardType: CardType.SUCCESS,
+    },
+    {
         header: 'Element own text',
         code: `<p ngxCopyPaste #cp="copy">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p><button  (click)="cp.copy()" >Copy</button>`,
         id: 3,
