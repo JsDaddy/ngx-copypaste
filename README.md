@@ -111,7 +111,7 @@ Also you can bind it to any tag
 Output success cb
 
 ```html
-<p ngxCopyPaste #cp="copy" (successCb)="copy($event)">Lorem ipsum</p>
+<p ngxCopyPaste #cp="copy" (successCb)="copy()">Lorem ipsum</p>
 
 <p (click)="cp.copy()">Copy</p>
 
