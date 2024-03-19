@@ -43,7 +43,8 @@ jobs:
 #        with:
 #          github_token: ${{ secrets.GITHUB_TOKEN }}
 #          publish_dir: ./dist/ngx-copypaste/browser
-
+    outputs:
+      version: ${{ steps.semantic-release.outputs.new-release-version }}
 
   slack_notification:
     needs:
