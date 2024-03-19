@@ -1,5 +1,5 @@
 import { Component, DestroyRef, inject } from '@angular/core';
-import { NgClass, NgOptimizedImage } from '@angular/common';
+import { NgOptimizedImage } from '@angular/common';
 import { AssetPipe } from '@libraries/asset/asset.pipe';
 import { SharedAssetPath } from './copied.path';
 import { delay, of } from 'rxjs';
@@ -8,7 +8,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 @Component({
     selector: 'jsdaddy-open-source-copied-button',
     standalone: true,
-    imports: [NgOptimizedImage, AssetPipe, NgClass],
+    imports: [NgOptimizedImage, AssetPipe],
     templateUrl: './copied.component.html',
     styleUrls: ['./copied.component.scss'],
 })
