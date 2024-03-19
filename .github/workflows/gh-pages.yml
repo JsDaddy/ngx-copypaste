@@ -3,7 +3,7 @@ name: GitHub pages
 on:
   push:
     branches:
-      - develop
+      - feat/update-version
 
 jobs:
   build:
@@ -38,11 +38,11 @@ jobs:
           echo '********'
           bash .github/workflows/scripts/replace_template.sh $RELEASE_VERSION
           npm run build
-      - name: Deploy demo
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist/ngx-copypaste/browser
+#      - name: Deploy demo
+#        uses: peaceiris/actions-gh-pages@v3
+#        with:
+#          github_token: ${{ secrets.GITHUB_TOKEN }}
+#          publish_dir: ./dist/ngx-copypaste/browser
 
 
   slack_notification:
