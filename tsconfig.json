@@ -1,17 +1,21 @@
 {
     "compileOnSave": false,
     "compilerOptions": {
-        "target": "ES2022",
-        "module": "es2020",
-        "lib": ["es2016", "dom"],
-        "sourceMap": true,
         "outDir": "./dist/out-tsc",
+        "forceConsistentCasingInFileNames": true,
         "strict": true,
-        "paths": {
-            "ngx-copypaste": ["projects/ngx-copypaste-lib/src/public-api"],
-            "@open-source/*": ["src/libraries/open-source/*"],
-            "@libraries/*": ["src/libraries/*"]
-        },
+        "esModuleInterop": true,
+        "sourceMap": true,
+        "declaration": false,
+        "experimentalDecorators": true,
+        "moduleResolution": "node",
+        "importHelpers": true,
+        "target": "ES2022",
+        "module": "ES2022",
+        "lib": [
+            "ES2022",
+            "dom"
+        ],
         "noUnusedLocals": true,
         "noUnusedParameters": true,
         "noImplicitReturns": true,
@@ -19,27 +23,32 @@
         "noUncheckedIndexedAccess": true,
         "noImplicitOverride": true,
         "noPropertyAccessFromIndexSignature": true,
-        "moduleResolution": "node",
-        "baseUrl": "./",
-        "esModuleInterop": true,
-        "experimentalDecorators": true,
-        "skipLibCheck": true,
-        "forceConsistentCasingInFileNames": true,
-        "useDefineForClassFields": false
+        "useUnknownInCatchVariables": true,
+        "exactOptionalPropertyTypes": true,
+        "useDefineForClassFields": false,
+        "removeComments": true,
+        "resolveJsonModule": true,
+        "allowSyntheticDefaultImports": true,
+        "paths": {
+            "ngx-copypaste": ["./projects/ngx-copypaste-lib/src/public-api"],
+            "@open-source/*": ["./src/libraries/open-source/*"],
+            "@libraries/*": ["./src/libraries/*"]
+        },
+        "skipLibCheck": true
     },
     "angularCompilerOptions": {
+        "enableI18nLegacyMessageIdFormat": false,
+        "strictInjectionParameters": true,
+        "strictInputAccessModifiers": true,
+        "strictTemplates": true,
+        "preserveWhitespaces": true,
+        "fullTemplateTypeCheck": true,
         "extendedDiagnostics": {
             "checks": {
                 "invalidBananaInBox": "error",
                 "nullishCoalescingNotNullable": "warning"
             },
             "defaultCategory": "suppress"
-        },
-        "enableI18nLegacyMessageIdFormat": false,
-        "strictInjectionParameters": true,
-        "preserveWhitespaces": true,
-        "fullTemplateTypeCheck": true,
-        "strictInputAccessModifiers": true,
-        "strictTemplates": true
+        }
     }
 }
