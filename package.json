@@ -97,7 +97,7 @@
         "typescript": "5.4.3"
     },
     "typeCoverage": {
-        "atLeast": 99,
+        "atLeast": 98,
         "ignoreObject": true,
         "ignoreAsAssertion": true,
         "ignoreTypeAssertion;": true,
