@@ -39,9 +39,6 @@
                             "src/styles.scss"
                         ],
                         "scripts": [],
-                        "extractLicenses": false,
-                        "sourceMap": true,
-                        "optimization": false,
                         "namedChunks": true
                     },
                     "configurations": {
