@@ -34,6 +34,7 @@
         "lint": "ng lint && npm run lint:scss",
         "lint:scss": "stylelint \"**/*.scss\"",
         "lint:scss:fix": "stylelint \"**/*.scss\" --fix",
+        "init:git:hooks": ".github/scripts/setup_hooks.sh",
         "cypress:open": "cypress open",
         "cypress:bash": "npx cypress run --component",
         "lint:fix": "ng lint --fix && npm run lint:scss:fix",

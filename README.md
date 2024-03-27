@@ -25,6 +25,11 @@ You can also try our NGX LOADER INDICATOR [check](https://www.npmjs.com/package/
 $ npm install --save ngx-copypaste 
 ```
 
+## Setup hooks
+```bash
+$ npm run init:hooks
+```
+
 ## Quickstart if ngx-copypaste version >= 15.0.0
 
 Pay attention this version works for angular >= 14.0.0
