@@ -1,8 +1,8 @@
-# 17.3.2(2023-11-28)
+# 17.3.2(2024-03-29)
 
 ### Feature
 
-- change @Input to signals
+- change decorators to signals
 
 <a name="16.0.0"></a>
 
