@@ -9,6 +9,8 @@ import { AccordionComponent } from '@open-source/accordion/accordion.component';
 import { ICard } from './cards/cards.interface';
 import { FooterComponent } from '@open-source/footer/footer.component';
 import { Card } from '../assets/content/card';
+import { VersionToken } from '@libraries/version/version.token';
+declare const VERSION: string;
 
 @Component({
     selector: 'jsdaddy-open-source-root',
@@ -23,12 +25,20 @@ import { Card } from '../assets/content/card';
         AccordionComponent,
         FooterComponent,
     ],
+    providers: [{ provide: VersionToken, useValue: VERSION }],
 })
 export class AppComponent {
-    public card: ICard[] = Card;
-    public githubMaskLink = LinkPath.NGX_COPYPASTE;
-    public lists: IListItem[] = lists;
-    public title = 'Ngx-Copypaste';
-    public subtitle = 'A pure and awesome copy paste directive for Angular';
-    public chips = ['Clipboard', 'Angular', 'Typescript', 'Ngx', 'Copypaste', 'AngularClipboard'];
+    public readonly card: ICard[] = Card;
+    public readonly githubMaskLink = LinkPath.NGX_COPYPASTE;
+    public readonly lists: IListItem[] = lists;
+    public readonly title = 'Ngx-Copypaste';
+    public readonly subtitle = 'A pure and awesome copy paste directive for Angular';
+    public readonly chips = [
+        'Clipboard',
+        'Angular',
+        'Typescript',
+        'Ngx',
+        'Copypaste',
+        'AngularClipboard',
+    ];
 }
