@@ -1,3 +1,11 @@
+# 17.3.2(2023-11-28)
+
+### Feature
+
+- change @Input to signals
+
+<a name="16.0.0"></a>
+
 # 17.0.0(2023-11-28)
 
 ### Feature
