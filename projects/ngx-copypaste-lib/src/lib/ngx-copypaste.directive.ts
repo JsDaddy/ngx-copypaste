@@ -37,13 +37,13 @@ export class NgxCopyPasteDirective {
                 return;
             }
             const element: HTMLElement = this._elementRef.nativeElement;
-            let value = '';
-            if (element instanceof HTMLInputElement || element instanceof HTMLTextAreaElement) {
-                value = this._elementRef.nativeElement.value?.trim() ?? '';
-            } else {
-                value = this._elementRef.nativeElement.textContent?.trim() ?? '';
+            const value =
+                element instanceof HTMLInputElement || element instanceof HTMLTextAreaElement
+                    ? element.value?.trim()
+                    : element.textContent?.trim();
+            if (!value) {
+                return;
             }
-
             await navigator.clipboard.writeText(value);
             this.successCb.emit();
         } catch (err) {
