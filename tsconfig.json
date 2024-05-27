@@ -28,7 +28,6 @@
         "useDefineForClassFields": false,
         "removeComments": true,
         "resolveJsonModule": true,
-        "allowSyntheticDefaultImports": true,
         "paths": {
             "ngx-copypaste": ["./projects/ngx-copypaste-lib/src/public-api"],
             "@open-source/*": ["./src/libraries/open-source/*"],

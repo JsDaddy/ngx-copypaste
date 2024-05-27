@@ -1,4 +1,4 @@
-import { ɵprovideZonelessChangeDetection } from '@angular/core';
+import { provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
@@ -11,7 +11,7 @@ import { BaseHttpService } from '@libraries/base-http/base-http.service';
 
 bootstrapApplication(AppComponent, {
     providers: [
-        ɵprovideZonelessChangeDetection(),
+        provideExperimentalZonelessChangeDetection(),
         provideAnimations(),
         provideRouter([]),
         GithubStarsService,
