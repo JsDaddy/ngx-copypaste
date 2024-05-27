@@ -10,7 +10,7 @@ export class NgxCopyPasteDirective {
 
     public constructor(private _elementRef: ElementRef) {}
 
-    public copy(): void {
+    private copyWithSelection(): void {
         let select: Selection | null = window.getSelection();
         if (select) {
             select.removeAllRanges();
@@ -28,5 +28,26 @@ export class NgxCopyPasteDirective {
         }
         this.successCb.emit();
         document.execCommand('copy');
+    }
+
+    public async copy(): Promise<void> {
+        try {
+            if (!navigator.clipboard) {
+                this.copyWithSelection();
+                return;
+            }
+            const element: HTMLElement = this._elementRef.nativeElement;
+            let value = '';
+            if (element instanceof HTMLInputElement || element instanceof HTMLTextAreaElement) {
+                value = this._elementRef.nativeElement.value?.trim() ?? '';
+            } else {
+                value = this._elementRef.nativeElement.textContent?.trim() ?? '';
+            }
+
+            await navigator.clipboard.writeText(value);
+            this.successCb.emit();
+        } catch (err) {
+            console.error('Error copying content: ', err);
+        }
     }
 }

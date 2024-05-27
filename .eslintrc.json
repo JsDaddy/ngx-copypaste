@@ -2,7 +2,7 @@
     "root": true,
     "overrides": [
         {
-            "files": ["*.ts"],
+            "files": ["**/*.ts"],
             "env": {
                 "es6": true
             },
