@@ -1,4 +1,4 @@
-import { Directive, ElementRef, output } from '@angular/core';
+import { Directive, ElementRef, inject, output } from '@angular/core';
 
 @Directive({
     selector: '[ngxCopyPaste]',
@@ -8,7 +8,7 @@ import { Directive, ElementRef, output } from '@angular/core';
 export class NgxCopyPasteDirective {
     public successCb = output();
 
-    public constructor(private _elementRef: ElementRef) {}
+    private readonly _elementRef = inject(ElementRef);
 
     private copyWithSelection(): void {
         let select: Selection | null = window.getSelection();
@@ -39,12 +39,12 @@ export class NgxCopyPasteDirective {
             const element: HTMLElement = this._elementRef.nativeElement;
             const value =
                 element instanceof HTMLInputElement || element instanceof HTMLTextAreaElement
-                    ? element.value?.trim()
-                    : element.textContent?.trim();
+                    ? element.value
+                    : element.textContent;
             if (!value) {
                 return;
             }
-            await navigator.clipboard.writeText(value);
+            await navigator.clipboard.writeText(value.trim());
             this.successCb.emit();
         } catch (err) {
             console.error('Error copying content: ', err);
