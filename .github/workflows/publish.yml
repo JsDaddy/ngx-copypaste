@@ -6,6 +6,7 @@ on:
             - master
 
 jobs:
+<<<<<<< HEAD
     build:
         runs-on: ubuntu-latest
         steps:
@@ -23,6 +24,25 @@ jobs:
               run: npm run publish:lib
               env:
                   NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+=======
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: 'https://registry.npmjs.org'
+      - name: Build library
+        run: |
+            npm ci --force
+            git submodule update --init --recursive --remote     
+            npm run build:lib
+      - name: Publish library
+        run: npm run publish:lib
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+>>>>>>> 3f307330fe37548a4adf15a75443b4fc468816d9
 
     slack_notification:
         needs:
