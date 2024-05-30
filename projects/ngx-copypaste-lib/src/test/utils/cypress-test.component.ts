@@ -12,7 +12,7 @@ import { FormControl } from '@angular/forms';
 export class CypressTestMaskComponent {
     public form: FormControl = new FormControl('');
 
-    public copied: boolean = false;
+    public copied = false;
     public copy(): void {
         this.copied = true;
     }
