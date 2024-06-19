@@ -53,7 +53,7 @@ module.exports = tseslint.config(
                 'error',
                 {
                     type: 'attribute',
-                    prefix: ["ngxCopyPaste", "jsdaddy"],
+                    prefix: ['ngxCopyPaste', 'jsdaddy'],
                     style: 'camelCase',
                 },
             ],
@@ -77,7 +77,10 @@ module.exports = tseslint.config(
             // Apply the Angular template rules which focus on accessibility of our apps
             ...angular.configs.templateAccessibility,
         ],
-        rules: {},
+        rules: {
+            '@angular-eslint/template/click-events-have-key-events': 'off',
+            '@angular-eslint/template/interactive-supports-focus': 'off',
+        },
     },
     {
         files: ['**/*.js'],
