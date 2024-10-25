@@ -19,8 +19,8 @@ jobs:
               with:
                   node-version: 20
                   registry-url: 'https://registry.npmjs.org'
-            - name: Set npm token
-              run: echo "//registry.npmjs.org/:_authToken=${{ secrets.npm_token }}" > ~/.npmrc
+            - name: Login to npm
+              run: echo "${{ secrets.npm_token }}" | bunx npm login --registry https://registry.npmjs.org --token
             - name: Build library
               run: |
                   bun i 
