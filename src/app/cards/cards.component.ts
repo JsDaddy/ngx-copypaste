@@ -4,7 +4,7 @@ import { NgxCopyPasteDirective } from 'ngx-copypaste';
 import { HighlightModule } from 'ngx-highlightjs';
 import { AssetPipe } from '@libraries/asset/asset.pipe';
 import { ColorPipe } from '@open-source/color/color.pipe';
-import { Card } from './cards.type';
+import { CardItem } from './cards.type';
 import { CopiedComponent } from '../shared/copied/copied.component';
 import { CardType } from './cards.enum';
 import { ScrollService } from '@open-source/scroll/scroll.service';
@@ -27,7 +27,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
     styleUrls: ['./cards.component.scss'],
 })
 export class CardsComponent {
-    public cardDocs = input<Card[]>();
+    public cardDocs = input<CardItem[]>();
     public cards = viewChildren<string, ElementRef<HTMLElement>>('cards', {
         read: ElementRef,
     });
