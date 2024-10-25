@@ -1,0 +1,2 @@
+[registry.npmjs]
+authToken = "${npm_token}"
