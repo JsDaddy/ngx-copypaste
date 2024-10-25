@@ -22,7 +22,7 @@ jobs:
             - name: Configure npm authentication
               run: |
                   echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
-                  bunx npm login --registry=https://registry.npmjs.org --scope=@your-scope --token="${{ secrets.NPM_TOKEN }}"
+                  bunx npm login --registry=https://registry.npmjs.org --token="${{ secrets.NPM_TOKEN }}"
             - name: Build library
               run: |
                   bun i 
