@@ -23,6 +23,16 @@ jobs:
               run: |
                   bun i 
                   bun run build:lib
+            - name: Setup npm authentication
+              run: bunx npm config set //registry.npmjs.org/:_authToken=${{ secrets.npm_token }}
+              env:
+                  NODE_AUTH_TOKEN: ${{ secrets.npm_token }}
+
+            - name: Verify npm authentication
+              run: bunx npm whoami
+              env:
+                 NODE_AUTH_TOKEN: ${{ secrets.npm_token }}
+
             - name: Publish library
               run:  bun publish:lib
               env:
