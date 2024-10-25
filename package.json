@@ -29,7 +29,7 @@
         "build": "ng build ngx-copypaste --base-href /ngx-copypaste/ --configuration production",
         "build:lib": "ng build --configuration production ngx-copypaste-lib && bun run copy-libdocs",
         "copy-libdocs": "cp README.md LICENSE dist/ngx-copypaste-lib",
-        "publish:lib": "cd dist/ngx-copypaste-lib && bun publish",
+        "publish:lib": "cd dist/ngx-copypaste-lib && bun publish --access public",
         "test": "ng test",
         "test:pre-commit": "ng test --watch=false",
         "lint": "ng lint && bun run lint:scss",
