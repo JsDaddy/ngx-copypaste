@@ -20,7 +20,7 @@ jobs:
                   node-version: 20
                   registry-url: 'https://registry.npmjs.org'
             - name: Configure npm authentication
-              run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
+              run: echo "//registry.npmjs.org/:_authToken=${{ secrets.npm_token }}" > ~/.npmrc
 
             - name: Build library
               run: |
