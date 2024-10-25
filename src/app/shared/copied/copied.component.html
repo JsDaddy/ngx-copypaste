@@ -1,13 +1,8 @@
 <button
-    class="row bg-full-white black ai-start span copy-btn"
+    class="copy-btn flex items-center bg-full-white w-fit h-[31px] text-black text-span rounded-4px gap-2.5 px-6 py-5px"
     [class]="copyButtonClass"
     (click)="copyText()">
     <span class="default-text">Copy</span>
     <span class="active-text">Copied</span>
-    <img
-        class="copy ais-c"
-        [ngSrc]="'copied' | asset: assetPath"
-        width="20"
-        height="10"
-        alt="Copied" />
+    <img class="copy" [ngSrc]="'copied' | asset: assetPath" width="20" height="10" alt="Copied" />
 </button>

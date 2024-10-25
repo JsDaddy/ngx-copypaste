@@ -1,6 +1,6 @@
 import { CardType } from './cards.enum';
 
-export interface ICard {
+export type CardItem = {
     header: string;
     code: string;
     id: number;
@@ -10,4 +10,4 @@ export interface ICard {
     text14?: string;
     text16?: string;
     text18?: string;
-}
+};

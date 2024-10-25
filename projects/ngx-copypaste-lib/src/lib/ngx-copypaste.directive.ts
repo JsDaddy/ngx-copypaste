@@ -47,6 +47,7 @@ export class NgxCopyPasteDirective {
             await navigator.clipboard.writeText(value.trim());
             this.successCb.emit();
         } catch (err) {
+            // eslint-disable-next-line no-console
             console.error('Error copying content: ', err);
         }
     }
