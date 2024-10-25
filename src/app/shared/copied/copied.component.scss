@@ -1,71 +1,26 @@
-@import '../../../libraries/styles/media-breakpoints';
-@import '../../../libraries/styles/general';
-
 .active {
     &.copy-btn {
-        width: 123px;
-        height: 31px;
-        padding: 5px 23px;
-        gap: 10px;
-        align-items: center;
-        margin: 30px 0 0 15px;
-        background: var(--black);
-        color: var(--yellow);
-        border: 1px solid var(--yellow);
-
+        @apply bg-black text-yellow border border-solid border-yellow;
+        .active-text,
         .copy {
-            display: flex;
-            margin-left: auto;
-        }
-
-        .active-text {
-            display: block;
+            @apply block;
         }
 
         .default-text {
-            display: none;
+            @apply hidden;
         }
     }
 }
+
 .non-active {
     &.copy-btn {
-        margin: 30px 0 0 15px;
-        padding: 5px 23px;
-        gap: 10px;
-        width: 81px;
-        height: 31px;
-        border-radius: 4px;
-
-        &:hover {
-            background: var(--yellow);
-        }
-
-        .copy {
-            display: none;
-        }
-
+        @apply text-black hover:bg-yellow;
+        .copy,
         .active-text {
-            display: none;
+            @apply hidden;
         }
-
         .default-text {
-            display: block;
-        }
-    }
-}
-
-@media screen and (max-width: $desktopWidth) {
-    .active {
-        &.copy-btn {
-            width: 81px;
-            padding: 0 0 0 6px;
-            align-items: center;
-            gap: 0;
-            height: 31px;
-            .copy {
-                display: flex;
-                margin: 0;
-            }
+            @apply block;
         }
     }
 }
