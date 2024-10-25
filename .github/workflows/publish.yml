@@ -23,6 +23,8 @@ jobs:
               run: |
                   bun i 
                   bun run build:lib
+            - name: Setup npm token
+              run: echo "//registry.npmjs.org/:_authToken=${{ secrets.npm_token }}" > ~/.npmrc
             - name: Publish library
               run:  bun publish:lib
               env:
