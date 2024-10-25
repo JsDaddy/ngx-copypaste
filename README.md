@@ -18,11 +18,13 @@
 
 You can also try our NGX MASK [check](https://www.npmjs.com/package/ngx-mask) it.
 You can also try our NGX LOADER INDICATOR [check](https://www.npmjs.com/package/ngx-loader-indicator) it.
-### You can try live  [demo](https://jsdaddy.github.io/ngx-copypaste/) with examples.
+
+### You can try live [demo](https://jsdaddy.github.io/ngx-copypaste/) with examples.
 
 ## Installing
+
 ```bash
-$ npm install --save ngx-copypaste 
+$ npm install --save ngx-copypaste
 ```
 
 ## Quickstart if ngx-copypaste version >= 15.0.0
@@ -67,12 +69,13 @@ import {NgxCopyPasteModule} from 'ngx-copypaste'
   (...)
 })
 ```
+
 #### Usage
 
 From input
 
 ```html
-<input type='text' ngxCopyPaste #cp="copy"/>
+<input type="text" ngxCopyPaste #cp="copy" />
 
 <button (click)="cp.copy()">Copy</button>
 ```
@@ -89,18 +92,19 @@ From complex div
 
 ```html
 <div ngxCopyPaste #cp="copy">
-  <h1>Lorem ipsum</h1>
-  <p>Lorem ipsum dolor sit amet, consectetur 
-  adipiscing elit.
- Nullam rutrum augue at ante sollicitudin posuere.
- Pellentesque congue consequat enim quis luctus.</p>
-  <div>
-    <h2>Lorem ipsum</h2>
-  </div>
+    <h1>Lorem ipsum</h1>
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam rutrum augue at ante
+        sollicitudin posuere. Pellentesque congue consequat enim quis luctus.
+    </p>
+    <div>
+        <h2>Lorem ipsum</h2>
+    </div>
 </div>
 
 <button (click)="cp.copy()">Copy</button>
 ```
+
 Also you can bind it to any tag
 
 ```html
@@ -108,6 +112,7 @@ Also you can bind it to any tag
 
 <p (click)="cp.copy()">Copy</p>
 ```
+
 Output success cb
 
 ```html
@@ -115,7 +120,5 @@ Output success cb
 
 <p (click)="cp.copy()">Copy</p>
 
-public copy(): void {
-    your code
-}
-```                         
+public copy(): void { your code }
+```

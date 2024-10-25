@@ -1,7 +1,7 @@
-import { ICard } from '../../app/cards/cards.interface';
+import { CardItem } from '../../app/cards/cards.type';
 import { CardType } from '../../app/cards/cards.enum';
 
-export const Card: ICard[] = [
+export const Card: CardItem[] = [
     {
         header: 'Input control',
         code: `<input ngxCopyPaste #cp="copy"><button (click)="cp.copy()" >Copy</button>`,

@@ -1,88 +1,88 @@
-<section class="content column bg-full-white">
-    @for (card of cardDocs(); track card.id) {
-        <div class="card" [class]="activeCardId() | color: card.id" [id]="card.id" #cards>
-            <div class="mr-title title row uppercase ls-25 something">
-                {{ card.header }}
-            </div>
-            <div class="cards-block row" [id]="card.anchor">
-                <div class="light-card bg-full-white pd-15">
-                    <div class="light-title row ai-c">
-                        <img
-                            width="20"
-                            height="20"
-                            [ngSrc]="'hand-box' | asset: openSourceCardsPath"
-                            alt="hand-box" />
-                        <span class="span">Usage</span>
-                    </div>
-                    <span class="source uppercase ls-25 full-white span">Source code</span>
-                    <div class="white-input">
-                        <pre class="row">
-                                  <code type="text" language="html" [highlight]="card.code" class="input-view bg-white"></code>
-                                  <img height="18" width="13" [ngSrc]="'input-vector' | asset : openSourceCardsPath" class="input-img ais-c" alt="input-vector" />
-                            </pre>
-                    </div>
+@for (card of cardDocs(); track card.id) {
+    <div
+        class="flex flex-col p-2.5 gap-2.5 bg-dark/[.02] rounded-15px"
+        [class]="
+            activeCardId() === card.id ? 'border border-solid border-yellow bg-yellow/[.05]' : ''
+        "
+        [id]="card.id"
+        #cards>
+        <div class="ml-4 flex items-center text-title text-dark uppercase tracking-[.25em]">
+            {{ card.header }}
+        </div>
+        <div class="flex gap-30px mob:flex-col mob:gap-15px scroll-mt-[185px]" [id]="card.anchor">
+            <div class="flex-[55%] rounded-10px bg-full-white p-15px">
+                <div class="flex items-start gap-2.5 mb-5">
+                    <img
+                        width="20"
+                        height="20"
+                        [ngSrc]="'hand-box' | asset: openSourceCardsPath"
+                        alt="hand-box" />
+                    <span class="text-span text-dark/[.25]">Usage</span>
                 </div>
-                <div class="dark-card bg-black">
-                    <div class="dark-input column pd-15">
-                        @switch (card.cardType) {
-                            @case (cardTypeInput) {
-                                <div class="input-wrapper h-input">
-                                    <input
-                                        placeholder="Start Typing"
-                                        class="customDarkInput bg-black white span"
-                                        #c1="copy"
-                                        ngxCopyPaste />
-                                    <jsdaddy-open-source-copied-button
-                                        class="copy-position"
-                                        (click)="c1.copy()" />
-                                </div>
-                            }
-                            @case (cardTypeTextarea) {
-                                <div class="input-wrapper h-input">
-                                    <textarea
-                                        ngxCopyPaste
-                                        placeholder="Start Typing"
-                                        #c2="copy"
-                                        class="customDarkInput bg-black white span"></textarea>
-                                    <jsdaddy-open-source-copied-button
-                                        class="copy-position"
-                                        (click)="c2.copy()" />
-                                </div>
-                            }
-                            @case (cardTypeSuccess) {
-                                <div class="input-wrapper h-input">
-                                    <input
-                                        placeholder="Start Typing"
-                                        class="customDarkInput bg-black white span"
-                                        #c3="copy"
-                                        ngxCopyPaste />
-                                    <jsdaddy-open-source-copied-button
-                                        class="copy-position"
-                                        (click)="c3.copy()" />
-                                </div>
-                            }
-                            @case (card.text12 && cardTypeNone) {
-                                <div class="column">
-                                    <span ngxCopyPaste #c3="copy" class="full-white span pd-15">
-                                        {{ card.text12 }}
-                                    </span>
-                                    <jsdaddy-open-source-copied-button (click)="c3.copy()" />
-                                </div>
-                            }
-                            @case (card.text14 && cardTypeNone) {
-                                <div class="column">
-                                    <div ngxCopyPaste #c4="copy" class="column full-white">
-                                        <span class="f-s-18 pd-15">{{ card.text18 }}</span>
-                                        <span class="full-white span pd-15">{{ card.text14 }}</span>
-                                        <span class="pd-15 regular-text">{{ card.text16 }}</span>
-                                    </div>
-                                    <jsdaddy-open-source-copied-button (click)="c4.copy()" />
-                                </div>
-                            }
+                <span class="uppercase tracking-[.25em] text-span text-dark/[.45]"
+                    >Source code</span
+                >
+                <div class="block mt-2.5">
+                    <pre class="flex text-span">
+                        <code type="text" language="html" [highlight]="card.code" class="bg-white w-full h-fit pl-15px rounded-10px border-none overflow-hidden whitespace-pre-line"></code>
+                        <img height="18" width="13" [ngSrc]="'input-vector' | asset : openSourceCardsPath" class="relative right-5 self-center" alt="input-vector" />
+                    </pre>
+                </div>
+            </div>
+            <div class="flex-[45%] rounded-10px p-15px bg-dark">
+                <div class="flex flex-col gap-30px">
+                    @switch (card.cardType) {
+                        @case (cardTypeInput) {
+                            <div class="customInput">
+                                <input
+                                    placeholder="Start Typing"
+                                    class=""
+                                    #c1="copy"
+                                    ngxCopyPaste />
+                                <jsdaddy-open-source-copied-button
+                                    class="copy-position"
+                                    (click)="c1.copy()" />
+                            </div>
                         }
-                    </div>
+                        @case (cardTypeTextarea) {
+                            <div class="customInput">
+                                <textarea
+                                    ngxCopyPaste
+                                    placeholder="Start Typing"
+                                    #c2="copy"></textarea>
+                                <jsdaddy-open-source-copied-button
+                                    class="copy-position"
+                                    (click)="c2.copy()" />
+                            </div>
+                        }
+                        @case (cardTypeSuccess) {
+                            <div class="customInput">
+                                <input placeholder="Start Typing" #c3="copy" ngxCopyPaste />
+                                <jsdaddy-open-source-copied-button
+                                    class="copy-position"
+                                    (click)="c3.copy()" />
+                            </div>
+                        }
+                        @case (card.text12 && cardTypeNone) {
+                            <span ngxCopyPaste #c3="copy" class="text-full-white text-span">
+                                {{ card.text12 }}
+                            </span>
+                            <jsdaddy-open-source-copied-button (click)="c3.copy()" />
+                        }
+                        @case (card.text14 && cardTypeNone) {
+                            <div
+                                ngxCopyPaste
+                                #c4="copy"
+                                class="flex flex-col text-full-white gap-15px">
+                                <span class="text-span-18">{{ card.text18 }}</span>
+                                <span class="text-span">{{ card.text14 }}</span>
+                                <span class="text-span-16">{{ card.text16 }}</span>
+                            </div>
+                            <jsdaddy-open-source-copied-button (click)="c4.copy()" />
+                        }
+                    }
                 </div>
             </div>
         </div>
-    }
-</section>
+    </div>
+}
