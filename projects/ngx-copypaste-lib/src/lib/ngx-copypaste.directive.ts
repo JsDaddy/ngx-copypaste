@@ -15,28 +15,30 @@ export class NgxCopyPasteDirective {
         if (select) {
             select.removeAllRanges();
         }
-        const element: HTMLElement = this._elementRef.nativeElement;
+        const element = this._elementRef.nativeElement as HTMLElement;
         if (element instanceof HTMLInputElement || element instanceof HTMLTextAreaElement) {
-            this._elementRef.nativeElement.select();
+            element.select();
         } else {
             const range: Range = document.createRange();
-            range.selectNodeContents(this._elementRef.nativeElement);
+            range.selectNodeContents(element);
             select = window.getSelection();
             if (select) {
                 select.addRange(range);
             }
         }
         this.successCb.emit();
+        // eslint-disable-next-line @typescript-eslint/no-deprecated
         document.execCommand('copy');
     }
 
     public async copy(): Promise<void> {
+        this.copyWithSelection();
         try {
-            if (!navigator.clipboard) {
+            if (typeof navigator.clipboard === 'undefined') {
                 this.copyWithSelection();
                 return;
             }
-            const element: HTMLElement = this._elementRef.nativeElement;
+            const element = this._elementRef.nativeElement as HTMLElement;
             const value =
                 element instanceof HTMLInputElement || element instanceof HTMLTextAreaElement
                     ? element.value
