@@ -38,11 +38,9 @@ module.exports = tseslint.config(
         extends: [
             // Apply the recommended core rules
             eslint.configs.recommended,
-            // Apply the recommended TypeScript rules
-            ...tseslint.configs.recommended,
-            // Optionally apply stylistic rules from typescript-eslint that improve code consistency
-            ...tseslint.configs.stylistic,
-            // Apply the recommended Angular rules
+            ...tseslint.configs.recommendedTypeChecked,
+            ...tseslint.configs.strictTypeChecked,
+            ...tseslint.configs.stylisticTypeChecked,
             ...angular.configs.tsRecommended,
         ],
         // Set the custom processor which will allow us to have our inline Component templates extracted
@@ -105,7 +103,6 @@ module.exports = tseslint.config(
             'no-unused-private-class-members': 'error',
             'no-invalid-regexp': 'error',
             curly: ['error', 'all'],
-            '@typescript-eslint/restrict-template-expressions': 'error',
             '@typescript-eslint/no-explicit-any': 'off',
             '@typescript-eslint/adjacent-overload-signatures': 'error',
             'no-console': ['warn'],
@@ -158,6 +155,14 @@ module.exports = tseslint.config(
             '@typescript-eslint/unbound-method': 'off',
             'import/no-cycle': 'off',
             'import/extensions': 'off',
+            '@typescript-eslint/no-unsafe-call': 'off',
+            '@typescript-eslint/restrict-template-expressions': [
+                'error',
+                {
+                    allowNullish: true,
+                    allowNumber: true,
+                },
+            ],
         },
     },
     {

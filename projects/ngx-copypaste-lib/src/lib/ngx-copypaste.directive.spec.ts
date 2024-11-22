@@ -1,5 +1,5 @@
 describe('NgxCopyPasteDirective', () => {
     it('should create an instance', () => {
-        expect(1).toEqual(1);
+        void expect(1).toEqual(1);
     });
 });
