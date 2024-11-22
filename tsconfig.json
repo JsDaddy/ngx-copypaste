@@ -26,9 +26,9 @@
         "removeComments": true,
         "resolveJsonModule": true,
         "paths": {
-            "ngx-copypaste": ["./projects/ngx-copypaste-lib/src/public-api"],
+            "@libraries/*": ["./src/libraries/*"],
             "@open-source/*": ["./src/libraries/open-source/*"],
-            "@libraries/*": ["./src/libraries/*"]
+            "ngx-copypaste": ["./projects/ngx-copypaste-lib/src/public-api"]
         },
         "skipLibCheck": true,
         "noImplicitAny": true,
