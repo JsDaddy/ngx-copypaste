@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { NgxCopyPasteDirective } from 'ngx-copypaste';
 
 @Component({
     selector: 'jsdaddy-open-source-test',
+    standalone: true,
+    imports: [ReactiveFormsModule, NgxCopyPasteDirective],
     template: `
         <input id="masked" ngxCopyPaste #cv="copy" (successCb)="copy()" [formControl]="form" />
         <button (click)="cv.copy()" id="btn">Copy</button>

@@ -3,7 +3,6 @@ import { NgOptimizedImage } from '@angular/common';
 import { NgxCopyPasteDirective } from 'ngx-copypaste';
 import { HighlightModule } from 'ngx-highlightjs';
 import { AssetPipe } from '@libraries/asset/asset.pipe';
-import { ColorPipe } from '@open-source/color/color.pipe';
 import { CardItem } from './cards.type';
 import { CopiedComponent } from '../shared/copied/copied.component';
 import { CardType } from './cards.enum';
@@ -14,14 +13,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 @Component({
     selector: 'jsdaddy-open-source-cards',
     standalone: true,
-    imports: [
-        NgOptimizedImage,
-        NgxCopyPasteDirective,
-        HighlightModule,
-        AssetPipe,
-        ColorPipe,
-        CopiedComponent,
-    ],
+    imports: [NgOptimizedImage, NgxCopyPasteDirective, HighlightModule, AssetPipe, CopiedComponent],
     providers: [ScrollService],
     templateUrl: './cards.component.html',
     styleUrls: ['./cards.component.scss'],
