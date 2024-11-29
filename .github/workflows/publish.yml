@@ -32,8 +32,8 @@ jobs:
             - name: Extract version
               id: get_version
               run: |
-                 VERSION=$(node -p "require('./dist/ngx-copypaste-lib/package.json').version")
-                 echo "version=$VERSION" >> $GITHUB_OUTPUT      
+                  VERSION=$(node -p "require('./dist/ngx-copypaste-lib/package.json').version")
+                  echo "version=$VERSION" >> $GITHUB_OUTPUT
 
     slack_notification:
         needs:
