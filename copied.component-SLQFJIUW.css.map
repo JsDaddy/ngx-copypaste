@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/shared/copied/copied.component.scss"],
+  "sourcesContent": [".active {\n    &.copy-btn {\n        @apply bg-black text-yellow border border-solid border-yellow;\n        .active-text,\n        .copy {\n            @apply block;\n        }\n\n        .default-text {\n            @apply hidden;\n        }\n    }\n}\n\n.non-active {\n    &.copy-btn {\n        @apply text-black hover:bg-yellow;\n        .copy,\n        .active-text {\n            @apply hidden;\n        }\n        .default-text {\n            @apply block;\n        }\n    }\n}\n"],
+  "mappings": ";AAEQ,CAAA,MAAA,CAAA;AAAA,gBAAA;AAAA,gBAAA;AAAA,uBAAA;AAAA,gBAAA,IAAA,IAAA,IAAA,GAAA,EAAA,IAAA,mBAAA,EAAA;AAAA,mBAAA;AAAA,oBAAA,IAAA,EAAA,EAAA,EAAA,EAAA,IAAA,eAAA,EAAA;AAAA,qBAAA;AAAA,SAAA,IAAA,IAAA,IAAA,GAAA,EAAA,IAAA,iBAAA,EAAA;AAAA;AAGI,CAHJ,MAGI,CAHJ,SAGI,CAAA;CAHJ,OAAA;AAGI,WAAA;AAAA;AAIA,CAPJ,MAOI,CAPJ,SAOI,CAAA;AAAA,WAAA;AAAA;AAOJ,CAAA,UAAA,CAdA;AAcA,qBAAA;AAAA,SAAA,IAAA,EAAA,EAAA,EAAA,EAAA,IAAA,iBAAA,EAAA;AAAA;AAAA,CAAA,UAAA,CAdA,QAcA;AAAA,mBAAA;AAAA,oBAAA,IAAA,IAAA,IAAA,GAAA,EAAA,IAAA,eAAA,EAAA;AAAA;AAGI,CAHJ,UAGI,CAjBJ,SAiBI;CAHJ,WAdA,UAGI;AAcA,WAAA;AAAA;AAGA,CANJ,UAMI,CApBJ,SAoBI,CAbA;AAaA,WAAA;AAAA;",
+  "names": []
+}
