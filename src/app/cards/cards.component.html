@@ -33,7 +33,7 @@
                 <div class="flex flex-col gap-30px">
                     @switch (card.cardType) {
                         @case (cardTypeInput) {
-                            <div class="customInput">
+                            <div class="input">
                                 <input
                                     placeholder="Start Typing"
                                     class=""
@@ -45,7 +45,7 @@
                             </div>
                         }
                         @case (cardTypeTextarea) {
-                            <div class="customInput">
+                            <div class="input">
                                 <textarea
                                     ngxCopyPaste
                                     placeholder="Start Typing"
@@ -56,7 +56,7 @@
                             </div>
                         }
                         @case (cardTypeSuccess) {
-                            <div class="customInput">
+                            <div class="input">
                                 <input placeholder="Start Typing" #c3="copy" ngxCopyPaste />
                                 <jsdaddy-open-source-copied-button
                                     class="copy-position"
