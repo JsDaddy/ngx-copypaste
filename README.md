@@ -24,15 +24,16 @@ You can also try our NGX LOADER INDICATOR [check](https://www.npmjs.com/package/
 ## Installing
 
 ## npm
+
 ```bash
 $ npm install --save ngx-copypaste
 ```
 
 ## bun
+
 ```bash
 $ bun install --save ngx-copypaste
 ```
-
 
 ## Quickstart if ngx-copypaste version >= 15.0.0
 
