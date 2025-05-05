@@ -1,4 +1,5 @@
 @use './libraries/styles/scroll-bar';
-@use 'tailwindcss';
-@use './assets/tailwind/tailwind-component';
-@config '../tailwind.config';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

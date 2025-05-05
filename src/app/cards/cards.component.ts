@@ -1,12 +1,4 @@
-import {
-    Component,
-    effect,
-    ElementRef,
-    HostBinding,
-    inject,
-    input,
-    viewChildren,
-} from '@angular/core';
+import { Component, effect, ElementRef, inject, input, viewChildren } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import { NgxCopyPasteDirective } from 'ngx-copypaste';
 import { HighlightModule } from 'ngx-highlightjs';
@@ -40,10 +32,6 @@ export class CardsComponent {
 
     private readonly scrollService = inject(ScrollService);
     public readonly activeCardId = toSignal(this.scrollService.activeCard$);
-
-    @HostBinding('class')
-    public readonly hostClassname =
-        'flex flex-col gap-4 p-4 bg-full-white box-border border-t border-t-black/10 py-5 pl-[22px] pr-4';
 
     public constructor() {
         effect(() => {

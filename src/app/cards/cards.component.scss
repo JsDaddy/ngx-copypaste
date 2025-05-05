@@ -1,0 +1,10 @@
+:host {
+    @apply flex flex-col gap-4 p-4 bg-full-white box-border border-t border-t-black/10 py-5 pl-[22px] pr-4;
+    .input {
+        @apply flex justify-between w-full h-[51px] text-full-white py-3 px-5 outline-none bg-black border-b-2px border-b-white rounded-10px gap-2.5 focus:border-b-yellow hover:border-b-yellow hover:bg-full-white/25 focus:bg-full-white/25;
+        input,
+        textarea {
+            @apply placeholder:text-white/25 outline-none border-none w-full text-full-white bg-transparent resize-none;
+        }
+    }
+}

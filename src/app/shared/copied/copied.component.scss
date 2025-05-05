@@ -1,0 +1,26 @@
+.active {
+    &.copy-btn {
+        @apply bg-black text-yellow border border-solid border-yellow;
+        .active-text,
+        .copy {
+            @apply block;
+        }
+
+        .default-text {
+            @apply hidden;
+        }
+    }
+}
+
+.non-active {
+    &.copy-btn {
+        @apply text-black hover:bg-yellow;
+        .copy,
+        .active-text {
+            @apply hidden;
+        }
+        .default-text {
+            @apply block;
+        }
+    }
+}

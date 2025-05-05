@@ -1,4 +1,4 @@
-import { Component, HostBinding } from '@angular/core';
+import { Component } from '@angular/core';
 import { HeaderComponent } from '@open-source/header/header.component';
 import { LinkPath } from '@libraries/link/link.path';
 import { SubHeaderComponent } from '@open-source/sub-header/sub-header.component';
@@ -41,7 +41,4 @@ export class AppComponent {
         'Copypaste',
         'AngularClipboard',
     ];
-
-    @HostBinding('class')
-    public readonly hostClassname = 'block h-full';
 }
