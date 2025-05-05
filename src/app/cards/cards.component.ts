@@ -32,6 +32,7 @@ export class CardsComponent {
 
     private readonly scrollService = inject(ScrollService);
     public readonly activeCardId = toSignal(this.scrollService.activeCard$);
+
     public constructor() {
         effect(() => {
             this.scrollService.onScroll(this.cards());
