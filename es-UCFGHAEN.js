@@ -901,7 +901,7 @@ var require_core = __commonJS({
       }
       return mode;
     }
-    var version = "11.10.0";
+    var version = "11.11.1";
     var HTMLInjectionError = class extends Error {
       constructor(reason, html) {
         super(reason);
@@ -1223,6 +1223,7 @@ var require_core = __commonJS({
             }
           }
           if (match.type === "illegal" && lexeme === "") {
+            modeBuffer += "\n";
             return 1;
           }
           if (iterations > 1e5 && iterations > match.index * 3) {
@@ -1411,18 +1412,18 @@ var require_core = __commonJS({
       }
       let wantsHighlight = false;
       function highlightAll() {
+        function boot() {
+          highlightAll();
+        }
         if (document.readyState === "loading") {
+          if (!wantsHighlight) {
+            window.addEventListener("DOMContentLoaded", boot, false);
+          }
           wantsHighlight = true;
           return;
         }
         const blocks = document.querySelectorAll(options.cssSelector);
         blocks.forEach(highlightElement);
-      }
-      function boot() {
-        if (wantsHighlight) highlightAll();
-      }
-      if (typeof window !== "undefined" && window.addEventListener) {
-        window.addEventListener("DOMContentLoaded", boot, false);
       }
       function registerLanguage(languageName, languageDefinition) {
         let lang = null;
@@ -2198,6 +2199,9 @@ var require_apache = __commonJS({
               literal: "on off all deny allow"
             },
             contains: [{
+              scope: "punctuation",
+              match: /\\\n/
+            }, {
               className: "meta",
               begin: /\s\[/,
               end: /\]$/
@@ -2282,11 +2286,11 @@ var require_arcade = __commonJS({
       const regex = hljs.regex;
       const IDENT_RE = "[A-Za-z_][0-9A-Za-z_]*";
       const KEYWORDS = {
-        keyword: ["break", "case", "catch", "continue", "debugger", "do", "else", "export", "for", "function", "if", "import", "in", "new", "return", "switch", "try", "var", "void", "while"],
+        keyword: ["break", "case", "catch", "continue", "debugger", "do", "else", "export", "for", "function", "if", "import", "in", "new", "of", "return", "switch", "try", "var", "void", "while"],
         literal: ["BackSlash", "DoubleQuote", "ForwardSlash", "Infinity", "NaN", "NewLine", "PI", "SingleQuote", "Tab", "TextFormatting", "false", "null", "true", "undefined"],
-        built_in: ["Abs", "Acos", "All", "Angle", "Any", "Area", "AreaGeodetic", "Array", "Asin", "Atan", "Atan2", "Attachments", "Average", "Back", "Bearing", "Boolean", "Buffer", "BufferGeodetic", "Ceil", "Centroid", "ChangeTimeZone", "Clip", "Concatenate", "Console", "Constrain", "Contains", "ConvertDirection", "ConvexHull", "Cos", "Count", "Crosses", "Cut", "Date|0", "DateAdd", "DateDiff", "DateOnly", "Day", "Decode", "DefaultValue", "Densify", "DensifyGeodetic", "Dictionary", "Difference", "Disjoint", "Distance", "DistanceGeodetic", "Distinct", "Domain", "DomainCode", "DomainName", "EnvelopeIntersects", "Equals", "Erase", "Exp", "Expects", "Extent", "Feature", "FeatureSet", "FeatureSetByAssociation", "FeatureSetById", "FeatureSetByName", "FeatureSetByPortalItem", "FeatureSetByRelationshipClass", "FeatureSetByRelationshipName", "Filter", "Find", "First|0", "Floor", "FromCharCode", "FromCodePoint", "FromJSON", "Front", "GdbVersion", "Generalize", "Geometry", "GetEnvironment", "GetFeatureSet", "GetFeatureSetInfo", "GetUser", "GroupBy", "Guid", "HasKey", "HasValue", "Hash", "Hour", "IIf", "ISOMonth", "ISOWeek", "ISOWeekday", "ISOYear", "Includes", "IndexOf", "Insert", "Intersection", "Intersects", "IsEmpty", "IsNan", "IsSelfIntersecting", "IsSimple", "Left|0", "Length", "Length3D", "LengthGeodetic", "Log", "Lower", "Map", "Max", "Mean", "Mid", "Millisecond", "Min", "Minute", "Month", "MultiPartToSinglePart", "Multipoint", "NearestCoordinate", "NearestVertex", "NextSequenceValue", "None", "Now", "Number", "Offset", "OrderBy", "Overlaps", "Point", "Polygon", "Polyline", "Pop", "Portal", "Pow", "Proper", "Push", "Random", "Reduce", "Relate", "Replace", "Resize", "Reverse", "Right|0", "RingIsClockwise", "Rotate", "Round", "Schema", "Second", "SetGeometry", "Simplify", "Sin", "Slice", "Sort", "Splice", "Split", "Sqrt", "StandardizeGuid", "Stdev", "SubtypeCode", "SubtypeName", "Subtypes", "Sum", "SymmetricDifference", "Tan", "Text", "Time", "TimeZone", "TimeZoneOffset", "Timestamp", "ToCharCode", "ToCodePoint", "ToHex", "ToLocal", "ToUTC", "Today", "Top|0", "Touches", "TrackAccelerationAt", "TrackAccelerationWindow", "TrackCurrentAcceleration", "TrackCurrentDistance", "TrackCurrentSpeed", "TrackCurrentTime", "TrackDistanceAt", "TrackDistanceWindow", "TrackDuration", "TrackFieldWindow", "TrackGeometryWindow", "TrackIndex", "TrackSpeedAt", "TrackSpeedWindow", "TrackStartTime", "TrackWindow", "Trim", "TypeOf", "Union", "Upper", "UrlEncode", "Variance", "Week", "Weekday", "When|0", "Within", "Year|0"]
+        built_in: ["Abs", "Acos", "All", "Angle", "Any", "Area", "AreaGeodetic", "Array", "Asin", "Atan", "Atan2", "Attachments", "Average", "Back", "Bearing", "Boolean", "Buffer", "BufferGeodetic", "Ceil", "Centroid", "ChangeTimeZone", "Clip", "Concatenate", "Console", "Constrain", "Contains", "ConvertDirection", "ConvexHull", "Cos", "Count", "Crosses", "Cut", "Date|0", "DateAdd", "DateDiff", "DateOnly", "Day", "Decode", "DefaultValue", "Densify", "DensifyGeodetic", "Dictionary", "Difference", "Disjoint", "Distance", "DistanceGeodetic", "DistanceToCoordinate", "Distinct", "Domain", "DomainCode", "DomainName", "EnvelopeIntersects", "Equals", "Erase", "Exp", "Expects", "Extent", "Feature", "FeatureInFilter", "FeatureSet", "FeatureSetByAssociation", "FeatureSetById", "FeatureSetByName", "FeatureSetByPortalItem", "FeatureSetByRelationshipClass", "FeatureSetByRelationshipName", "Filter", "FilterBySubtypeCode", "Find", "First|0", "Floor", "FromCharCode", "FromCodePoint", "FromJSON", "Front", "GdbVersion", "Generalize", "Geometry", "GetEnvironment", "GetFeatureSet", "GetFeatureSetInfo", "GetUser", "GroupBy", "Guid", "HasKey", "HasValue", "Hash", "Hour", "IIf", "ISOMonth", "ISOWeek", "ISOWeekday", "ISOYear", "Includes", "IndexOf", "Insert", "Intersection", "Intersects", "IsEmpty", "IsNan", "IsSelfIntersecting", "IsSimple", "KnowledgeGraphByPortalItem", "Left|0", "Length", "Length3D", "LengthGeodetic", "Log", "Lower", "Map", "Max", "Mean", "MeasureToCoordinate", "Mid", "Millisecond", "Min", "Minute", "Month", "MultiPartToSinglePart", "Multipoint", "NearestCoordinate", "NearestVertex", "NextSequenceValue", "None", "Now", "Number", "Offset", "OrderBy", "Overlaps", "Point", "PointToCoordinate", "Polygon", "Polyline", "Pop", "Portal", "Pow", "Proper", "Push", "QueryGraph", "Random", "Reduce", "Relate", "Replace", "Resize", "Reverse", "Right|0", "RingIsClockwise", "Rotate", "Round", "Schema", "Second", "SetGeometry", "Simplify", "Sin", "Slice", "Sort", "Splice", "Split", "Sqrt", "StandardizeFilename", "StandardizeGuid", "Stdev", "SubtypeCode", "SubtypeName", "Subtypes", "Sum", "SymmetricDifference", "Tan", "Text", "Time", "TimeZone", "TimeZoneOffset", "Timestamp", "ToCharCode", "ToCodePoint", "ToHex", "ToLocal", "ToUTC", "Today", "Top|0", "Touches", "TrackAccelerationAt", "TrackAccelerationWindow", "TrackCurrentAcceleration", "TrackCurrentDistance", "TrackCurrentSpeed", "TrackCurrentTime", "TrackDistanceAt", "TrackDistanceWindow", "TrackDuration", "TrackFieldWindow", "TrackGeometryWindow", "TrackIndex", "TrackSpeedAt", "TrackSpeedWindow", "TrackStartTime", "TrackWindow", "Trim", "TypeOf", "Union", "Upper", "UrlEncode", "Variance", "Week", "Weekday", "When|0", "Within", "Year|0"]
       };
-      const PROFILE_VARS = ["aggregatedFeatures", "analytic", "config", "datapoint", "datastore", "editcontext", "feature", "featureSet", "feedfeature", "fencefeature", "fencenotificationtype", "join", "layer", "locationupdate", "map", "measure", "measure", "originalFeature", "record", "reference", "rowindex", "sourcedatastore", "sourcefeature", "sourcelayer", "target", "targetdatastore", "targetfeature", "targetlayer", "value", "view"];
+      const PROFILE_VARS = ["aggregatedFeatures", "analytic", "config", "datapoint", "datastore", "editcontext", "feature", "featureSet", "feedfeature", "fencefeature", "fencenotificationtype", "graph", "join", "layer", "locationupdate", "map", "measure", "measure", "originalFeature", "record", "reference", "rowindex", "sourcedatastore", "sourcefeature", "sourcelayer", "target", "targetdatastore", "targetfeature", "targetlayer", "userInput", "value", "variables", "view"];
       const SYMBOL = {
         className: "symbol",
         begin: "\\$" + regex.either(...PROFILE_VARS)
@@ -2465,7 +2469,7 @@ var require_arduino = __commonJS({
       const FUNCTION_TITLE = regex.optional(NAMESPACE_RE) + hljs.IDENT_RE + "\\s*\\(";
       const RESERVED_KEYWORDS = ["alignas", "alignof", "and", "and_eq", "asm", "atomic_cancel", "atomic_commit", "atomic_noexcept", "auto", "bitand", "bitor", "break", "case", "catch", "class", "co_await", "co_return", "co_yield", "compl", "concept", "const_cast|10", "consteval", "constexpr", "constinit", "continue", "decltype", "default", "delete", "do", "dynamic_cast|10", "else", "enum", "explicit", "export", "extern", "false", "final", "for", "friend", "goto", "if", "import", "inline", "module", "mutable", "namespace", "new", "noexcept", "not", "not_eq", "nullptr", "operator", "or", "or_eq", "override", "private", "protected", "public", "reflexpr", "register", "reinterpret_cast|10", "requires", "return", "sizeof", "static_assert", "static_cast|10", "struct", "switch", "synchronized", "template", "this", "thread_local", "throw", "transaction_safe", "transaction_safe_dynamic", "true", "try", "typedef", "typeid", "typename", "union", "using", "virtual", "volatile", "while", "xor", "xor_eq"];
       const RESERVED_TYPES = ["bool", "char", "char16_t", "char32_t", "char8_t", "double", "float", "int", "long", "short", "void", "wchar_t", "unsigned", "signed", "const", "static"];
-      const TYPE_HINTS = ["any", "auto_ptr", "barrier", "binary_semaphore", "bitset", "complex", "condition_variable", "condition_variable_any", "counting_semaphore", "deque", "false_type", "future", "imaginary", "initializer_list", "istringstream", "jthread", "latch", "lock_guard", "multimap", "multiset", "mutex", "optional", "ostringstream", "packaged_task", "pair", "promise", "priority_queue", "queue", "recursive_mutex", "recursive_timed_mutex", "scoped_lock", "set", "shared_future", "shared_lock", "shared_mutex", "shared_timed_mutex", "shared_ptr", "stack", "string_view", "stringstream", "timed_mutex", "thread", "true_type", "tuple", "unique_lock", "unique_ptr", "unordered_map", "unordered_multimap", "unordered_multiset", "unordered_set", "variant", "vector", "weak_ptr", "wstring", "wstring_view"];
+      const TYPE_HINTS = ["any", "auto_ptr", "barrier", "binary_semaphore", "bitset", "complex", "condition_variable", "condition_variable_any", "counting_semaphore", "deque", "false_type", "flat_map", "flat_set", "future", "imaginary", "initializer_list", "istringstream", "jthread", "latch", "lock_guard", "multimap", "multiset", "mutex", "optional", "ostringstream", "packaged_task", "pair", "promise", "priority_queue", "queue", "recursive_mutex", "recursive_timed_mutex", "scoped_lock", "set", "shared_future", "shared_lock", "shared_mutex", "shared_timed_mutex", "shared_ptr", "stack", "string_view", "stringstream", "timed_mutex", "thread", "true_type", "tuple", "unique_lock", "unique_ptr", "unordered_map", "unordered_multimap", "unordered_multiset", "unordered_set", "variant", "vector", "weak_ptr", "wstring", "wstring_view"];
       const FUNCTION_HINTS = ["abort", "abs", "acos", "apply", "as_const", "asin", "atan", "atan2", "calloc", "ceil", "cerr", "cin", "clog", "cos", "cosh", "cout", "declval", "endl", "exchange", "exit", "exp", "fabs", "floor", "fmod", "forward", "fprintf", "fputs", "free", "frexp", "fscanf", "future", "invoke", "isalnum", "isalpha", "iscntrl", "isdigit", "isgraph", "islower", "isprint", "ispunct", "isspace", "isupper", "isxdigit", "labs", "launder", "ldexp", "log", "log10", "make_pair", "make_shared", "make_shared_for_overwrite", "make_tuple", "make_unique", "malloc", "memchr", "memcmp", "memcpy", "memset", "modf", "move", "pow", "printf", "putchar", "puts", "realloc", "scanf", "sin", "sinh", "snprintf", "sprintf", "sqrt", "sscanf", "std", "stderr", "stdin", "stdout", "strcat", "strchr", "strcmp", "strcpy", "strcspn", "strlen", "strncat", "strncmp", "strncpy", "strpbrk", "strrchr", "strspn", "strstr", "swap", "tan", "tanh", "terminate", "to_underlying", "tolower", "toupper", "vfprintf", "visit", "vprintf", "vsprintf"];
       const LITERALS = ["NULL", "false", "nullopt", "nullptr", "true"];
       const BUILT_IN = ["_Pragma"];
@@ -2587,7 +2591,7 @@ var require_arduino = __commonJS({
         },
         contains: [].concat(EXPRESSION_CONTEXT, FUNCTION_DECLARATION, FUNCTION_DISPATCH, EXPRESSION_CONTAINS, [PREPROCESSOR, {
           // containers: ie, `vector <int> rooms (9);`
-          begin: "\\b(deque|list|queue|priority_queue|pair|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array|tuple|optional|variant|function)\\s*<(?!<)",
+          begin: "\\b(deque|list|queue|priority_queue|pair|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array|tuple|optional|variant|function|flat_map|flat_set)\\s*<(?!<)",
           end: ">",
           keywords: CPP_KEYWORDS,
           contains: ["self", CPP_PRIMITIVE_TYPES]
@@ -3671,7 +3675,7 @@ var require_bash = __commonJS({
         })],
         relevance: 0
       };
-      const KEYWORDS = ["if", "then", "else", "elif", "fi", "for", "while", "until", "in", "do", "done", "case", "esac", "function", "select"];
+      const KEYWORDS = ["if", "then", "else", "elif", "fi", "time", "for", "while", "until", "in", "do", "done", "case", "esac", "coproc", "function", "select"];
       const LITERALS = ["true", "false"];
       const PATH_MODE = {
         match: /(\/[a-z._-]+)+/
@@ -3838,7 +3842,13 @@ var require_basic = __commonJS({
           $pattern: "[a-zA-Z][a-zA-Z0-9_$%!#]*",
           keyword: KEYWORDS
         },
-        contains: [hljs.QUOTE_STRING_MODE, hljs.COMMENT("REM", "$", {
+        contains: [{
+          // Match strings that start with " and end with " or a line break
+          scope: "string",
+          begin: /"/,
+          end: /"|$/,
+          contains: [hljs.BACKSLASH_ESCAPE]
+        }, hljs.COMMENT("REM", "$", {
           relevance: 10
         }), hljs.COMMENT("'", "$", {
           relevance: 0
@@ -3988,11 +3998,13 @@ var require_c2 = __commonJS({
       const NUMBERS = {
         className: "number",
         variants: [{
-          begin: "\\b(0b[01']+)"
+          match: /\b(0b[01']+)/
         }, {
-          begin: "(-?)\\b([\\d']+(\\.[\\d']*)?|\\.[\\d']+)((ll|LL|l|L)(u|U)?|(u|U)(ll|LL|l|L)?|f|F|b|B)"
+          match: /(-?)\b([\d']+(\.[\d']*)?|\.[\d']+)((ll|LL|l|L)(u|U)?|(u|U)(ll|LL|l|L)?|f|F|b|B)/
         }, {
-          begin: "(-?)(\\b0[xX][a-fA-F0-9']+|(\\b[\\d']+(\\.[\\d']*)?|\\.[\\d']+)([eE][-+]?[\\d']+)?)"
+          match: /(-?)\b(0[xX][a-fA-F0-9]+(?:'[a-fA-F0-9]+)*(?:\.[a-fA-F0-9]*(?:'[a-fA-F0-9]*)*)?(?:[pP][-+]?[0-9]+)?(l|L)?(u|U)?)/
+        }, {
+          match: /(-?)\b\d+(?:'\d+)*(?:\.\d*(?:'\d*)*)?(?:[eE][-+]?\d+)?/
         }],
         relevance: 0
       };
@@ -4664,7 +4676,9 @@ var require_coffeescript = __commonJS({
       "import",
       "from",
       "export",
-      "extends"
+      "extends",
+      // It's reached stage 3, which is "recommended for implementation":
+      "using"
     ];
     var LITERALS = ["true", "false", "null", "undefined", "NaN", "Infinity"];
     var TYPES = [
@@ -5063,7 +5077,7 @@ var require_cpp = __commonJS({
       const FUNCTION_TITLE = regex.optional(NAMESPACE_RE) + hljs.IDENT_RE + "\\s*\\(";
       const RESERVED_KEYWORDS = ["alignas", "alignof", "and", "and_eq", "asm", "atomic_cancel", "atomic_commit", "atomic_noexcept", "auto", "bitand", "bitor", "break", "case", "catch", "class", "co_await", "co_return", "co_yield", "compl", "concept", "const_cast|10", "consteval", "constexpr", "constinit", "continue", "decltype", "default", "delete", "do", "dynamic_cast|10", "else", "enum", "explicit", "export", "extern", "false", "final", "for", "friend", "goto", "if", "import", "inline", "module", "mutable", "namespace", "new", "noexcept", "not", "not_eq", "nullptr", "operator", "or", "or_eq", "override", "private", "protected", "public", "reflexpr", "register", "reinterpret_cast|10", "requires", "return", "sizeof", "static_assert", "static_cast|10", "struct", "switch", "synchronized", "template", "this", "thread_local", "throw", "transaction_safe", "transaction_safe_dynamic", "true", "try", "typedef", "typeid", "typename", "union", "using", "virtual", "volatile", "while", "xor", "xor_eq"];
       const RESERVED_TYPES = ["bool", "char", "char16_t", "char32_t", "char8_t", "double", "float", "int", "long", "short", "void", "wchar_t", "unsigned", "signed", "const", "static"];
-      const TYPE_HINTS = ["any", "auto_ptr", "barrier", "binary_semaphore", "bitset", "complex", "condition_variable", "condition_variable_any", "counting_semaphore", "deque", "false_type", "future", "imaginary", "initializer_list", "istringstream", "jthread", "latch", "lock_guard", "multimap", "multiset", "mutex", "optional", "ostringstream", "packaged_task", "pair", "promise", "priority_queue", "queue", "recursive_mutex", "recursive_timed_mutex", "scoped_lock", "set", "shared_future", "shared_lock", "shared_mutex", "shared_timed_mutex", "shared_ptr", "stack", "string_view", "stringstream", "timed_mutex", "thread", "true_type", "tuple", "unique_lock", "unique_ptr", "unordered_map", "unordered_multimap", "unordered_multiset", "unordered_set", "variant", "vector", "weak_ptr", "wstring", "wstring_view"];
+      const TYPE_HINTS = ["any", "auto_ptr", "barrier", "binary_semaphore", "bitset", "complex", "condition_variable", "condition_variable_any", "counting_semaphore", "deque", "false_type", "flat_map", "flat_set", "future", "imaginary", "initializer_list", "istringstream", "jthread", "latch", "lock_guard", "multimap", "multiset", "mutex", "optional", "ostringstream", "packaged_task", "pair", "promise", "priority_queue", "queue", "recursive_mutex", "recursive_timed_mutex", "scoped_lock", "set", "shared_future", "shared_lock", "shared_mutex", "shared_timed_mutex", "shared_ptr", "stack", "string_view", "stringstream", "timed_mutex", "thread", "true_type", "tuple", "unique_lock", "unique_ptr", "unordered_map", "unordered_multimap", "unordered_multiset", "unordered_set", "variant", "vector", "weak_ptr", "wstring", "wstring_view"];
       const FUNCTION_HINTS = ["abort", "abs", "acos", "apply", "as_const", "asin", "atan", "atan2", "calloc", "ceil", "cerr", "cin", "clog", "cos", "cosh", "cout", "declval", "endl", "exchange", "exit", "exp", "fabs", "floor", "fmod", "forward", "fprintf", "fputs", "free", "frexp", "fscanf", "future", "invoke", "isalnum", "isalpha", "iscntrl", "isdigit", "isgraph", "islower", "isprint", "ispunct", "isspace", "isupper", "isxdigit", "labs", "launder", "ldexp", "log", "log10", "make_pair", "make_shared", "make_shared_for_overwrite", "make_tuple", "make_unique", "malloc", "memchr", "memcmp", "memcpy", "memset", "modf", "move", "pow", "printf", "putchar", "puts", "realloc", "scanf", "sin", "sinh", "snprintf", "sprintf", "sqrt", "sscanf", "std", "stderr", "stdin", "stdout", "strcat", "strchr", "strcmp", "strcpy", "strcspn", "strlen", "strncat", "strncmp", "strncpy", "strpbrk", "strrchr", "strspn", "strstr", "swap", "tan", "tanh", "terminate", "to_underlying", "tolower", "toupper", "vfprintf", "visit", "vprintf", "vsprintf"];
       const LITERALS = ["NULL", "false", "nullopt", "nullptr", "true"];
       const BUILT_IN = ["_Pragma"];
@@ -5185,7 +5199,7 @@ var require_cpp = __commonJS({
         },
         contains: [].concat(EXPRESSION_CONTEXT, FUNCTION_DECLARATION, FUNCTION_DISPATCH, EXPRESSION_CONTAINS, [PREPROCESSOR, {
           // containers: ie, `vector <int> rooms (9);`
-          begin: "\\b(deque|list|queue|priority_queue|pair|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array|tuple|optional|variant|function)\\s*<(?!<)",
+          begin: "\\b(deque|list|queue|priority_queue|pair|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array|tuple|optional|variant|function|flat_map|flat_set)\\s*<(?!<)",
           end: ">",
           keywords: CPP_KEYWORDS,
           contains: ["self", CPP_PRIMITIVE_TYPES]
@@ -5540,7 +5554,7 @@ var require_csharp = __commonJS({
       const FUNCTION_MODIFIERS = ["public", "private", "protected", "static", "internal", "protected", "abstract", "async", "extern", "override", "unsafe", "virtual", "new", "sealed", "partial"];
       const LITERAL_KEYWORDS = ["default", "false", "null", "true"];
       const NORMAL_KEYWORDS = ["abstract", "as", "base", "break", "case", "catch", "class", "const", "continue", "do", "else", "event", "explicit", "extern", "finally", "fixed", "for", "foreach", "goto", "if", "implicit", "in", "interface", "internal", "is", "lock", "namespace", "new", "operator", "out", "override", "params", "private", "protected", "public", "readonly", "record", "ref", "return", "scoped", "sealed", "sizeof", "stackalloc", "static", "struct", "switch", "this", "throw", "try", "typeof", "unchecked", "unsafe", "using", "virtual", "void", "volatile", "while"];
-      const CONTEXTUAL_KEYWORDS = ["add", "alias", "and", "ascending", "async", "await", "by", "descending", "equals", "from", "get", "global", "group", "init", "into", "join", "let", "nameof", "not", "notnull", "on", "or", "orderby", "partial", "remove", "select", "set", "unmanaged", "value|0", "var", "when", "where", "with", "yield"];
+      const CONTEXTUAL_KEYWORDS = ["add", "alias", "and", "ascending", "args", "async", "await", "by", "descending", "dynamic", "equals", "file", "from", "get", "global", "group", "init", "into", "join", "let", "nameof", "not", "notnull", "on", "or", "orderby", "partial", "record", "remove", "required", "scoped", "select", "set", "unmanaged", "value|0", "var", "when", "where", "with", "yield"];
       const KEYWORDS = {
         keyword: NORMAL_KEYWORDS.concat(CONTEXTUAL_KEYWORDS),
         built_in: BUILT_IN_KEYWORDS,
@@ -5932,7 +5946,9 @@ var require_css = __commonJS({
       "align-self",
       "alignment-baseline",
       "all",
+      "anchor-name",
       "animation",
+      "animation-composition",
       "animation-delay",
       "animation-direction",
       "animation-duration",
@@ -5940,8 +5956,14 @@ var require_css = __commonJS({
       "animation-iteration-count",
       "animation-name",
       "animation-play-state",
+      "animation-range",
+      "animation-range-end",
+      "animation-range-start",
+      "animation-timeline",
       "animation-timing-function",
       "appearance",
+      "aspect-ratio",
+      "backdrop-filter",
       "backface-visibility",
       "background",
       "background-attachment",
@@ -5951,6 +5973,8 @@ var require_css = __commonJS({
       "background-image",
       "background-origin",
       "background-position",
+      "background-position-x",
+      "background-position-y",
       "background-repeat",
       "background-size",
       "baseline-shift",
@@ -5976,6 +6000,8 @@ var require_css = __commonJS({
       "border-bottom-width",
       "border-collapse",
       "border-color",
+      "border-end-end-radius",
+      "border-end-start-radius",
       "border-image",
       "border-image-outset",
       "border-image-repeat",
@@ -6000,8 +6026,6 @@ var require_css = __commonJS({
       "border-left-width",
       "border-radius",
       "border-right",
-      "border-end-end-radius",
-      "border-end-start-radius",
       "border-right-color",
       "border-right-style",
       "border-right-width",
@@ -6017,14 +6041,20 @@ var require_css = __commonJS({
       "border-top-width",
       "border-width",
       "bottom",
+      "box-align",
       "box-decoration-break",
+      "box-direction",
+      "box-flex",
+      "box-flex-group",
+      "box-lines",
+      "box-ordinal-group",
+      "box-orient",
+      "box-pack",
       "box-shadow",
       "box-sizing",
       "break-after",
       "break-before",
       "break-inside",
-      "cx",
-      "cy",
       "caption-side",
       "caret-color",
       "clear",
@@ -6048,19 +6078,31 @@ var require_css = __commonJS({
       "column-width",
       "columns",
       "contain",
+      "contain-intrinsic-block-size",
+      "contain-intrinsic-height",
+      "contain-intrinsic-inline-size",
+      "contain-intrinsic-size",
+      "contain-intrinsic-width",
+      "container",
+      "container-name",
+      "container-type",
       "content",
       "content-visibility",
       "counter-increment",
       "counter-reset",
+      "counter-set",
       "cue",
       "cue-after",
       "cue-before",
       "cursor",
+      "cx",
+      "cy",
       "direction",
       "display",
       "dominant-baseline",
       "empty-cells",
       "enable-background",
+      "field-sizing",
       "fill",
       "fill-opacity",
       "fill-rule",
@@ -6073,29 +6115,39 @@ var require_css = __commonJS({
       "flex-shrink",
       "flex-wrap",
       "float",
-      "flow",
       "flood-color",
       "flood-opacity",
+      "flow",
       "font",
       "font-display",
       "font-family",
       "font-feature-settings",
       "font-kerning",
       "font-language-override",
+      "font-optical-sizing",
+      "font-palette",
       "font-size",
       "font-size-adjust",
+      "font-smooth",
       "font-smoothing",
       "font-stretch",
       "font-style",
       "font-synthesis",
+      "font-synthesis-position",
+      "font-synthesis-small-caps",
+      "font-synthesis-style",
+      "font-synthesis-weight",
       "font-variant",
+      "font-variant-alternates",
       "font-variant-caps",
       "font-variant-east-asian",
+      "font-variant-emoji",
       "font-variant-ligatures",
       "font-variant-numeric",
       "font-variant-position",
       "font-variation-settings",
       "font-weight",
+      "forced-color-adjust",
       "gap",
       "glyph-orientation-horizontal",
       "glyph-orientation-vertical",
@@ -6117,14 +6169,19 @@ var require_css = __commonJS({
       "grid-template-rows",
       "hanging-punctuation",
       "height",
+      "hyphenate-character",
+      "hyphenate-limit-chars",
       "hyphens",
       "icon",
       "image-orientation",
       "image-rendering",
       "image-resolution",
       "ime-mode",
+      "initial-letter",
+      "initial-letter-align",
       "inline-size",
       "inset",
+      "inset-area",
       "inset-block",
       "inset-block-end",
       "inset-block-start",
@@ -6132,24 +6189,20 @@ var require_css = __commonJS({
       "inset-inline-end",
       "inset-inline-start",
       "isolation",
-      "kerning",
       "justify-content",
       "justify-items",
       "justify-self",
+      "kerning",
       "left",
       "letter-spacing",
       "lighting-color",
       "line-break",
       "line-height",
+      "line-height-step",
       "list-style",
       "list-style-image",
       "list-style-position",
       "list-style-type",
-      "marker",
-      "marker-end",
-      "marker-mid",
-      "marker-start",
-      "mask",
       "margin",
       "margin-block",
       "margin-block-end",
@@ -6161,6 +6214,11 @@ var require_css = __commonJS({
       "margin-left",
       "margin-right",
       "margin-top",
+      "margin-trim",
+      "marker",
+      "marker-end",
+      "marker-mid",
+      "marker-start",
       "marks",
       "mask",
       "mask-border",
@@ -6179,6 +6237,10 @@ var require_css = __commonJS({
       "mask-repeat",
       "mask-size",
       "mask-type",
+      "masonry-auto-flow",
+      "math-depth",
+      "math-shift",
+      "math-style",
       "max-block-size",
       "max-height",
       "max-inline-size",
@@ -6197,6 +6259,12 @@ var require_css = __commonJS({
       "normal",
       "object-fit",
       "object-position",
+      "offset",
+      "offset-anchor",
+      "offset-distance",
+      "offset-path",
+      "offset-position",
+      "offset-rotate",
       "opacity",
       "order",
       "orphans",
@@ -6206,9 +6274,19 @@ var require_css = __commonJS({
       "outline-style",
       "outline-width",
       "overflow",
+      "overflow-anchor",
+      "overflow-block",
+      "overflow-clip-margin",
+      "overflow-inline",
       "overflow-wrap",
       "overflow-x",
       "overflow-y",
+      "overlay",
+      "overscroll-behavior",
+      "overscroll-behavior-block",
+      "overscroll-behavior-inline",
+      "overscroll-behavior-x",
+      "overscroll-behavior-y",
       "padding",
       "padding-block",
       "padding-block-end",
@@ -6220,16 +6298,24 @@ var require_css = __commonJS({
       "padding-left",
       "padding-right",
       "padding-top",
+      "page",
       "page-break-after",
       "page-break-before",
       "page-break-inside",
+      "paint-order",
       "pause",
       "pause-after",
       "pause-before",
       "perspective",
       "perspective-origin",
+      "place-content",
+      "place-items",
+      "place-self",
       "pointer-events",
       "position",
+      "position-anchor",
+      "position-visibility",
+      "print-color-adjust",
       "quotes",
       "r",
       "resize",
@@ -6239,7 +6325,10 @@ var require_css = __commonJS({
       "right",
       "rotate",
       "row-gap",
+      "ruby-align",
+      "ruby-position",
       "scale",
+      "scroll-behavior",
       "scroll-margin",
       "scroll-margin-block",
       "scroll-margin-block-end",
@@ -6265,6 +6354,9 @@ var require_css = __commonJS({
       "scroll-snap-align",
       "scroll-snap-stop",
       "scroll-snap-type",
+      "scroll-timeline",
+      "scroll-timeline-axis",
+      "scroll-timeline-name",
       "scrollbar-color",
       "scrollbar-gutter",
       "scrollbar-width",
@@ -6272,6 +6364,10 @@ var require_css = __commonJS({
       "shape-margin",
       "shape-outside",
       "shape-rendering",
+      "speak",
+      "speak-as",
+      "src",
+      // @font-face
       "stop-color",
       "stop-opacity",
       "stroke",
@@ -6282,20 +6378,17 @@ var require_css = __commonJS({
       "stroke-miterlimit",
       "stroke-opacity",
       "stroke-width",
-      "speak",
-      "speak-as",
-      "src",
-      // @font-face
       "tab-size",
       "table-layout",
-      "text-anchor",
       "text-align",
       "text-align-all",
       "text-align-last",
+      "text-anchor",
       "text-combine-upright",
       "text-decoration",
       "text-decoration-color",
       "text-decoration-line",
+      "text-decoration-skip",
       "text-decoration-skip-ink",
       "text-decoration-style",
       "text-decoration-thickness",
@@ -6309,23 +6402,37 @@ var require_css = __commonJS({
       "text-overflow",
       "text-rendering",
       "text-shadow",
+      "text-size-adjust",
       "text-transform",
       "text-underline-offset",
       "text-underline-position",
+      "text-wrap",
+      "text-wrap-mode",
+      "text-wrap-style",
+      "timeline-scope",
       "top",
+      "touch-action",
       "transform",
       "transform-box",
       "transform-origin",
       "transform-style",
       "transition",
+      "transition-behavior",
       "transition-delay",
       "transition-duration",
       "transition-property",
       "transition-timing-function",
       "translate",
       "unicode-bidi",
+      "user-modify",
+      "user-select",
       "vector-effect",
       "vertical-align",
+      "view-timeline",
+      "view-timeline-axis",
+      "view-timeline-inset",
+      "view-timeline-name",
+      "view-transition-name",
       "visibility",
       "voice-balance",
       "voice-duration",
@@ -6336,6 +6443,7 @@ var require_css = __commonJS({
       "voice-stress",
       "voice-volume",
       "white-space",
+      "white-space-collapse",
       "widows",
       "width",
       "will-change",
@@ -6345,7 +6453,8 @@ var require_css = __commonJS({
       "writing-mode",
       "x",
       "y",
-      "z-index"
+      "z-index",
+      "zoom"
     ].sort().reverse();
     function css(hljs) {
       const regex = hljs.regex;
@@ -6796,6 +6905,15 @@ var require_dart = __commonJS({
         }],
         keywords: "true false null this is new super"
       };
+      const NUMBER = {
+        className: "number",
+        relevance: 0,
+        variants: [{
+          match: /\b[0-9][0-9_]*(\.[0-9][0-9_]*)?([eE][+-]?[0-9][0-9_]*)?\b/
+        }, {
+          match: /\b0[xX][0-9A-Fa-f][0-9A-Fa-f_]*\b/
+        }]
+      };
       const STRING = {
         className: "string",
         variants: [{
@@ -6832,7 +6950,7 @@ var require_dart = __commonJS({
           contains: [hljs.BACKSLASH_ESCAPE, SUBST, BRACED_SUBST]
         }]
       };
-      BRACED_SUBST.contains = [hljs.C_NUMBER_MODE, STRING];
+      BRACED_SUBST.contains = [NUMBER, STRING];
       const BUILT_IN_TYPES = [
         // dart:core
         "Comparable",
@@ -6902,7 +7020,7 @@ var require_dart = __commonJS({
           contains: [{
             beginKeywords: "extends implements"
           }, hljs.UNDERSCORE_TITLE_MODE]
-        }, hljs.C_NUMBER_MODE, {
+        }, NUMBER, {
           className: "meta",
           begin: "@[A-Za-z]+"
         }, {
@@ -8058,7 +8176,7 @@ var require_ruby = __commonJS({
         begin: `(\\$\\W)|((\\$|@@?)(\\w+))(?=[^@$?])(?![A-Za-z])(?![@$?'])`
       }, {
         className: "params",
-        begin: /\|/,
+        begin: /\|(?!=)/,
         end: /\|/,
         excludeBegin: true,
         excludeEnd: true,
@@ -8203,7 +8321,7 @@ var require_erlang = __commonJS({
       const BASIC_ATOM_RE = "[a-z'][a-zA-Z0-9_']*";
       const FUNCTION_NAME_RE = "(" + BASIC_ATOM_RE + ":" + BASIC_ATOM_RE + "|" + BASIC_ATOM_RE + ")";
       const ERLANG_RESERVED = {
-        keyword: "after and andalso|10 band begin bnot bor bsl bzr bxor case catch cond div end fun if let not of orelse|10 query receive rem try when xor",
+        keyword: "after and andalso|10 band begin bnot bor bsl bzr bxor case catch cond div end fun if let not of orelse|10 query receive rem try when xor maybe else",
         literal: "false true"
       };
       const COMMENT = hljs.COMMENT("%", "$");
@@ -8264,19 +8382,60 @@ var require_erlang = __commonJS({
         scope: "string",
         match: /\$(\\([^0-9]|[0-9]{1,3}|)|.)/
       };
+      const TRIPLE_QUOTE = {
+        scope: "string",
+        match: /"""("*)(?!")[\s\S]*?"""\1/
+      };
+      const SIGIL = {
+        scope: "string",
+        contains: [hljs.BACKSLASH_ESCAPE],
+        variants: [{
+          match: /~\w?"""("*)(?!")[\s\S]*?"""\1/
+        }, {
+          begin: /~\w?\(/,
+          end: /\)/
+        }, {
+          begin: /~\w?\[/,
+          end: /\]/
+        }, {
+          begin: /~\w?{/,
+          end: /}/
+        }, {
+          begin: /~\w?</,
+          end: />/
+        }, {
+          begin: /~\w?\//,
+          end: /\//
+        }, {
+          begin: /~\w?\|/,
+          end: /\|/
+        }, {
+          begin: /~\w?'/,
+          end: /'/
+        }, {
+          begin: /~\w?"/,
+          end: /"/
+        }, {
+          begin: /~\w?`/,
+          end: /`/
+        }, {
+          begin: /~\w?#/,
+          end: /#/
+        }]
+      };
       const BLOCK_STATEMENTS = {
-        beginKeywords: "fun receive if try case",
+        beginKeywords: "fun receive if try case maybe",
         end: "end",
         keywords: ERLANG_RESERVED
       };
       BLOCK_STATEMENTS.contains = [COMMENT, NAMED_FUN, hljs.inherit(hljs.APOS_STRING_MODE, {
         className: ""
-      }), BLOCK_STATEMENTS, FUNCTION_CALL, hljs.QUOTE_STRING_MODE, NUMBER, TUPLE, VAR1, VAR2, RECORD_ACCESS, CHAR_LITERAL];
-      const BASIC_MODES = [COMMENT, NAMED_FUN, BLOCK_STATEMENTS, FUNCTION_CALL, hljs.QUOTE_STRING_MODE, NUMBER, TUPLE, VAR1, VAR2, RECORD_ACCESS, CHAR_LITERAL];
+      }), BLOCK_STATEMENTS, FUNCTION_CALL, SIGIL, TRIPLE_QUOTE, hljs.QUOTE_STRING_MODE, NUMBER, TUPLE, VAR1, VAR2, RECORD_ACCESS, CHAR_LITERAL];
+      const BASIC_MODES = [COMMENT, NAMED_FUN, BLOCK_STATEMENTS, FUNCTION_CALL, SIGIL, TRIPLE_QUOTE, hljs.QUOTE_STRING_MODE, NUMBER, TUPLE, VAR1, VAR2, RECORD_ACCESS, CHAR_LITERAL];
       FUNCTION_CALL.contains[1].contains = BASIC_MODES;
       TUPLE.contains = BASIC_MODES;
       RECORD_ACCESS.contains[1].contains = BASIC_MODES;
-      const DIRECTIVES = ["-module", "-record", "-undef", "-export", "-ifdef", "-ifndef", "-author", "-copyright", "-doc", "-vsn", "-import", "-include", "-include_lib", "-compile", "-define", "-else", "-endif", "-file", "-behaviour", "-behavior", "-spec"];
+      const DIRECTIVES = ["-module", "-record", "-undef", "-export", "-ifdef", "-ifndef", "-author", "-copyright", "-doc", "-moduledoc", "-vsn", "-import", "-include", "-include_lib", "-compile", "-define", "-else", "-endif", "-file", "-behaviour", "-behavior", "-spec", "-on_load", "-nifs"];
       const PARAMS = {
         className: "params",
         begin: "\\(",
@@ -8315,9 +8474,11 @@ var require_erlang = __commonJS({
               $pattern: "-" + hljs.IDENT_RE,
               keyword: DIRECTIVES.map((x) => `${x}|1.5`).join(" ")
             },
-            contains: [PARAMS]
+            contains: [PARAMS, SIGIL, TRIPLE_QUOTE, hljs.QUOTE_STRING_MODE]
           },
           NUMBER,
+          SIGIL,
+          TRIPLE_QUOTE,
           hljs.QUOTE_STRING_MODE,
           RECORD_ACCESS,
           VAR1,
@@ -8340,7 +8501,7 @@ var require_excel = __commonJS({
   "node_modules/highlight.js/lib/languages/excel.js"(exports, module) {
     "use strict";
     function excel(hljs) {
-      const BUILT_INS = ["ABS", "ACCRINT", "ACCRINTM", "ACOS", "ACOSH", "ACOT", "ACOTH", "AGGREGATE", "ADDRESS", "AMORDEGRC", "AMORLINC", "AND", "ARABIC", "AREAS", "ASC", "ASIN", "ASINH", "ATAN", "ATAN2", "ATANH", "AVEDEV", "AVERAGE", "AVERAGEA", "AVERAGEIF", "AVERAGEIFS", "BAHTTEXT", "BASE", "BESSELI", "BESSELJ", "BESSELK", "BESSELY", "BETADIST", "BETA.DIST", "BETAINV", "BETA.INV", "BIN2DEC", "BIN2HEX", "BIN2OCT", "BINOMDIST", "BINOM.DIST", "BINOM.DIST.RANGE", "BINOM.INV", "BITAND", "BITLSHIFT", "BITOR", "BITRSHIFT", "BITXOR", "CALL", "CEILING", "CEILING.MATH", "CEILING.PRECISE", "CELL", "CHAR", "CHIDIST", "CHIINV", "CHITEST", "CHISQ.DIST", "CHISQ.DIST.RT", "CHISQ.INV", "CHISQ.INV.RT", "CHISQ.TEST", "CHOOSE", "CLEAN", "CODE", "COLUMN", "COLUMNS", "COMBIN", "COMBINA", "COMPLEX", "CONCAT", "CONCATENATE", "CONFIDENCE", "CONFIDENCE.NORM", "CONFIDENCE.T", "CONVERT", "CORREL", "COS", "COSH", "COT", "COTH", "COUNT", "COUNTA", "COUNTBLANK", "COUNTIF", "COUNTIFS", "COUPDAYBS", "COUPDAYS", "COUPDAYSNC", "COUPNCD", "COUPNUM", "COUPPCD", "COVAR", "COVARIANCE.P", "COVARIANCE.S", "CRITBINOM", "CSC", "CSCH", "CUBEKPIMEMBER", "CUBEMEMBER", "CUBEMEMBERPROPERTY", "CUBERANKEDMEMBER", "CUBESET", "CUBESETCOUNT", "CUBEVALUE", "CUMIPMT", "CUMPRINC", "DATE", "DATEDIF", "DATEVALUE", "DAVERAGE", "DAY", "DAYS", "DAYS360", "DB", "DBCS", "DCOUNT", "DCOUNTA", "DDB", "DEC2BIN", "DEC2HEX", "DEC2OCT", "DECIMAL", "DEGREES", "DELTA", "DEVSQ", "DGET", "DISC", "DMAX", "DMIN", "DOLLAR", "DOLLARDE", "DOLLARFR", "DPRODUCT", "DSTDEV", "DSTDEVP", "DSUM", "DURATION", "DVAR", "DVARP", "EDATE", "EFFECT", "ENCODEURL", "EOMONTH", "ERF", "ERF.PRECISE", "ERFC", "ERFC.PRECISE", "ERROR.TYPE", "EUROCONVERT", "EVEN", "EXACT", "EXP", "EXPON.DIST", "EXPONDIST", "FACT", "FACTDOUBLE", "FALSE|0", "F.DIST", "FDIST", "F.DIST.RT", "FILTERXML", "FIND", "FINDB", "F.INV", "F.INV.RT", "FINV", "FISHER", "FISHERINV", "FIXED", "FLOOR", "FLOOR.MATH", "FLOOR.PRECISE", "FORECAST", "FORECAST.ETS", "FORECAST.ETS.CONFINT", "FORECAST.ETS.SEASONALITY", "FORECAST.ETS.STAT", "FORECAST.LINEAR", "FORMULATEXT", "FREQUENCY", "F.TEST", "FTEST", "FV", "FVSCHEDULE", "GAMMA", "GAMMA.DIST", "GAMMADIST", "GAMMA.INV", "GAMMAINV", "GAMMALN", "GAMMALN.PRECISE", "GAUSS", "GCD", "GEOMEAN", "GESTEP", "GETPIVOTDATA", "GROWTH", "HARMEAN", "HEX2BIN", "HEX2DEC", "HEX2OCT", "HLOOKUP", "HOUR", "HYPERLINK", "HYPGEOM.DIST", "HYPGEOMDIST", "IF", "IFERROR", "IFNA", "IFS", "IMABS", "IMAGINARY", "IMARGUMENT", "IMCONJUGATE", "IMCOS", "IMCOSH", "IMCOT", "IMCSC", "IMCSCH", "IMDIV", "IMEXP", "IMLN", "IMLOG10", "IMLOG2", "IMPOWER", "IMPRODUCT", "IMREAL", "IMSEC", "IMSECH", "IMSIN", "IMSINH", "IMSQRT", "IMSUB", "IMSUM", "IMTAN", "INDEX", "INDIRECT", "INFO", "INT", "INTERCEPT", "INTRATE", "IPMT", "IRR", "ISBLANK", "ISERR", "ISERROR", "ISEVEN", "ISFORMULA", "ISLOGICAL", "ISNA", "ISNONTEXT", "ISNUMBER", "ISODD", "ISREF", "ISTEXT", "ISO.CEILING", "ISOWEEKNUM", "ISPMT", "JIS", "KURT", "LARGE", "LCM", "LEFT", "LEFTB", "LEN", "LENB", "LINEST", "LN", "LOG", "LOG10", "LOGEST", "LOGINV", "LOGNORM.DIST", "LOGNORMDIST", "LOGNORM.INV", "LOOKUP", "LOWER", "MATCH", "MAX", "MAXA", "MAXIFS", "MDETERM", "MDURATION", "MEDIAN", "MID", "MIDBs", "MIN", "MINIFS", "MINA", "MINUTE", "MINVERSE", "MIRR", "MMULT", "MOD", "MODE", "MODE.MULT", "MODE.SNGL", "MONTH", "MROUND", "MULTINOMIAL", "MUNIT", "N", "NA", "NEGBINOM.DIST", "NEGBINOMDIST", "NETWORKDAYS", "NETWORKDAYS.INTL", "NOMINAL", "NORM.DIST", "NORMDIST", "NORMINV", "NORM.INV", "NORM.S.DIST", "NORMSDIST", "NORM.S.INV", "NORMSINV", "NOT", "NOW", "NPER", "NPV", "NUMBERVALUE", "OCT2BIN", "OCT2DEC", "OCT2HEX", "ODD", "ODDFPRICE", "ODDFYIELD", "ODDLPRICE", "ODDLYIELD", "OFFSET", "OR", "PDURATION", "PEARSON", "PERCENTILE.EXC", "PERCENTILE.INC", "PERCENTILE", "PERCENTRANK.EXC", "PERCENTRANK.INC", "PERCENTRANK", "PERMUT", "PERMUTATIONA", "PHI", "PHONETIC", "PI", "PMT", "POISSON.DIST", "POISSON", "POWER", "PPMT", "PRICE", "PRICEDISC", "PRICEMAT", "PROB", "PRODUCT", "PROPER", "PV", "QUARTILE", "QUARTILE.EXC", "QUARTILE.INC", "QUOTIENT", "RADIANS", "RAND", "RANDBETWEEN", "RANK.AVG", "RANK.EQ", "RANK", "RATE", "RECEIVED", "REGISTER.ID", "REPLACE", "REPLACEB", "REPT", "RIGHT", "RIGHTB", "ROMAN", "ROUND", "ROUNDDOWN", "ROUNDUP", "ROW", "ROWS", "RRI", "RSQ", "RTD", "SEARCH", "SEARCHB", "SEC", "SECH", "SECOND", "SERIESSUM", "SHEET", "SHEETS", "SIGN", "SIN", "SINH", "SKEW", "SKEW.P", "SLN", "SLOPE", "SMALL", "SQL.REQUEST", "SQRT", "SQRTPI", "STANDARDIZE", "STDEV", "STDEV.P", "STDEV.S", "STDEVA", "STDEVP", "STDEVPA", "STEYX", "SUBSTITUTE", "SUBTOTAL", "SUM", "SUMIF", "SUMIFS", "SUMPRODUCT", "SUMSQ", "SUMX2MY2", "SUMX2PY2", "SUMXMY2", "SWITCH", "SYD", "T", "TAN", "TANH", "TBILLEQ", "TBILLPRICE", "TBILLYIELD", "T.DIST", "T.DIST.2T", "T.DIST.RT", "TDIST", "TEXT", "TEXTJOIN", "TIME", "TIMEVALUE", "T.INV", "T.INV.2T", "TINV", "TODAY", "TRANSPOSE", "TREND", "TRIM", "TRIMMEAN", "TRUE|0", "TRUNC", "T.TEST", "TTEST", "TYPE", "UNICHAR", "UNICODE", "UPPER", "VALUE", "VAR", "VAR.P", "VAR.S", "VARA", "VARP", "VARPA", "VDB", "VLOOKUP", "WEBSERVICE", "WEEKDAY", "WEEKNUM", "WEIBULL", "WEIBULL.DIST", "WORKDAY", "WORKDAY.INTL", "XIRR", "XNPV", "XOR", "YEAR", "YEARFRAC", "YIELD", "YIELDDISC", "YIELDMAT", "Z.TEST", "ZTEST"];
+      const BUILT_INS = ["ABS", "ACCRINT", "ACCRINTM", "ACOS", "ACOSH", "ACOT", "ACOTH", "AGGREGATE", "ADDRESS", "AMORDEGRC", "AMORLINC", "AND", "ARABIC", "AREAS", "ARRAYTOTEXT", "ASC", "ASIN", "ASINH", "ATAN", "ATAN2", "ATANH", "AVEDEV", "AVERAGE", "AVERAGEA", "AVERAGEIF", "AVERAGEIFS", "BAHTTEXT", "BASE", "BESSELI", "BESSELJ", "BESSELK", "BESSELY", "BETADIST", "BETA.DIST", "BETAINV", "BETA.INV", "BIN2DEC", "BIN2HEX", "BIN2OCT", "BINOMDIST", "BINOM.DIST", "BINOM.DIST.RANGE", "BINOM.INV", "BITAND", "BITLSHIFT", "BITOR", "BITRSHIFT", "BITXOR", "BYCOL", "BYROW", "CALL", "CEILING", "CEILING.MATH", "CEILING.PRECISE", "CELL", "CHAR", "CHIDIST", "CHIINV", "CHITEST", "CHISQ.DIST", "CHISQ.DIST.RT", "CHISQ.INV", "CHISQ.INV.RT", "CHISQ.TEST", "CHOOSE", "CHOOSECOLS", "CHOOSEROWS", "CLEAN", "CODE", "COLUMN", "COLUMNS", "COMBIN", "COMBINA", "COMPLEX", "CONCAT", "CONCATENATE", "CONFIDENCE", "CONFIDENCE.NORM", "CONFIDENCE.T", "CONVERT", "CORREL", "COS", "COSH", "COT", "COTH", "COUNT", "COUNTA", "COUNTBLANK", "COUNTIF", "COUNTIFS", "COUPDAYBS", "COUPDAYS", "COUPDAYSNC", "COUPNCD", "COUPNUM", "COUPPCD", "COVAR", "COVARIANCE.P", "COVARIANCE.S", "CRITBINOM", "CSC", "CSCH", "CUBEKPIMEMBER", "CUBEMEMBER", "CUBEMEMBERPROPERTY", "CUBERANKEDMEMBER", "CUBESET", "CUBESETCOUNT", "CUBEVALUE", "CUMIPMT", "CUMPRINC", "DATE", "DATEDIF", "DATEVALUE", "DAVERAGE", "DAY", "DAYS", "DAYS360", "DB", "DBCS", "DCOUNT", "DCOUNTA", "DDB", "DEC2BIN", "DEC2HEX", "DEC2OCT", "DECIMAL", "DEGREES", "DELTA", "DEVSQ", "DGET", "DISC", "DMAX", "DMIN", "DOLLAR", "DOLLARDE", "DOLLARFR", "DPRODUCT", "DROP", "DSTDEV", "DSTDEVP", "DSUM", "DURATION", "DVAR", "DVARP", "EDATE", "EFFECT", "ENCODEURL", "EOMONTH", "ERF", "ERF.PRECISE", "ERFC", "ERFC.PRECISE", "ERROR.TYPE", "EUROCONVERT", "EVEN", "EXACT", "EXP", "EXPAND", "EXPON.DIST", "EXPONDIST", "FACT", "FACTDOUBLE", "FALSE", "F.DIST", "FDIST", "F.DIST.RT", "FILTER", "FILTERXML", "FIND", "FINDB", "F.INV", "F.INV.RT", "FINV", "FISHER", "FISHERINV", "FIXED", "FLOOR", "FLOOR.MATH", "FLOOR.PRECISE", "FORECAST", "FORECAST.ETS", "FORECAST.ETS.CONFINT", "FORECAST.ETS.SEASONALITY", "FORECAST.ETS.STAT", "FORECAST.LINEAR", "FORMULATEXT", "FREQUENCY", "F.TEST", "FTEST", "FV", "FVSCHEDULE", "GAMMA", "GAMMA.DIST", "GAMMADIST", "GAMMA.INV", "GAMMAINV", "GAMMALN", "GAMMALN.PRECISE", "GAUSS", "GCD", "GEOMEAN", "GESTEP", "GETPIVOTDATA", "GROWTH", "HARMEAN", "HEX2BIN", "HEX2DEC", "HEX2OCT", "HLOOKUP", "HOUR", "HSTACK", "HYPERLINK", "HYPGEOM.DIST", "HYPGEOMDIST", "IF", "IFERROR", "IFNA", "IFS", "IMABS", "IMAGE", "IMAGINARY", "IMARGUMENT", "IMCONJUGATE", "IMCOS", "IMCOSH", "IMCOT", "IMCSC", "IMCSCH", "IMDIV", "IMEXP", "IMLN", "IMLOG10", "IMLOG2", "IMPOWER", "IMPRODUCT", "IMREAL", "IMSEC", "IMSECH", "IMSIN", "IMSINH", "IMSQRT", "IMSUB", "IMSUM", "IMTAN", "INDEX", "INDIRECT", "INFO", "INT", "INTERCEPT", "INTRATE", "IPMT", "IRR", "ISBLANK", "ISERR", "ISERROR", "ISEVEN", "ISFORMULA", "ISLOGICAL", "ISNA", "ISNONTEXT", "ISNUMBER", "ISODD", "ISOMITTED", "ISREF", "ISTEXT", "ISO.CEILING", "ISOWEEKNUM", "ISPMT", "JIS", "KURT", "LAMBDA", "LARGE", "LCM", "LEFT", "LEFTB", "LEN", "LENB", "LET", "LINEST", "LN", "LOG", "LOG10", "LOGEST", "LOGINV", "LOGNORM.DIST", "LOGNORMDIST", "LOGNORM.INV", "LOOKUP", "LOWER", "MAKEARRAY", "MAP", "MATCH", "MAX", "MAXA", "MAXIFS", "MDETERM", "MDURATION", "MEDIAN", "MID", "MIDB", "MIN", "MINIFS", "MINA", "MINUTE", "MINVERSE", "MIRR", "MMULT", "MOD", "MODE", "MODE.MULT", "MODE.SNGL", "MONTH", "MROUND", "MULTINOMIAL", "MUNIT", "N", "NA", "NEGBINOM.DIST", "NEGBINOMDIST", "NETWORKDAYS", "NETWORKDAYS.INTL", "NOMINAL", "NORM.DIST", "NORMDIST", "NORMINV", "NORM.INV", "NORM.S.DIST", "NORMSDIST", "NORM.S.INV", "NORMSINV", "NOT", "NOW", "NPER", "NPV", "NUMBERVALUE", "OCT2BIN", "OCT2DEC", "OCT2HEX", "ODD", "ODDFPRICE", "ODDFYIELD", "ODDLPRICE", "ODDLYIELD", "OFFSET", "OR", "PDURATION", "PEARSON", "PERCENTILE.EXC", "PERCENTILE.INC", "PERCENTILE", "PERCENTRANK.EXC", "PERCENTRANK.INC", "PERCENTRANK", "PERMUT", "PERMUTATIONA", "PHI", "PHONETIC", "PI", "PMT", "POISSON.DIST", "POISSON", "POWER", "PPMT", "PRICE", "PRICEDISC", "PRICEMAT", "PROB", "PRODUCT", "PROPER", "PV", "QUARTILE", "QUARTILE.EXC", "QUARTILE.INC", "QUOTIENT", "RADIANS", "RAND", "RANDARRAY", "RANDBETWEEN", "RANK.AVG", "RANK.EQ", "RANK", "RATE", "RECEIVED", "REDUCE", "REGISTER.ID", "REPLACE", "REPLACEB", "REPT", "RIGHT", "RIGHTB", "ROMAN", "ROUND", "ROUNDDOWN", "ROUNDUP", "ROW", "ROWS", "RRI", "RSQ", "RTD", "SCAN", "SEARCH", "SEARCHB", "SEC", "SECH", "SECOND", "SEQUENCE", "SERIESSUM", "SHEET", "SHEETS", "SIGN", "SIN", "SINH", "SKEW", "SKEW.P", "SLN", "SLOPE", "SMALL", "SORT", "SORTBY", "SQRT", "SQRTPI", "SQL.REQUEST", "STANDARDIZE", "STOCKHISTORY", "STDEV", "STDEV.P", "STDEV.S", "STDEVA", "STDEVP", "STDEVPA", "STEYX", "SUBSTITUTE", "SUBTOTAL", "SUM", "SUMIF", "SUMIFS", "SUMPRODUCT", "SUMSQ", "SUMX2MY2", "SUMX2PY2", "SUMXMY2", "SWITCH", "SYD", "T", "TAN", "TANH", "TAKE", "TBILLEQ", "TBILLPRICE", "TBILLYIELD", "T.DIST", "T.DIST.2T", "T.DIST.RT", "TDIST", "TEXT", "TEXTAFTER", "TEXTBEFORE", "TEXTJOIN", "TEXTSPLIT", "TIME", "TIMEVALUE", "T.INV", "T.INV.2T", "TINV", "TOCOL", "TOROW", "TODAY", "TRANSPOSE", "TREND", "TRIM", "TRIMMEAN", "TRUE", "TRUNC", "T.TEST", "TTEST", "TYPE", "UNICHAR", "UNICODE", "UNIQUE", "UPPER", "VALUE", "VALUETOTEXT", "VAR", "VAR.P", "VAR.S", "VARA", "VARP", "VARPA", "VDB", "VLOOKUP", "VSTACK", "WEBSERVICE", "WEEKDAY", "WEEKNUM", "WEIBULL", "WEIBULL.DIST", "WORKDAY", "WORKDAY.INTL", "WRAPCOLS", "WRAPROWS", "XIRR", "XLOOKUP", "XMATCH", "XNPV", "XOR", "YEAR", "YEARFRAC", "YIELD", "YIELDDISC", "YIELDMAT", "Z.TEST", "ZTEST"];
       return {
         name: "Excel formulae",
         aliases: ["xlsx", "xls"],
@@ -9315,60 +9476,156 @@ var require_gcode = __commonJS({
   "node_modules/highlight.js/lib/languages/gcode.js"(exports, module) {
     "use strict";
     function gcode(hljs) {
-      const GCODE_IDENT_RE = "[A-Z_][A-Z0-9_.]*";
-      const GCODE_CLOSE_RE = "%";
+      const regex = hljs.regex;
       const GCODE_KEYWORDS = {
-        $pattern: GCODE_IDENT_RE,
-        keyword: "IF DO WHILE ENDWHILE CALL ENDIF SUB ENDSUB GOTO REPEAT ENDREPEAT EQ LT GT NE GE LE OR XOR"
+        $pattern: /[A-Z]+|%/,
+        keyword: [
+          // conditions
+          "THEN",
+          "ELSE",
+          "ENDIF",
+          "IF",
+          // controls
+          "GOTO",
+          "DO",
+          "WHILE",
+          "WH",
+          "END",
+          "CALL",
+          // scoping
+          "SUB",
+          "ENDSUB",
+          // comparisons
+          "EQ",
+          "NE",
+          "LT",
+          "GT",
+          "LE",
+          "GE",
+          "AND",
+          "OR",
+          "XOR",
+          // start/end of program
+          "%"
+        ],
+        built_in: ["ATAN", "ABS", "ACOS", "ASIN", "COS", "EXP", "FIX", "FUP", "ROUND", "LN", "SIN", "SQRT", "TAN", "EXISTS"]
       };
-      const GCODE_START = {
-        className: "meta",
-        begin: "([O])([0-9]+)"
-      };
-      const NUMBER = hljs.inherit(hljs.C_NUMBER_MODE, {
-        begin: "([-+]?((\\.\\d+)|(\\d+)(\\.\\d*)?))|" + hljs.C_NUMBER_RE
-      });
-      const GCODE_CODE = [hljs.C_LINE_COMMENT_MODE, hljs.C_BLOCK_COMMENT_MODE, hljs.COMMENT(/\(/, /\)/), NUMBER, hljs.inherit(hljs.APOS_STRING_MODE, {
-        illegal: null
-      }), hljs.inherit(hljs.QUOTE_STRING_MODE, {
-        illegal: null
-      }), {
-        className: "name",
-        begin: "([G])([0-9]+\\.?[0-9]?)"
-      }, {
-        className: "name",
-        begin: "([M])([0-9]+\\.?[0-9]?)"
-      }, {
-        className: "attr",
-        begin: "(VC|VS|#)",
-        end: "(\\d+)"
-      }, {
-        className: "attr",
-        begin: "(VZOFX|VZOFY|VZOFZ)"
-      }, {
-        className: "built_in",
-        begin: "(ATAN|ABS|ACOS|ASIN|SIN|COS|EXP|FIX|FUP|ROUND|LN|TAN)(\\[)",
-        contains: [NUMBER],
-        end: "\\]"
-      }, {
-        className: "symbol",
-        variants: [{
-          begin: "N",
-          end: "\\d+",
-          illegal: "\\W"
-        }]
-      }];
+      const LETTER_BOUNDARY_RE = /\b/;
+      function LETTER_BOUNDARY_CALLBACK(matchdata, response) {
+        if (matchdata.index === 0) {
+          return;
+        }
+        const charBeforeMatch = matchdata.input[matchdata.index - 1];
+        if (charBeforeMatch >= "0" && charBeforeMatch <= "9") {
+          return;
+        }
+        if (charBeforeMatch === "_") {
+          return;
+        }
+        response.ignoreMatch();
+      }
+      const NUMBER_RE = /[+-]?((\.\d+)|(\d+)(\.\d*)?)/;
+      const GENERAL_MISC_FUNCTION_RE = /[GM]\s*\d+(\.\d+)?/;
+      const TOOLS_RE = /T\s*\d+/;
+      const SUBROUTINE_RE = /O\s*\d+/;
+      const SUBROUTINE_NAMED_RE = /O<.+>/;
+      const AXES_RE = /[ABCUVWXYZ]\s*/;
+      const PARAMETERS_RE = /[FHIJKPQRS]\s*/;
+      const GCODE_CODE = [
+        // comments
+        hljs.COMMENT(/\(/, /\)/),
+        hljs.COMMENT(/;/, /$/),
+        hljs.APOS_STRING_MODE,
+        hljs.QUOTE_STRING_MODE,
+        hljs.C_NUMBER_MODE,
+        // gcodes
+        {
+          scope: "title.function",
+          variants: [
+            // G General functions: G0, G5.1, G5.2, …
+            // M Misc functions: M0, M55.6, M199, …
+            {
+              match: regex.concat(LETTER_BOUNDARY_RE, GENERAL_MISC_FUNCTION_RE)
+            },
+            {
+              begin: GENERAL_MISC_FUNCTION_RE,
+              "on:begin": LETTER_BOUNDARY_CALLBACK
+            },
+            // T Tools
+            {
+              match: regex.concat(LETTER_BOUNDARY_RE, TOOLS_RE)
+            },
+            {
+              begin: TOOLS_RE,
+              "on:begin": LETTER_BOUNDARY_CALLBACK
+            }
+          ]
+        },
+        {
+          scope: "symbol",
+          variants: [
+            // O Subroutine ID: O100, O110, …
+            {
+              match: regex.concat(LETTER_BOUNDARY_RE, SUBROUTINE_RE)
+            },
+            {
+              begin: SUBROUTINE_RE,
+              "on:begin": LETTER_BOUNDARY_CALLBACK
+            },
+            // O Subroutine name: O<some>, …
+            {
+              match: regex.concat(LETTER_BOUNDARY_RE, SUBROUTINE_NAMED_RE)
+            },
+            {
+              begin: SUBROUTINE_NAMED_RE,
+              "on:begin": LETTER_BOUNDARY_CALLBACK
+            },
+            // Checksum at end of line: *71, *199, …
+            {
+              match: /\*\s*\d+\s*$/
+            }
+          ]
+        },
+        {
+          scope: "operator",
+          // N Line number: N1, N2, N1020, …
+          match: /^N\s*\d+/
+        },
+        {
+          scope: "variable",
+          match: /-?#\s*\d+/
+        },
+        {
+          scope: "property",
+          // Physical axes,
+          variants: [{
+            match: regex.concat(LETTER_BOUNDARY_RE, AXES_RE, NUMBER_RE)
+          }, {
+            begin: regex.concat(AXES_RE, NUMBER_RE),
+            "on:begin": LETTER_BOUNDARY_CALLBACK
+          }]
+        },
+        {
+          scope: "params",
+          // Different types of parameters
+          variants: [{
+            match: regex.concat(LETTER_BOUNDARY_RE, PARAMETERS_RE, NUMBER_RE)
+          }, {
+            begin: regex.concat(PARAMETERS_RE, NUMBER_RE),
+            "on:begin": LETTER_BOUNDARY_CALLBACK
+          }]
+        }
+      ];
       return {
         name: "G-code (ISO 6983)",
         aliases: ["nc"],
         // Some implementations (CNC controls) of G-code are interoperable with uppercase and lowercase letters seamlessly.
         // However, most prefer all uppercase and uppercase is customary.
         case_insensitive: true,
+        // TODO: post v12 with the use of look-behind this can be enabled
+        disableAutodetect: true,
         keywords: GCODE_KEYWORDS,
-        contains: [{
-          className: "meta",
-          begin: GCODE_CLOSE_RE
-        }, GCODE_START].concat(GCODE_CODE)
+        contains: GCODE_CODE
       };
     }
     module.exports = gcode;
@@ -11030,7 +11287,7 @@ var require_java = __commonJS({
       const regex = hljs.regex;
       const JAVA_IDENT_RE = "[\xC0-\u02B8a-zA-Z_$][\xC0-\u02B8a-zA-Z_$0-9]*";
       const GENERIC_IDENT_RE = JAVA_IDENT_RE + recurRegex("(?:<" + JAVA_IDENT_RE + "~~~(?:\\s*,\\s*" + JAVA_IDENT_RE + "~~~)*>)?", /~~~/g, 2);
-      const MAIN_KEYWORDS = ["synchronized", "abstract", "private", "var", "static", "if", "const ", "for", "while", "strictfp", "finally", "protected", "import", "native", "final", "void", "enum", "else", "break", "transient", "catch", "instanceof", "volatile", "case", "assert", "package", "default", "public", "try", "switch", "continue", "throws", "protected", "public", "private", "module", "requires", "exports", "do", "sealed", "yield", "permits", "goto"];
+      const MAIN_KEYWORDS = ["synchronized", "abstract", "private", "var", "static", "if", "const ", "for", "while", "strictfp", "finally", "protected", "import", "native", "final", "void", "enum", "else", "break", "transient", "catch", "instanceof", "volatile", "case", "assert", "package", "default", "public", "try", "switch", "continue", "throws", "protected", "public", "private", "module", "requires", "exports", "do", "sealed", "yield", "permits", "goto", "when"];
       const BUILT_INS = ["super", "this"];
       const LITERALS = ["false", "true", "null"];
       const TYPES = ["char", "boolean", "long", "float", "int", "byte", "short", "double"];
@@ -11197,7 +11454,9 @@ var require_javascript = __commonJS({
       "import",
       "from",
       "export",
-      "extends"
+      "extends",
+      // It's reached stage 3, which is "recommended for implementation":
+      "using"
     ];
     var LITERALS = ["true", "false", "null", "undefined", "NaN", "Infinity"];
     var TYPES = [
@@ -11485,7 +11744,7 @@ var require_javascript = __commonJS({
         className: "params",
         // convert this to negative lookbehind in v12
         begin: /(\s*)\(/,
-        // to match the parms with 
+        // to match the parms with
         end: /\)/,
         excludeBegin: true,
         excludeEnd: true,
@@ -11645,8 +11904,8 @@ var require_javascript = __commonJS({
           NUMBER,
           CLASS_REFERENCE,
           {
-            className: "attr",
-            begin: IDENT_RE$1 + regex.lookahead(":"),
+            scope: "attr",
+            match: IDENT_RE$1 + regex.lookahead(":"),
             relevance: 0
           },
           FUNCTION_VARIABLE,
@@ -12794,7 +13053,9 @@ var require_less = __commonJS({
       "align-self",
       "alignment-baseline",
       "all",
+      "anchor-name",
       "animation",
+      "animation-composition",
       "animation-delay",
       "animation-direction",
       "animation-duration",
@@ -12802,8 +13063,14 @@ var require_less = __commonJS({
       "animation-iteration-count",
       "animation-name",
       "animation-play-state",
+      "animation-range",
+      "animation-range-end",
+      "animation-range-start",
+      "animation-timeline",
       "animation-timing-function",
       "appearance",
+      "aspect-ratio",
+      "backdrop-filter",
       "backface-visibility",
       "background",
       "background-attachment",
@@ -12813,6 +13080,8 @@ var require_less = __commonJS({
       "background-image",
       "background-origin",
       "background-position",
+      "background-position-x",
+      "background-position-y",
       "background-repeat",
       "background-size",
       "baseline-shift",
@@ -12838,6 +13107,8 @@ var require_less = __commonJS({
       "border-bottom-width",
       "border-collapse",
       "border-color",
+      "border-end-end-radius",
+      "border-end-start-radius",
       "border-image",
       "border-image-outset",
       "border-image-repeat",
@@ -12862,8 +13133,6 @@ var require_less = __commonJS({
       "border-left-width",
       "border-radius",
       "border-right",
-      "border-end-end-radius",
-      "border-end-start-radius",
       "border-right-color",
       "border-right-style",
       "border-right-width",
@@ -12879,14 +13148,20 @@ var require_less = __commonJS({
       "border-top-width",
       "border-width",
       "bottom",
+      "box-align",
       "box-decoration-break",
+      "box-direction",
+      "box-flex",
+      "box-flex-group",
+      "box-lines",
+      "box-ordinal-group",
+      "box-orient",
+      "box-pack",
       "box-shadow",
       "box-sizing",
       "break-after",
       "break-before",
       "break-inside",
-      "cx",
-      "cy",
       "caption-side",
       "caret-color",
       "clear",
@@ -12910,19 +13185,31 @@ var require_less = __commonJS({
       "column-width",
       "columns",
       "contain",
+      "contain-intrinsic-block-size",
+      "contain-intrinsic-height",
+      "contain-intrinsic-inline-size",
+      "contain-intrinsic-size",
+      "contain-intrinsic-width",
+      "container",
+      "container-name",
+      "container-type",
       "content",
       "content-visibility",
       "counter-increment",
       "counter-reset",
+      "counter-set",
       "cue",
       "cue-after",
       "cue-before",
       "cursor",
+      "cx",
+      "cy",
       "direction",
       "display",
       "dominant-baseline",
       "empty-cells",
       "enable-background",
+      "field-sizing",
       "fill",
       "fill-opacity",
       "fill-rule",
@@ -12935,29 +13222,39 @@ var require_less = __commonJS({
       "flex-shrink",
       "flex-wrap",
       "float",
-      "flow",
       "flood-color",
       "flood-opacity",
+      "flow",
       "font",
       "font-display",
       "font-family",
       "font-feature-settings",
       "font-kerning",
       "font-language-override",
+      "font-optical-sizing",
+      "font-palette",
       "font-size",
       "font-size-adjust",
+      "font-smooth",
       "font-smoothing",
       "font-stretch",
       "font-style",
       "font-synthesis",
+      "font-synthesis-position",
+      "font-synthesis-small-caps",
+      "font-synthesis-style",
+      "font-synthesis-weight",
       "font-variant",
+      "font-variant-alternates",
       "font-variant-caps",
       "font-variant-east-asian",
+      "font-variant-emoji",
       "font-variant-ligatures",
       "font-variant-numeric",
       "font-variant-position",
       "font-variation-settings",
       "font-weight",
+      "forced-color-adjust",
       "gap",
       "glyph-orientation-horizontal",
       "glyph-orientation-vertical",
@@ -12979,14 +13276,19 @@ var require_less = __commonJS({
       "grid-template-rows",
       "hanging-punctuation",
       "height",
+      "hyphenate-character",
+      "hyphenate-limit-chars",
       "hyphens",
       "icon",
       "image-orientation",
       "image-rendering",
       "image-resolution",
       "ime-mode",
+      "initial-letter",
+      "initial-letter-align",
       "inline-size",
       "inset",
+      "inset-area",
       "inset-block",
       "inset-block-end",
       "inset-block-start",
@@ -12994,24 +13296,20 @@ var require_less = __commonJS({
       "inset-inline-end",
       "inset-inline-start",
       "isolation",
-      "kerning",
       "justify-content",
       "justify-items",
       "justify-self",
+      "kerning",
       "left",
       "letter-spacing",
       "lighting-color",
       "line-break",
       "line-height",
+      "line-height-step",
       "list-style",
       "list-style-image",
       "list-style-position",
       "list-style-type",
-      "marker",
-      "marker-end",
-      "marker-mid",
-      "marker-start",
-      "mask",
       "margin",
       "margin-block",
       "margin-block-end",
@@ -13023,6 +13321,11 @@ var require_less = __commonJS({
       "margin-left",
       "margin-right",
       "margin-top",
+      "margin-trim",
+      "marker",
+      "marker-end",
+      "marker-mid",
+      "marker-start",
       "marks",
       "mask",
       "mask-border",
@@ -13041,6 +13344,10 @@ var require_less = __commonJS({
       "mask-repeat",
       "mask-size",
       "mask-type",
+      "masonry-auto-flow",
+      "math-depth",
+      "math-shift",
+      "math-style",
       "max-block-size",
       "max-height",
       "max-inline-size",
@@ -13059,6 +13366,12 @@ var require_less = __commonJS({
       "normal",
       "object-fit",
       "object-position",
+      "offset",
+      "offset-anchor",
+      "offset-distance",
+      "offset-path",
+      "offset-position",
+      "offset-rotate",
       "opacity",
       "order",
       "orphans",
@@ -13068,9 +13381,19 @@ var require_less = __commonJS({
       "outline-style",
       "outline-width",
       "overflow",
+      "overflow-anchor",
+      "overflow-block",
+      "overflow-clip-margin",
+      "overflow-inline",
       "overflow-wrap",
       "overflow-x",
       "overflow-y",
+      "overlay",
+      "overscroll-behavior",
+      "overscroll-behavior-block",
+      "overscroll-behavior-inline",
+      "overscroll-behavior-x",
+      "overscroll-behavior-y",
       "padding",
       "padding-block",
       "padding-block-end",
@@ -13082,16 +13405,24 @@ var require_less = __commonJS({
       "padding-left",
       "padding-right",
       "padding-top",
+      "page",
       "page-break-after",
       "page-break-before",
       "page-break-inside",
+      "paint-order",
       "pause",
       "pause-after",
       "pause-before",
       "perspective",
       "perspective-origin",
+      "place-content",
+      "place-items",
+      "place-self",
       "pointer-events",
       "position",
+      "position-anchor",
+      "position-visibility",
+      "print-color-adjust",
       "quotes",
       "r",
       "resize",
@@ -13101,7 +13432,10 @@ var require_less = __commonJS({
       "right",
       "rotate",
       "row-gap",
+      "ruby-align",
+      "ruby-position",
       "scale",
+      "scroll-behavior",
       "scroll-margin",
       "scroll-margin-block",
       "scroll-margin-block-end",
@@ -13127,6 +13461,9 @@ var require_less = __commonJS({
       "scroll-snap-align",
       "scroll-snap-stop",
       "scroll-snap-type",
+      "scroll-timeline",
+      "scroll-timeline-axis",
+      "scroll-timeline-name",
       "scrollbar-color",
       "scrollbar-gutter",
       "scrollbar-width",
@@ -13134,6 +13471,10 @@ var require_less = __commonJS({
       "shape-margin",
       "shape-outside",
       "shape-rendering",
+      "speak",
+      "speak-as",
+      "src",
+      // @font-face
       "stop-color",
       "stop-opacity",
       "stroke",
@@ -13144,20 +13485,17 @@ var require_less = __commonJS({
       "stroke-miterlimit",
       "stroke-opacity",
       "stroke-width",
-      "speak",
-      "speak-as",
-      "src",
-      // @font-face
       "tab-size",
       "table-layout",
-      "text-anchor",
       "text-align",
       "text-align-all",
       "text-align-last",
+      "text-anchor",
       "text-combine-upright",
       "text-decoration",
       "text-decoration-color",
       "text-decoration-line",
+      "text-decoration-skip",
       "text-decoration-skip-ink",
       "text-decoration-style",
       "text-decoration-thickness",
@@ -13171,23 +13509,37 @@ var require_less = __commonJS({
       "text-overflow",
       "text-rendering",
       "text-shadow",
+      "text-size-adjust",
       "text-transform",
       "text-underline-offset",
       "text-underline-position",
+      "text-wrap",
+      "text-wrap-mode",
+      "text-wrap-style",
+      "timeline-scope",
       "top",
+      "touch-action",
       "transform",
       "transform-box",
       "transform-origin",
       "transform-style",
       "transition",
+      "transition-behavior",
       "transition-delay",
       "transition-duration",
       "transition-property",
       "transition-timing-function",
       "translate",
       "unicode-bidi",
+      "user-modify",
+      "user-select",
       "vector-effect",
       "vertical-align",
+      "view-timeline",
+      "view-timeline-axis",
+      "view-timeline-inset",
+      "view-timeline-name",
+      "view-transition-name",
       "visibility",
       "voice-balance",
       "voice-duration",
@@ -13198,6 +13550,7 @@ var require_less = __commonJS({
       "voice-stress",
       "voice-volume",
       "white-space",
+      "white-space-collapse",
       "widows",
       "width",
       "will-change",
@@ -13207,7 +13560,8 @@ var require_less = __commonJS({
       "writing-mode",
       "x",
       "y",
-      "z-index"
+      "z-index",
+      "zoom"
     ].sort().reverse();
     var PSEUDO_SELECTORS = PSEUDO_CLASSES.concat(PSEUDO_ELEMENTS).sort().reverse();
     function less(hljs) {
@@ -13636,7 +13990,9 @@ var require_livescript = __commonJS({
       "import",
       "from",
       "export",
-      "extends"
+      "extends",
+      // It's reached stage 3, which is "recommended for implementation":
+      "using"
     ];
     var LITERALS = ["true", "false", "null", "undefined", "NaN", "Infinity"];
     var TYPES = [
@@ -14031,6 +14387,7 @@ var require_lua = __commonJS({
       })];
       return {
         name: "Lua",
+        aliases: ["pluto"],
         keywords: {
           $pattern: hljs.UNDERSCORE_IDENT_RE,
           literal: "true false nil",
@@ -14092,7 +14449,11 @@ var require_makefile = __commonJS({
         keywords: {
           built_in: "subst patsubst strip findstring filter filter-out sort word wordlist firstword lastword dir notdir suffix basename addsuffix addprefix join wildcard realpath abspath error warning shell origin flavor foreach if or and call eval file value"
         },
-        contains: [VARIABLE]
+        contains: [
+          VARIABLE,
+          QUOTE_STRING
+          // Added QUOTE_STRING as they can be a part of functions
+        ]
       };
       const ASSIGNMENT = {
         begin: "^" + hljs.UNDERSCORE_IDENT_RE + "\\s*(?=[:+?]?=)"
@@ -15256,7 +15617,7 @@ var require_nim = __commonJS({
     "use strict";
     function nim(hljs) {
       const TYPES = ["int", "int8", "int16", "int32", "int64", "uint", "uint8", "uint16", "uint32", "uint64", "float", "float32", "float64", "bool", "char", "string", "cstring", "pointer", "expr", "stmt", "void", "auto", "any", "range", "array", "openarray", "varargs", "seq", "set", "clong", "culong", "cchar", "cschar", "cshort", "cint", "csize", "clonglong", "cfloat", "cdouble", "clongdouble", "cuchar", "cushort", "cuint", "culonglong", "cstringarray", "semistatic"];
-      const KEYWORDS = ["addr", "and", "as", "asm", "bind", "block", "break", "case", "cast", "const", "continue", "converter", "discard", "distinct", "div", "do", "elif", "else", "end", "enum", "except", "export", "finally", "for", "from", "func", "generic", "guarded", "if", "import", "in", "include", "interface", "is", "isnot", "iterator", "let", "macro", "method", "mixin", "mod", "nil", "not", "notin", "object", "of", "or", "out", "proc", "ptr", "raise", "ref", "return", "shared", "shl", "shr", "static", "template", "try", "tuple", "type", "using", "var", "when", "while", "with", "without", "xor", "yield"];
+      const KEYWORDS = ["addr", "and", "as", "asm", "bind", "block", "break", "case", "cast", "concept", "const", "continue", "converter", "defer", "discard", "distinct", "div", "do", "elif", "else", "end", "enum", "except", "export", "finally", "for", "from", "func", "generic", "guarded", "if", "import", "in", "include", "interface", "is", "isnot", "iterator", "let", "macro", "method", "mixin", "mod", "nil", "not", "notin", "object", "of", "or", "out", "proc", "ptr", "raise", "ref", "return", "shared", "shl", "shr", "static", "template", "try", "tuple", "type", "using", "var", "when", "while", "with", "without", "xor", "yield"];
       const BUILT_INS = ["stdin", "stdout", "stderr", "result"];
       const LITERALS = ["true", "false"];
       return {
@@ -15312,49 +15673,148 @@ var require_nix = __commonJS({
   "node_modules/highlight.js/lib/languages/nix.js"(exports, module) {
     "use strict";
     function nix(hljs) {
+      const regex = hljs.regex;
       const KEYWORDS = {
-        keyword: ["rec", "with", "let", "in", "inherit", "assert", "if", "else", "then"],
-        literal: ["true", "false", "or", "and", "null"],
-        built_in: ["import", "abort", "baseNameOf", "dirOf", "isNull", "builtins", "map", "removeAttrs", "throw", "toString", "derivation"]
+        keyword: ["assert", "else", "if", "in", "inherit", "let", "or", "rec", "then", "with"],
+        literal: ["true", "false", "null"],
+        built_in: [
+          // toplevel builtins
+          "abort",
+          "baseNameOf",
+          "builtins",
+          "derivation",
+          "derivationStrict",
+          "dirOf",
+          "fetchGit",
+          "fetchMercurial",
+          "fetchTarball",
+          "fetchTree",
+          "fromTOML",
+          "import",
+          "isNull",
+          "map",
+          "placeholder",
+          "removeAttrs",
+          "scopedImport",
+          "throw",
+          "toString"
+        ]
+      };
+      const BUILTINS = {
+        scope: "built_in",
+        match: regex.either(...["abort", "add", "addDrvOutputDependencies", "addErrorContext", "all", "any", "appendContext", "attrNames", "attrValues", "baseNameOf", "bitAnd", "bitOr", "bitXor", "break", "builtins", "catAttrs", "ceil", "compareVersions", "concatLists", "concatMap", "concatStringsSep", "convertHash", "currentSystem", "currentTime", "deepSeq", "derivation", "derivationStrict", "dirOf", "div", "elem", "elemAt", "false", "fetchGit", "fetchMercurial", "fetchTarball", "fetchTree", "fetchurl", "filter", "filterSource", "findFile", "flakeRefToString", "floor", "foldl'", "fromJSON", "fromTOML", "functionArgs", "genList", "genericClosure", "getAttr", "getContext", "getEnv", "getFlake", "groupBy", "hasAttr", "hasContext", "hashFile", "hashString", "head", "import", "intersectAttrs", "isAttrs", "isBool", "isFloat", "isFunction", "isInt", "isList", "isNull", "isPath", "isString", "langVersion", "length", "lessThan", "listToAttrs", "map", "mapAttrs", "match", "mul", "nixPath", "nixVersion", "null", "parseDrvName", "parseFlakeRef", "partition", "path", "pathExists", "placeholder", "readDir", "readFile", "readFileType", "removeAttrs", "replaceStrings", "scopedImport", "seq", "sort", "split", "splitVersion", "storeDir", "storePath", "stringLength", "sub", "substring", "tail", "throw", "toFile", "toJSON", "toPath", "toString", "toXML", "trace", "traceVerbose", "true", "tryEval", "typeOf", "unsafeDiscardOutputDependency", "unsafeDiscardStringContext", "unsafeGetAttrPos", "warn", "zipAttrsWith"].map((b) => `builtins\\.${b}`)),
+        relevance: 10
+      };
+      const IDENTIFIER_REGEX = "[A-Za-z_][A-Za-z0-9_'-]*";
+      const LOOKUP_PATH = {
+        scope: "symbol",
+        match: new RegExp(`<${IDENTIFIER_REGEX}(/${IDENTIFIER_REGEX})*>`)
+      };
+      const PATH_PIECE = "[A-Za-z0-9_\\+\\.-]+";
+      const PATH = {
+        scope: "symbol",
+        match: new RegExp(`(\\.\\.|\\.|~)?/(${PATH_PIECE})?(/${PATH_PIECE})*(?=[\\s;])`)
+      };
+      const OPERATOR_WITHOUT_MINUS_REGEX = regex.either(...["==", "=", "\\+\\+", "\\+", "<=", "<\\|", "<", ">=", ">", "->", "//", "/", "!=", "!", "\\|\\|", "\\|>", "\\?", "\\*", "&&"]);
+      const OPERATOR = {
+        scope: "operator",
+        match: regex.concat(OPERATOR_WITHOUT_MINUS_REGEX, /(?!-)/),
+        relevance: 0
+      };
+      const NUMBER = {
+        scope: "number",
+        match: new RegExp(`${hljs.NUMBER_RE}(?!-)`),
+        relevance: 0
+      };
+      const MINUS_OPERATOR = {
+        variants: [{
+          scope: "operator",
+          beforeMatch: /\s/,
+          // The (?!>) is used to ensure this doesn't collide with the '->' operator
+          begin: /-(?!>)/
+        }, {
+          begin: [new RegExp(`${hljs.NUMBER_RE}`), /-/, /(?!>)/],
+          beginScope: {
+            1: "number",
+            2: "operator"
+          }
+        }, {
+          begin: [OPERATOR_WITHOUT_MINUS_REGEX, /-/, /(?!>)/],
+          beginScope: {
+            1: "operator",
+            2: "operator"
+          }
+        }],
+        relevance: 0
+      };
+      const ATTRS = {
+        beforeMatch: /(^|\{|;)\s*/,
+        begin: new RegExp(`${IDENTIFIER_REGEX}(\\.${IDENTIFIER_REGEX})*\\s*=(?!=)`),
+        returnBegin: true,
+        relevance: 0,
+        contains: [{
+          scope: "attr",
+          match: new RegExp(`${IDENTIFIER_REGEX}(\\.${IDENTIFIER_REGEX})*(?=\\s*=)`),
+          relevance: 0.2
+        }]
+      };
+      const NORMAL_ESCAPED_DOLLAR = {
+        scope: "char.escape",
+        match: /\\\$/
+      };
+      const INDENTED_ESCAPED_DOLLAR = {
+        scope: "char.escape",
+        match: /''\$/
       };
       const ANTIQUOTE = {
-        className: "subst",
+        scope: "subst",
         begin: /\$\{/,
         end: /\}/,
         keywords: KEYWORDS
       };
-      const ESCAPED_DOLLAR = {
-        className: "char.escape",
-        begin: /''\$/
+      const ESCAPED_DOUBLEQUOTE = {
+        scope: "char.escape",
+        match: /'''/
       };
-      const ATTRS = {
-        begin: /[a-zA-Z0-9-_]+(\s*=)/,
-        returnBegin: true,
-        relevance: 0,
-        contains: [{
-          className: "attr",
-          begin: /\S+/,
-          relevance: 0.2
-        }]
+      const ESCAPED_LITERAL = {
+        scope: "char.escape",
+        match: /\\(?!\$)./
       };
       const STRING = {
-        className: "string",
-        contains: [ESCAPED_DOLLAR, ANTIQUOTE],
+        scope: "string",
         variants: [{
           begin: "''",
-          end: "''"
+          end: "''",
+          contains: [INDENTED_ESCAPED_DOLLAR, ANTIQUOTE, ESCAPED_DOUBLEQUOTE, ESCAPED_LITERAL]
         }, {
           begin: '"',
-          end: '"'
+          end: '"',
+          contains: [NORMAL_ESCAPED_DOLLAR, ANTIQUOTE, ESCAPED_LITERAL]
         }]
       };
-      const EXPRESSIONS = [hljs.NUMBER_MODE, hljs.HASH_COMMENT_MODE, hljs.C_BLOCK_COMMENT_MODE, STRING, ATTRS];
+      const FUNCTION_PARAMS = {
+        scope: "params",
+        match: new RegExp(`${IDENTIFIER_REGEX}\\s*:(?=\\s)`)
+      };
+      const EXPRESSIONS = [NUMBER, hljs.HASH_COMMENT_MODE, hljs.C_BLOCK_COMMENT_MODE, hljs.COMMENT(/\/\*\*(?!\/)/, /\*\//, {
+        subLanguage: "markdown",
+        relevance: 0
+      }), BUILTINS, STRING, LOOKUP_PATH, PATH, FUNCTION_PARAMS, ATTRS, MINUS_OPERATOR, OPERATOR];
       ANTIQUOTE.contains = EXPRESSIONS;
+      const REPL = [{
+        scope: "meta.prompt",
+        match: /^nix-repl>(?=\s)/,
+        relevance: 10
+      }, {
+        scope: "meta",
+        beforeMatch: /\s+/,
+        begin: /:([a-z]+|\?)/
+      }];
       return {
         name: "Nix",
         aliases: ["nixos"],
         keywords: KEYWORDS,
-        contains: EXPRESSIONS
+        contains: EXPRESSIONS.concat(REPL)
       };
     }
     module.exports = nix;
@@ -16142,6 +16602,7 @@ var require_php = __commonJS({
       const NOT_PERL_ETC = /(?![A-Za-z0-9])(?![$])/;
       const IDENT_RE = regex.concat(/[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*/, NOT_PERL_ETC);
       const PASCAL_CASE_CLASS_NAME_RE = regex.concat(/(\\?[A-Z][a-z0-9_\x7f-\xff]+|\\?[A-Z]+(?=[A-Z][a-z0-9_\x7f-\xff])){1,}/, NOT_PERL_ETC);
+      const UPCASE_NAME_RE = regex.concat(/[A-Z]+/, NOT_PERL_ETC);
       const VARIABLE = {
         scope: "variable",
         match: "\\$+" + IDENT_RE
@@ -16521,7 +16982,7 @@ var require_php = __commonJS({
       PARAMS_MODE.contains.push(FUNCTION_INVOKE);
       const ATTRIBUTE_CONTAINS = [NAMED_ARGUMENT, LEFT_AND_RIGHT_SIDE_OF_DOUBLE_COLON, hljs.C_BLOCK_COMMENT_MODE, STRING, NUMBER, CONSTRUCTOR_CALL];
       const ATTRIBUTES = {
-        begin: regex.concat(/#\[\s*/, PASCAL_CASE_CLASS_NAME_RE),
+        begin: regex.concat(/#\[\s*\\?/, regex.either(PASCAL_CASE_CLASS_NAME_RE, UPCASE_NAME_RE)),
         beginScope: "meta",
         end: /]/,
         endScope: "meta",
@@ -16539,7 +17000,11 @@ var require_php = __commonJS({
           contains: ["self", ...ATTRIBUTE_CONTAINS]
         }, ...ATTRIBUTE_CONTAINS, {
           scope: "meta",
-          match: PASCAL_CASE_CLASS_NAME_RE
+          variants: [{
+            match: PASCAL_CASE_CLASS_NAME_RE
+          }, {
+            match: UPCASE_NAME_RE
+          }]
         }]
       };
       return {
@@ -16604,7 +17069,7 @@ var require_php = __commonJS({
               excludeBegin: true,
               excludeEnd: true,
               keywords: KEYWORDS,
-              contains: ["self", VARIABLE, LEFT_AND_RIGHT_SIDE_OF_DOUBLE_COLON, hljs.C_BLOCK_COMMENT_MODE, STRING, NUMBER]
+              contains: ["self", ATTRIBUTES, VARIABLE, LEFT_AND_RIGHT_SIDE_OF_DOUBLE_COLON, hljs.C_BLOCK_COMMENT_MODE, STRING, NUMBER]
             }]
           },
           {
@@ -18442,16 +18907,22 @@ var require_rust = __commonJS({
             illegal: null
           }),
           {
-            className: "string",
+            className: "symbol",
+            // negative lookahead to avoid matching `'`
+            begin: /'[a-zA-Z_][a-zA-Z0-9_]*(?!')/
+          },
+          {
+            scope: "string",
             variants: [{
               begin: /b?r(#*)"(.|\n)*?"\1(?!#)/
             }, {
-              begin: /b?'\\?(x\w{2}|u\w{4}|U\w{8}|.)'/
+              begin: /b?'/,
+              end: /'/,
+              contains: [{
+                scope: "char.escape",
+                match: /\\('|\w|x\w{2}|u\w{4}|U\w{8})/
+              }]
             }]
-          },
-          {
-            className: "symbol",
-            begin: /'[a-zA-Z_][a-zA-Z0-9_]*/
           },
           {
             className: "number",
@@ -19070,7 +19541,9 @@ var require_scss = __commonJS({
       "align-self",
       "alignment-baseline",
       "all",
+      "anchor-name",
       "animation",
+      "animation-composition",
       "animation-delay",
       "animation-direction",
       "animation-duration",
@@ -19078,8 +19551,14 @@ var require_scss = __commonJS({
       "animation-iteration-count",
       "animation-name",
       "animation-play-state",
+      "animation-range",
+      "animation-range-end",
+      "animation-range-start",
+      "animation-timeline",
       "animation-timing-function",
       "appearance",
+      "aspect-ratio",
+      "backdrop-filter",
       "backface-visibility",
       "background",
       "background-attachment",
@@ -19089,6 +19568,8 @@ var require_scss = __commonJS({
       "background-image",
       "background-origin",
       "background-position",
+      "background-position-x",
+      "background-position-y",
       "background-repeat",
       "background-size",
       "baseline-shift",
@@ -19114,6 +19595,8 @@ var require_scss = __commonJS({
       "border-bottom-width",
       "border-collapse",
       "border-color",
+      "border-end-end-radius",
+      "border-end-start-radius",
       "border-image",
       "border-image-outset",
       "border-image-repeat",
@@ -19138,8 +19621,6 @@ var require_scss = __commonJS({
       "border-left-width",
       "border-radius",
       "border-right",
-      "border-end-end-radius",
-      "border-end-start-radius",
       "border-right-color",
       "border-right-style",
       "border-right-width",
@@ -19155,14 +19636,20 @@ var require_scss = __commonJS({
       "border-top-width",
       "border-width",
       "bottom",
+      "box-align",
       "box-decoration-break",
+      "box-direction",
+      "box-flex",
+      "box-flex-group",
+      "box-lines",
+      "box-ordinal-group",
+      "box-orient",
+      "box-pack",
       "box-shadow",
       "box-sizing",
       "break-after",
       "break-before",
       "break-inside",
-      "cx",
-      "cy",
       "caption-side",
       "caret-color",
       "clear",
@@ -19186,19 +19673,31 @@ var require_scss = __commonJS({
       "column-width",
       "columns",
       "contain",
+      "contain-intrinsic-block-size",
+      "contain-intrinsic-height",
+      "contain-intrinsic-inline-size",
+      "contain-intrinsic-size",
+      "contain-intrinsic-width",
+      "container",
+      "container-name",
+      "container-type",
       "content",
       "content-visibility",
       "counter-increment",
       "counter-reset",
+      "counter-set",
       "cue",
       "cue-after",
       "cue-before",
       "cursor",
+      "cx",
+      "cy",
       "direction",
       "display",
       "dominant-baseline",
       "empty-cells",
       "enable-background",
+      "field-sizing",
       "fill",
       "fill-opacity",
       "fill-rule",
@@ -19211,29 +19710,39 @@ var require_scss = __commonJS({
       "flex-shrink",
       "flex-wrap",
       "float",
-      "flow",
       "flood-color",
       "flood-opacity",
+      "flow",
       "font",
       "font-display",
       "font-family",
       "font-feature-settings",
       "font-kerning",
       "font-language-override",
+      "font-optical-sizing",
+      "font-palette",
       "font-size",
       "font-size-adjust",
+      "font-smooth",
       "font-smoothing",
       "font-stretch",
       "font-style",
       "font-synthesis",
+      "font-synthesis-position",
+      "font-synthesis-small-caps",
+      "font-synthesis-style",
+      "font-synthesis-weight",
       "font-variant",
+      "font-variant-alternates",
       "font-variant-caps",
       "font-variant-east-asian",
+      "font-variant-emoji",
       "font-variant-ligatures",
       "font-variant-numeric",
       "font-variant-position",
       "font-variation-settings",
       "font-weight",
+      "forced-color-adjust",
       "gap",
       "glyph-orientation-horizontal",
       "glyph-orientation-vertical",
@@ -19255,14 +19764,19 @@ var require_scss = __commonJS({
       "grid-template-rows",
       "hanging-punctuation",
       "height",
+      "hyphenate-character",
+      "hyphenate-limit-chars",
       "hyphens",
       "icon",
       "image-orientation",
       "image-rendering",
       "image-resolution",
       "ime-mode",
+      "initial-letter",
+      "initial-letter-align",
       "inline-size",
       "inset",
+      "inset-area",
       "inset-block",
       "inset-block-end",
       "inset-block-start",
@@ -19270,24 +19784,20 @@ var require_scss = __commonJS({
       "inset-inline-end",
       "inset-inline-start",
       "isolation",
-      "kerning",
       "justify-content",
       "justify-items",
       "justify-self",
+      "kerning",
       "left",
       "letter-spacing",
       "lighting-color",
       "line-break",
       "line-height",
+      "line-height-step",
       "list-style",
       "list-style-image",
       "list-style-position",
       "list-style-type",
-      "marker",
-      "marker-end",
-      "marker-mid",
-      "marker-start",
-      "mask",
       "margin",
       "margin-block",
       "margin-block-end",
@@ -19299,6 +19809,11 @@ var require_scss = __commonJS({
       "margin-left",
       "margin-right",
       "margin-top",
+      "margin-trim",
+      "marker",
+      "marker-end",
+      "marker-mid",
+      "marker-start",
       "marks",
       "mask",
       "mask-border",
@@ -19317,6 +19832,10 @@ var require_scss = __commonJS({
       "mask-repeat",
       "mask-size",
       "mask-type",
+      "masonry-auto-flow",
+      "math-depth",
+      "math-shift",
+      "math-style",
       "max-block-size",
       "max-height",
       "max-inline-size",
@@ -19335,6 +19854,12 @@ var require_scss = __commonJS({
       "normal",
       "object-fit",
       "object-position",
+      "offset",
+      "offset-anchor",
+      "offset-distance",
+      "offset-path",
+      "offset-position",
+      "offset-rotate",
       "opacity",
       "order",
       "orphans",
@@ -19344,9 +19869,19 @@ var require_scss = __commonJS({
       "outline-style",
       "outline-width",
       "overflow",
+      "overflow-anchor",
+      "overflow-block",
+      "overflow-clip-margin",
+      "overflow-inline",
       "overflow-wrap",
       "overflow-x",
       "overflow-y",
+      "overlay",
+      "overscroll-behavior",
+      "overscroll-behavior-block",
+      "overscroll-behavior-inline",
+      "overscroll-behavior-x",
+      "overscroll-behavior-y",
       "padding",
       "padding-block",
       "padding-block-end",
@@ -19358,16 +19893,24 @@ var require_scss = __commonJS({
       "padding-left",
       "padding-right",
       "padding-top",
+      "page",
       "page-break-after",
       "page-break-before",
       "page-break-inside",
+      "paint-order",
       "pause",
       "pause-after",
       "pause-before",
       "perspective",
       "perspective-origin",
+      "place-content",
+      "place-items",
+      "place-self",
       "pointer-events",
       "position",
+      "position-anchor",
+      "position-visibility",
+      "print-color-adjust",
       "quotes",
       "r",
       "resize",
@@ -19377,7 +19920,10 @@ var require_scss = __commonJS({
       "right",
       "rotate",
       "row-gap",
+      "ruby-align",
+      "ruby-position",
       "scale",
+      "scroll-behavior",
       "scroll-margin",
       "scroll-margin-block",
       "scroll-margin-block-end",
@@ -19403,6 +19949,9 @@ var require_scss = __commonJS({
       "scroll-snap-align",
       "scroll-snap-stop",
       "scroll-snap-type",
+      "scroll-timeline",
+      "scroll-timeline-axis",
+      "scroll-timeline-name",
       "scrollbar-color",
       "scrollbar-gutter",
       "scrollbar-width",
@@ -19410,6 +19959,10 @@ var require_scss = __commonJS({
       "shape-margin",
       "shape-outside",
       "shape-rendering",
+      "speak",
+      "speak-as",
+      "src",
+      // @font-face
       "stop-color",
       "stop-opacity",
       "stroke",
@@ -19420,20 +19973,17 @@ var require_scss = __commonJS({
       "stroke-miterlimit",
       "stroke-opacity",
       "stroke-width",
-      "speak",
-      "speak-as",
-      "src",
-      // @font-face
       "tab-size",
       "table-layout",
-      "text-anchor",
       "text-align",
       "text-align-all",
       "text-align-last",
+      "text-anchor",
       "text-combine-upright",
       "text-decoration",
       "text-decoration-color",
       "text-decoration-line",
+      "text-decoration-skip",
       "text-decoration-skip-ink",
       "text-decoration-style",
       "text-decoration-thickness",
@@ -19447,23 +19997,37 @@ var require_scss = __commonJS({
       "text-overflow",
       "text-rendering",
       "text-shadow",
+      "text-size-adjust",
       "text-transform",
       "text-underline-offset",
       "text-underline-position",
+      "text-wrap",
+      "text-wrap-mode",
+      "text-wrap-style",
+      "timeline-scope",
       "top",
+      "touch-action",
       "transform",
       "transform-box",
       "transform-origin",
       "transform-style",
       "transition",
+      "transition-behavior",
       "transition-delay",
       "transition-duration",
       "transition-property",
       "transition-timing-function",
       "translate",
       "unicode-bidi",
+      "user-modify",
+      "user-select",
       "vector-effect",
       "vertical-align",
+      "view-timeline",
+      "view-timeline-axis",
+      "view-timeline-inset",
+      "view-timeline-name",
+      "view-transition-name",
       "visibility",
       "voice-balance",
       "voice-duration",
@@ -19474,6 +20038,7 @@ var require_scss = __commonJS({
       "voice-stress",
       "voice-volume",
       "white-space",
+      "white-space-collapse",
       "widows",
       "width",
       "will-change",
@@ -19483,7 +20048,8 @@ var require_scss = __commonJS({
       "writing-mode",
       "x",
       "y",
-      "z-index"
+      "z-index",
+      "zoom"
     ].sort().reverse();
     function scss(hljs) {
       const modes = MODES(hljs);
@@ -19865,12 +20431,12 @@ var require_sql = __commonJS({
       const regex = hljs.regex;
       const COMMENT_MODE = hljs.COMMENT("--", "$");
       const STRING = {
-        className: "string",
+        scope: "string",
         variants: [{
           begin: /'/,
           end: /'/,
           contains: [{
-            begin: /''/
+            match: /''/
           }]
         }]
       };
@@ -19878,7 +20444,7 @@ var require_sql = __commonJS({
         begin: /"/,
         end: /"/,
         contains: [{
-          begin: /""/
+          match: /""/
         }]
       };
       const LITERALS = [
@@ -19929,20 +20495,30 @@ var require_sql = __commonJS({
         return !RESERVED_FUNCTIONS.includes(keyword);
       });
       const VARIABLE = {
-        className: "variable",
-        begin: /@[a-z0-9][a-z0-9_]*/
+        scope: "variable",
+        match: /@[a-z0-9][a-z0-9_]*/
       };
       const OPERATOR = {
-        className: "operator",
-        begin: /[-+*/=%^~]|&&?|\|\|?|!=?|<(?:=>?|<|>)?|>[>=]?/,
+        scope: "operator",
+        match: /[-+*/=%^~]|&&?|\|\|?|!=?|<(?:=>?|<|>)?|>[>=]?/,
         relevance: 0
       };
       const FUNCTION_CALL = {
-        begin: regex.concat(/\b/, regex.either(...FUNCTIONS), /\s*\(/),
+        match: regex.concat(/\b/, regex.either(...FUNCTIONS), /\s*\(/),
         relevance: 0,
         keywords: {
           built_in: FUNCTIONS
         }
+      };
+      function kws_to_regex(list) {
+        return regex.concat(/\b/, regex.either(...list.map((kw) => {
+          return kw.replace(/\s+/, "\\s+");
+        })), /\b/);
+      }
+      const MULTI_WORD_KEYWORDS = {
+        scope: "keyword",
+        match: kws_to_regex(COMBOS),
+        relevance: 0
       };
       function reduceRelevancy(list, {
         exceptions,
@@ -19975,18 +20551,9 @@ var require_sql = __commonJS({
           built_in: POSSIBLE_WITHOUT_PARENS
         },
         contains: [{
-          begin: regex.either(...COMBOS),
-          relevance: 0,
-          keywords: {
-            $pattern: /[\w\.]+/,
-            keyword: KEYWORDS.concat(COMBOS),
-            literal: LITERALS,
-            type: TYPES
-          }
-        }, {
-          className: "type",
-          begin: regex.either(...MULTI_WORD_TYPES)
-        }, FUNCTION_CALL, VARIABLE, STRING, QUOTED_IDENTIFIER, hljs.C_NUMBER_MODE, hljs.C_BLOCK_COMMENT_MODE, COMMENT_MODE, OPERATOR]
+          scope: "type",
+          match: kws_to_regex(MULTI_WORD_TYPES)
+        }, MULTI_WORD_KEYWORDS, FUNCTION_CALL, VARIABLE, STRING, QUOTED_IDENTIFIER, hljs.C_NUMBER_MODE, hljs.C_BLOCK_COMMENT_MODE, COMMENT_MODE, OPERATOR]
       };
     }
     module.exports = sql;
@@ -20338,7 +20905,9 @@ var require_stylus = __commonJS({
       "align-self",
       "alignment-baseline",
       "all",
+      "anchor-name",
       "animation",
+      "animation-composition",
       "animation-delay",
       "animation-direction",
       "animation-duration",
@@ -20346,8 +20915,14 @@ var require_stylus = __commonJS({
       "animation-iteration-count",
       "animation-name",
       "animation-play-state",
+      "animation-range",
+      "animation-range-end",
+      "animation-range-start",
+      "animation-timeline",
       "animation-timing-function",
       "appearance",
+      "aspect-ratio",
+      "backdrop-filter",
       "backface-visibility",
       "background",
       "background-attachment",
@@ -20357,6 +20932,8 @@ var require_stylus = __commonJS({
       "background-image",
       "background-origin",
       "background-position",
+      "background-position-x",
+      "background-position-y",
       "background-repeat",
       "background-size",
       "baseline-shift",
@@ -20382,6 +20959,8 @@ var require_stylus = __commonJS({
       "border-bottom-width",
       "border-collapse",
       "border-color",
+      "border-end-end-radius",
+      "border-end-start-radius",
       "border-image",
       "border-image-outset",
       "border-image-repeat",
@@ -20406,8 +20985,6 @@ var require_stylus = __commonJS({
       "border-left-width",
       "border-radius",
       "border-right",
-      "border-end-end-radius",
-      "border-end-start-radius",
       "border-right-color",
       "border-right-style",
       "border-right-width",
@@ -20423,14 +21000,20 @@ var require_stylus = __commonJS({
       "border-top-width",
       "border-width",
       "bottom",
+      "box-align",
       "box-decoration-break",
+      "box-direction",
+      "box-flex",
+      "box-flex-group",
+      "box-lines",
+      "box-ordinal-group",
+      "box-orient",
+      "box-pack",
       "box-shadow",
       "box-sizing",
       "break-after",
       "break-before",
       "break-inside",
-      "cx",
-      "cy",
       "caption-side",
       "caret-color",
       "clear",
@@ -20454,19 +21037,31 @@ var require_stylus = __commonJS({
       "column-width",
       "columns",
       "contain",
+      "contain-intrinsic-block-size",
+      "contain-intrinsic-height",
+      "contain-intrinsic-inline-size",
+      "contain-intrinsic-size",
+      "contain-intrinsic-width",
+      "container",
+      "container-name",
+      "container-type",
       "content",
       "content-visibility",
       "counter-increment",
       "counter-reset",
+      "counter-set",
       "cue",
       "cue-after",
       "cue-before",
       "cursor",
+      "cx",
+      "cy",
       "direction",
       "display",
       "dominant-baseline",
       "empty-cells",
       "enable-background",
+      "field-sizing",
       "fill",
       "fill-opacity",
       "fill-rule",
@@ -20479,29 +21074,39 @@ var require_stylus = __commonJS({
       "flex-shrink",
       "flex-wrap",
       "float",
-      "flow",
       "flood-color",
       "flood-opacity",
+      "flow",
       "font",
       "font-display",
       "font-family",
       "font-feature-settings",
       "font-kerning",
       "font-language-override",
+      "font-optical-sizing",
+      "font-palette",
       "font-size",
       "font-size-adjust",
+      "font-smooth",
       "font-smoothing",
       "font-stretch",
       "font-style",
       "font-synthesis",
+      "font-synthesis-position",
+      "font-synthesis-small-caps",
+      "font-synthesis-style",
+      "font-synthesis-weight",
       "font-variant",
+      "font-variant-alternates",
       "font-variant-caps",
       "font-variant-east-asian",
+      "font-variant-emoji",
       "font-variant-ligatures",
       "font-variant-numeric",
       "font-variant-position",
       "font-variation-settings",
       "font-weight",
+      "forced-color-adjust",
       "gap",
       "glyph-orientation-horizontal",
       "glyph-orientation-vertical",
@@ -20523,14 +21128,19 @@ var require_stylus = __commonJS({
       "grid-template-rows",
       "hanging-punctuation",
       "height",
+      "hyphenate-character",
+      "hyphenate-limit-chars",
       "hyphens",
       "icon",
       "image-orientation",
       "image-rendering",
       "image-resolution",
       "ime-mode",
+      "initial-letter",
+      "initial-letter-align",
       "inline-size",
       "inset",
+      "inset-area",
       "inset-block",
       "inset-block-end",
       "inset-block-start",
@@ -20538,24 +21148,20 @@ var require_stylus = __commonJS({
       "inset-inline-end",
       "inset-inline-start",
       "isolation",
-      "kerning",
       "justify-content",
       "justify-items",
       "justify-self",
+      "kerning",
       "left",
       "letter-spacing",
       "lighting-color",
       "line-break",
       "line-height",
+      "line-height-step",
       "list-style",
       "list-style-image",
       "list-style-position",
       "list-style-type",
-      "marker",
-      "marker-end",
-      "marker-mid",
-      "marker-start",
-      "mask",
       "margin",
       "margin-block",
       "margin-block-end",
@@ -20567,6 +21173,11 @@ var require_stylus = __commonJS({
       "margin-left",
       "margin-right",
       "margin-top",
+      "margin-trim",
+      "marker",
+      "marker-end",
+      "marker-mid",
+      "marker-start",
       "marks",
       "mask",
       "mask-border",
@@ -20585,6 +21196,10 @@ var require_stylus = __commonJS({
       "mask-repeat",
       "mask-size",
       "mask-type",
+      "masonry-auto-flow",
+      "math-depth",
+      "math-shift",
+      "math-style",
       "max-block-size",
       "max-height",
       "max-inline-size",
@@ -20603,6 +21218,12 @@ var require_stylus = __commonJS({
       "normal",
       "object-fit",
       "object-position",
+      "offset",
+      "offset-anchor",
+      "offset-distance",
+      "offset-path",
+      "offset-position",
+      "offset-rotate",
       "opacity",
       "order",
       "orphans",
@@ -20612,9 +21233,19 @@ var require_stylus = __commonJS({
       "outline-style",
       "outline-width",
       "overflow",
+      "overflow-anchor",
+      "overflow-block",
+      "overflow-clip-margin",
+      "overflow-inline",
       "overflow-wrap",
       "overflow-x",
       "overflow-y",
+      "overlay",
+      "overscroll-behavior",
+      "overscroll-behavior-block",
+      "overscroll-behavior-inline",
+      "overscroll-behavior-x",
+      "overscroll-behavior-y",
       "padding",
       "padding-block",
       "padding-block-end",
@@ -20626,16 +21257,24 @@ var require_stylus = __commonJS({
       "padding-left",
       "padding-right",
       "padding-top",
+      "page",
       "page-break-after",
       "page-break-before",
       "page-break-inside",
+      "paint-order",
       "pause",
       "pause-after",
       "pause-before",
       "perspective",
       "perspective-origin",
+      "place-content",
+      "place-items",
+      "place-self",
       "pointer-events",
       "position",
+      "position-anchor",
+      "position-visibility",
+      "print-color-adjust",
       "quotes",
       "r",
       "resize",
@@ -20645,7 +21284,10 @@ var require_stylus = __commonJS({
       "right",
       "rotate",
       "row-gap",
+      "ruby-align",
+      "ruby-position",
       "scale",
+      "scroll-behavior",
       "scroll-margin",
       "scroll-margin-block",
       "scroll-margin-block-end",
@@ -20671,6 +21313,9 @@ var require_stylus = __commonJS({
       "scroll-snap-align",
       "scroll-snap-stop",
       "scroll-snap-type",
+      "scroll-timeline",
+      "scroll-timeline-axis",
+      "scroll-timeline-name",
       "scrollbar-color",
       "scrollbar-gutter",
       "scrollbar-width",
@@ -20678,6 +21323,10 @@ var require_stylus = __commonJS({
       "shape-margin",
       "shape-outside",
       "shape-rendering",
+      "speak",
+      "speak-as",
+      "src",
+      // @font-face
       "stop-color",
       "stop-opacity",
       "stroke",
@@ -20688,20 +21337,17 @@ var require_stylus = __commonJS({
       "stroke-miterlimit",
       "stroke-opacity",
       "stroke-width",
-      "speak",
-      "speak-as",
-      "src",
-      // @font-face
       "tab-size",
       "table-layout",
-      "text-anchor",
       "text-align",
       "text-align-all",
       "text-align-last",
+      "text-anchor",
       "text-combine-upright",
       "text-decoration",
       "text-decoration-color",
       "text-decoration-line",
+      "text-decoration-skip",
       "text-decoration-skip-ink",
       "text-decoration-style",
       "text-decoration-thickness",
@@ -20715,23 +21361,37 @@ var require_stylus = __commonJS({
       "text-overflow",
       "text-rendering",
       "text-shadow",
+      "text-size-adjust",
       "text-transform",
       "text-underline-offset",
       "text-underline-position",
+      "text-wrap",
+      "text-wrap-mode",
+      "text-wrap-style",
+      "timeline-scope",
       "top",
+      "touch-action",
       "transform",
       "transform-box",
       "transform-origin",
       "transform-style",
       "transition",
+      "transition-behavior",
       "transition-delay",
       "transition-duration",
       "transition-property",
       "transition-timing-function",
       "translate",
       "unicode-bidi",
+      "user-modify",
+      "user-select",
       "vector-effect",
       "vertical-align",
+      "view-timeline",
+      "view-timeline-axis",
+      "view-timeline-inset",
+      "view-timeline-name",
+      "view-transition-name",
       "visibility",
       "voice-balance",
       "voice-duration",
@@ -20742,6 +21402,7 @@ var require_stylus = __commonJS({
       "voice-stress",
       "voice-volume",
       "white-space",
+      "white-space-collapse",
       "widows",
       "width",
       "will-change",
@@ -20751,7 +21412,8 @@ var require_stylus = __commonJS({
       "writing-mode",
       "x",
       "y",
-      "z-index"
+      "z-index",
+      "zoom"
     ].sort().reverse();
     function stylus(hljs) {
       const modes = MODES(hljs);
@@ -21433,6 +22095,21 @@ var require_swift = __commonJS({
         keywords: [...precedencegroupKeywords, ...literals],
         end: /}/
       };
+      const CLASS_FUNC_DECLARATION = {
+        match: [/class\b/, /\s+/, /func\b/, /\s+/, /\b[A-Za-z_][A-Za-z0-9_]*\b/],
+        scope: {
+          1: "keyword",
+          3: "keyword",
+          5: "title.function"
+        }
+      };
+      const CLASS_VAR_DECLARATION = {
+        match: [/class\b/, /\s+/, /var\b/],
+        scope: {
+          1: "keyword",
+          3: "keyword"
+        }
+      };
       const TYPE_DECLARATION = {
         begin: [/(struct|protocol|class|extension|enum|actor)/, /\s+/, identifier, /\s*/],
         beginScope: {
@@ -21464,7 +22141,7 @@ var require_swift = __commonJS({
       return {
         name: "Swift",
         keywords: KEYWORDS,
-        contains: [...COMMENTS, FUNCTION_OR_MACRO, INIT_SUBSCRIPT, TYPE_DECLARATION, OPERATOR_DECLARATION, PRECEDENCEGROUP, {
+        contains: [...COMMENTS, FUNCTION_OR_MACRO, INIT_SUBSCRIPT, CLASS_FUNC_DECLARATION, CLASS_VAR_DECLARATION, TYPE_DECLARATION, OPERATOR_DECLARATION, PRECEDENCEGROUP, {
           beginKeywords: "import",
           end: /$/,
           contains: [...COMMENTS],
@@ -21531,17 +22208,17 @@ var require_yaml = __commonJS({
       const KEY = {
         className: "attr",
         variants: [
-          // added brackets support 
+          // added brackets support and special char support
           {
-            begin: /\w[\w :()\./-]*:(?=[ \t]|$)/
+            begin: /[\w*@][\w*@ :()\./-]*:(?=[ \t]|$)/
           },
           {
-            // double quoted keys - with brackets
-            begin: /"\w[\w :()\./-]*":(?=[ \t]|$)/
+            // double quoted keys - with brackets and special char support
+            begin: /"[\w*@][\w*@ :()\./-]*":(?=[ \t]|$)/
           },
           {
-            // single quoted keys - with brackets
-            begin: /'\w[\w :()\./-]*':(?=[ \t]|$)/
+            // single quoted keys - with brackets and special char support
+            begin: /'[\w*@][\w*@ :()\./-]*':(?=[ \t]|$)/
           }
         ]
       };
@@ -21557,13 +22234,21 @@ var require_yaml = __commonJS({
           end: /\}/
         }]
       };
+      const SINGLE_QUOTE_STRING = {
+        className: "string",
+        relevance: 0,
+        begin: /'/,
+        end: /'/,
+        contains: [{
+          match: /''/,
+          scope: "char.escape",
+          relevance: 0
+        }]
+      };
       const STRING = {
         className: "string",
         relevance: 0,
         variants: [{
-          begin: /'/,
-          end: /'/
-        }, {
           begin: /"/,
           end: /"/
         }, {
@@ -21574,7 +22259,11 @@ var require_yaml = __commonJS({
       const CONTAINER_STRING = hljs.inherit(STRING, {
         variants: [{
           begin: /'/,
-          end: /'/
+          end: /'/,
+          contains: [{
+            begin: /''/,
+            relevance: 0
+          }]
         }, {
           begin: /"/,
           end: /"/
@@ -21691,6 +22380,7 @@ var require_yaml = __commonJS({
         },
         OBJECT,
         ARRAY,
+        SINGLE_QUOTE_STRING,
         STRING
       ];
       const VALUE_MODES = [...MODES];
@@ -22051,7 +22741,9 @@ var require_typescript = __commonJS({
       "import",
       "from",
       "export",
-      "extends"
+      "extends",
+      // It's reached stage 3, which is "recommended for implementation":
+      "using"
     ];
     var LITERALS = ["true", "false", "null", "undefined", "NaN", "Infinity"];
     var TYPES = [
@@ -22339,7 +23031,7 @@ var require_typescript = __commonJS({
         className: "params",
         // convert this to negative lookbehind in v12
         begin: /(\s*)\(/,
-        // to match the parms with 
+        // to match the parms with
         end: /\)/,
         excludeBegin: true,
         excludeEnd: true,
@@ -22499,8 +23191,8 @@ var require_typescript = __commonJS({
           NUMBER,
           CLASS_REFERENCE,
           {
-            className: "attr",
-            begin: IDENT_RE$1 + regex.lookahead(":"),
+            scope: "attr",
+            match: IDENT_RE$1 + regex.lookahead(":"),
             relevance: 0
           },
           FUNCTION_VARIABLE,
@@ -22616,6 +23308,7 @@ var require_typescript = __commonJS({
       };
     }
     function typescript(hljs) {
+      const regex = hljs.regex;
       const tsLanguage = javascript(hljs);
       const IDENT_RE$1 = IDENT_RE;
       const TYPES2 = ["any", "void", "number", "boolean", "string", "object", "never", "symbol", "bigint", "unknown"];
@@ -22676,14 +23369,25 @@ var require_typescript = __commonJS({
       };
       Object.assign(tsLanguage.keywords, KEYWORDS$1);
       tsLanguage.exports.PARAMS_CONTAINS.push(DECORATOR);
-      const ATTRIBUTE_HIGHLIGHT = tsLanguage.contains.find((c) => c.className === "attr");
+      const ATTRIBUTE_HIGHLIGHT = tsLanguage.contains.find((c) => c.scope === "attr");
+      const OPTIONAL_KEY_OR_ARGUMENT = Object.assign({}, ATTRIBUTE_HIGHLIGHT, {
+        match: regex.concat(IDENT_RE$1, regex.lookahead(/\s*\?:/))
+      });
       tsLanguage.exports.PARAMS_CONTAINS.push([
         tsLanguage.exports.CLASS_REFERENCE,
         // class reference for highlighting the params types
-        ATTRIBUTE_HIGHLIGHT
+        ATTRIBUTE_HIGHLIGHT,
         // highlight the params key
+        OPTIONAL_KEY_OR_ARGUMENT
+        // Added for optional property assignment highlighting
       ]);
-      tsLanguage.contains = tsLanguage.contains.concat([DECORATOR, NAMESPACE, INTERFACE]);
+      tsLanguage.contains = tsLanguage.contains.concat([
+        DECORATOR,
+        NAMESPACE,
+        INTERFACE,
+        OPTIONAL_KEY_OR_ARGUMENT
+        // Added for optional property assignment highlighting
+      ]);
       swapMode(tsLanguage, "shebang", hljs.SHEBANG());
       swapMode(tsLanguage, "use_strict", USE_STRICT);
       const functionDeclaration = tsLanguage.contains.find((m) => m.label === "func.def");
@@ -23925,4 +24629,4 @@ export {
   export_HighlightJS as HighlightJS,
   es_default as default
 };
-//# sourceMappingURL=es-OWMLOQZP.js.map
+//# sourceMappingURL=es-UCFGHAEN.js.map
