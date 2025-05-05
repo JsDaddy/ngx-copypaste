@@ -1,6 +1,8 @@
 <button
-    class="copy-btn flex items-center bg-full-white w-fit h-[31px] text-black text-span rounded-4px gap-2.5 px-6 py-5px"
-    [class]="copyButtonClass"
+    [ngClass]="[
+        copyButtonClass,
+        'copy-btn flex items-center bg-full-white w-fit h-[31px] text-black text-span rounded-4px gap-2.5 px-6 py-5px',
+    ]"
     (click)="copyText()">
     <span class="default-text">Copy</span>
     <span class="active-text">Copied</span>
