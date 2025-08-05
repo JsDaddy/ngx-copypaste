@@ -1,38 +1,47 @@
 {
     "compileOnSave": false,
     "compilerOptions": {
-        "outDir": "./dist/out-tsc",
-        "forceConsistentCasingInFileNames": true,
-        "strict": true,
-        "esModuleInterop": true,
-        "sourceMap": true,
-        "declaration": false,
-        "experimentalDecorators": true,
-        "moduleResolution": "node",
-        "importHelpers": true,
-        "target": "ES2022",
-        "module": "ES2022",
-        "lib": ["ES2022", "dom"],
-        "noUnusedLocals": true,
-        "noUnusedParameters": true,
-        "noImplicitReturns": true,
-        "noFallthroughCasesInSwitch": true,
-        "noUncheckedIndexedAccess": true,
-        "noImplicitOverride": true,
-        "noPropertyAccessFromIndexSignature": true,
-        "useUnknownInCatchVariables": true,
-        "exactOptionalPropertyTypes": true,
-        "useDefineForClassFields": false,
-        "removeComments": true,
-        "resolveJsonModule": true,
-        "paths": {
-            "@libraries/*": ["./src/libraries/*"],
-            "@open-source/*": ["./src/libraries/open-source/*"],
-            "ngx-copypaste": ["./projects/ngx-copypaste-lib/src/public-api"]
-        },
-        "skipLibCheck": true,
-        "noImplicitAny": true,
-        "isolatedModules": true
+      "outDir": "./dist/out-tsc",
+      "forceConsistentCasingInFileNames": true,
+      "strict": true,
+      "esModuleInterop": true,
+      "sourceMap": true,
+      "declaration": false,
+      "experimentalDecorators": true,
+      "moduleResolution": "bundler",
+      "importHelpers": true,
+      "target": "ES2022",
+      "module": "ES2022",
+      "lib": [
+        "ES2022",
+        "dom"
+      ],
+      "noUnusedLocals": true,
+      "noUnusedParameters": true,
+      "noImplicitReturns": true,
+      "noFallthroughCasesInSwitch": true,
+      "noUncheckedIndexedAccess": true,
+      "noImplicitOverride": true,
+      "noPropertyAccessFromIndexSignature": true,
+      "useUnknownInCatchVariables": true,
+      "exactOptionalPropertyTypes": true,
+      "useDefineForClassFields": false,
+      "removeComments": true,
+      "resolveJsonModule": true,
+      "paths": {
+        "@libraries/*": [
+          "./src/libraries/*"
+        ],
+        "@open-source/*": [
+          "./src/libraries/open-source/*"
+        ],
+        "ngx-copypaste": [
+          "./projects/ngx-copypaste-lib/src/public-api"
+        ]
+      },
+      "skipLibCheck": true,
+      "noImplicitAny": true,
+      "isolatedModules": true
     },
     "angularCompilerOptions": {
         "strictStandalone": true,
