@@ -62,7 +62,8 @@
         "ngx-highlightjs": "^14.0.1",
         "ngxtension": "^5.1.0",
         "rxjs": "7.8.2",
-        "snyk": "^1.1298.2"
+        "snyk": "^1.1298.2",
+        "zone.js": "^0.15.1"
     },
     "devDependencies": {
         "@angular-devkit/build-angular": "20.1.4",
